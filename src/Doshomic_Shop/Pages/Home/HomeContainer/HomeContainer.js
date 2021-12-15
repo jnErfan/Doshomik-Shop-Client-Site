@@ -13,8 +13,8 @@ const HomeContainer = () => {
     <div>
       <Banner />
       <AboutDS />
-      <Facilities />
       <Membership />
+      <Facilities />
       <EarnMoney />
       <FrequentlyQuestion />
       <PeopleSays />

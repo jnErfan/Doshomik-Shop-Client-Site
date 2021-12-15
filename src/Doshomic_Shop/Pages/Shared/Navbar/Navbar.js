@@ -9,6 +9,7 @@ import "./Navbar.css";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 import PublicIcon from "@mui/icons-material/Public";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [scrollChange, setSrollChainge] = useState(false);
@@ -67,7 +68,7 @@ const Navbar = () => {
       </Box>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar
-          sx={{ boxShadow: 0 }}
+          sx={scrollChange ? { backgroundColor: "#006EF2" } : { boxShadow: 0 }}
           className={
             scrollChange
               ? "animate__animated  animate__fadeInDown animate__faster py-2"
@@ -87,36 +88,60 @@ const Navbar = () => {
               component="div"
               sx={{ flexGrow: 1, color: "#fff" }}
             >
-              DOSHOMIK 𒆜Sᴴᴼᴾ
+              DOSHOMIK𒆜Sᴴᴼᴾ
             </Typography>
             <Box>
               <Button
                 className="navItem rounded-pill px-3 mx-2"
                 variant="text"
-                sx={{ color: "white", fontWeight: "600", fontSize: "15px" }}
+                sx={{ fontWeight: "600", fontSize: "15px" }}
               >
-                HOME
+                <Link
+                  to="/home"
+                  style={{ color: "white", textDecoration: "none" }}
+                >
+                  {" "}
+                  HOME
+                </Link>
               </Button>
               <Button
                 className="navItem rounded-pill px-3 mx-2"
                 variant="text"
                 sx={{ color: "white", fontWeight: "600", fontSize: "15px" }}
               >
-                ABOUT
+                <Link
+                  to="/about"
+                  style={{ color: "white", textDecoration: "none" }}
+                >
+                  {" "}
+                  ABOUT
+                </Link>
               </Button>
               <Button
                 className="navItem rounded-pill px-3 mx-2"
                 variant="text"
                 sx={{ color: "white", fontWeight: "600", fontSize: "15px" }}
               >
-                FAQ
+                <Link
+                  to="/faq"
+                  style={{ color: "white", textDecoration: "none" }}
+                >
+                  {" "}
+                  FAQ
+                </Link>
               </Button>
               <Button
                 className="navItem rounded-pill px-3 mx-2"
                 variant="text"
                 sx={{ color: "white", fontWeight: "600", fontSize: "15px" }}
               >
-                BLOG
+                <Link
+                  to="/blog"
+                  style={{ color: "white", textDecoration: "none" }}
+                >
+                  {" "}
+                  BLOG
+                </Link>
               </Button>
               <Button
                 className="rounded-pill px-4 mx-3"
@@ -128,7 +153,13 @@ const Navbar = () => {
                   backgroundColor: "#003BFF",
                 }}
               >
-                CONTACT
+                <Link
+                  to="/contract"
+                  style={{ color: "white", textDecoration: "none" }}
+                >
+                  {" "}
+                  CONTACT
+                </Link>
               </Button>
             </Box>
           </Toolbar>

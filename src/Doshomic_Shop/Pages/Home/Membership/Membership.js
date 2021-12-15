@@ -70,7 +70,7 @@ const Membership = () => {
         </Typography>
         <Typography variant="body1" className="text-secondary">
           {" "}
-          membership plan is a subscription to your organization that entitles
+          Membership plan is a subscription to your organization that entitles
           the purchaser to certain benefits. <br /> Each member's plan makes
           them an active member for a specific period of time.
         </Typography>
