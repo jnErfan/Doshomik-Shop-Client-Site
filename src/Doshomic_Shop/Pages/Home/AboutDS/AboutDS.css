@@ -5,6 +5,10 @@
   transition: 1s;
   transform: rotate(180deg);
 }
+#medeaIcon {
+  transform: rotate(0deg);
+  transition: 100s;
+}
 #medeaIcon:hover {
   transform: rotate(133333deg);
   transition: 59s;

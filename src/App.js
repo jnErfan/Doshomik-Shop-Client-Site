@@ -10,6 +10,7 @@ import About from "./Doshomic_Shop/Pages/About/About";
 import Faq from "./Doshomic_Shop/Pages/Faq/Faq";
 import Blog from "./Doshomic_Shop/Pages/Blog/Blog";
 import Contract from "./Doshomic_Shop/Pages/Contract/Contract";
+import BlogDetails from "./Doshomic_Shop/Pages/BlogDetails/BlogDetails";
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
           <Route path="home" element={<HomeContainer />} />
           <Route path="about" element={<About />} />
           <Route path="faq" element={<Faq />} />
-          <Route path="blog" element={<Blog />} />
+          <Route path="blogs" element={<Blog />} />
+          <Route path="blogs/:blogId" element={<BlogDetails />} />
           <Route path="contract" element={<Contract />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

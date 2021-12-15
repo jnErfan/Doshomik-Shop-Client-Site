@@ -91,111 +91,117 @@ const Navbar = () => {
               DOSHOMIK𒆜Sᴴᴼᴾ
             </Typography>
             <Box>
-              <Button
-                className="navItem rounded-pill px-3 mx-2"
-                variant="text"
-                sx={{
-                  fontWeight: "600",
-                  fontSize: "15px",
-                  "&:hover": {
-                    backgroundColor: "#0099FF",
-                  },
-                }}
+              <Link
+                to="/home"
+                style={{ color: "white", textDecoration: "none" }}
               >
-                <Link
-                  to="/home"
-                  style={{ color: "white", textDecoration: "none" }}
+                <Button
+                  className="navItem rounded-pill px-3 mx-2"
+                  variant="text"
+                  sx={{
+                    fontWeight: "600",
+                    color: "white",
+                    fontSize: "15px",
+                    "&:hover": {
+                      backgroundColor: "#0099FF",
+                      color: "white",
+                    },
+                  }}
                 >
                   {" "}
                   HOME
-                </Link>
-              </Button>
-              <Button
-                className="navItem rounded-pill px-3 mx-2"
-                variant="text"
-                sx={{
-                  color: "white",
-                  fontWeight: "600",
-                  fontSize: "15px",
-                  "&:hover": {
-                    backgroundColor: "#0099FF",
-                  },
-                }}
+                </Button>
+              </Link>
+              <Link
+                to="/about"
+                style={{ color: "white", textDecoration: "none" }}
               >
-                <Link
-                  to="/about"
-                  style={{ color: "white", textDecoration: "none" }}
+                <Button
+                  className="navItem rounded-pill px-3 mx-2"
+                  variant="text"
+                  sx={{
+                    color: "white",
+                    fontWeight: "600",
+                    fontSize: "15px",
+                    "&:hover": {
+                      backgroundColor: "#0099FF",
+                      color: "white",
+                    },
+                  }}
                 >
                   {" "}
                   ABOUT
-                </Link>
-              </Button>
-              <Button
-                className="navItem rounded-pill px-3 mx-2"
-                variant="text"
-                sx={{
-                  color: "white",
-                  fontWeight: "600",
-                  fontSize: "15px",
-                  "&:hover": {
-                    backgroundColor: "#0099FF",
-                  },
-                }}
+                </Button>
+              </Link>
+              <Link
+                to="/faq"
+                style={{ color: "white", textDecoration: "none" }}
               >
-                <Link
-                  to="/faq"
-                  style={{ color: "white", textDecoration: "none" }}
+                <Button
+                  className="navItem rounded-pill px-3 mx-2"
+                  variant="text"
+                  sx={{
+                    color: "white",
+                    fontWeight: "600",
+                    fontSize: "15px",
+                    "&:hover": {
+                      backgroundColor: "#0099FF",
+                      color: "white",
+                    },
+                  }}
                 >
                   {" "}
                   FAQ
-                </Link>
-              </Button>
-              <Button
-                className="navItem rounded-pill px-3 mx-2"
-                variant="text"
-                sx={{
+                </Button>
+              </Link>
+              <Link
+                to="/blogs"
+                style={{
                   color: "white",
-                  fontWeight: "600",
-                  fontSize: "15px",
-                  "&:hover": {
-                    backgroundColor: "#0099FF",
-                  },
+                  textDecoration: "none",
                 }}
               >
-                <Link
-                  to="/blog"
-                  style={{
+                <Button
+                  className="navItem rounded-pill px-3 mx-2"
+                  variant="text"
+                  sx={{
                     color: "white",
-                    textDecoration: "none",
+                    fontWeight: "600",
+                    fontSize: "15px",
+                    "&:hover": {
+                      backgroundColor: "#0099FF",
+                      color: "white",
+                    },
                   }}
                 >
                   {" "}
                   BLOGS
-                </Link>
-              </Button>
-              <Button
-                variant="contained"
-                sx={{
-                  fontWeight: "600",
-                  borderRadius: "50px",
-                  px: "20px",
-                  py: "11px",
-                  mx: "10px",
-                  fontSize: "15px",
-                  backgroundColor: "#0099FF",
-                  "&:hover": {
-                    backgroundColor: "#0099FF",
-                  },
-                }}
+                </Button>
+              </Link>
+              <Link
+                to="/contract"
+                style={{ color: "white", textDecoration: "none" }}
               >
-                <Link
-                  to="/contract"
-                  style={{ color: "white", textDecoration: "none" }}
+                <Button
+                  variant="contained"
+                  sx={{
+                    fontWeight: "600",
+                    borderRadius: "50px",
+                    px: "20px",
+                    py: "11px",
+                    mx: "10px",
+                    fontSize: "15px",
+                    backgroundColor: "#0099FF",
+                    "&:hover": {
+                      backgroundColor: "#0099FF",
+                      color: "white",
+                    },
+                  }}
                 >
                   {" "}
                   CONTACT
-                </Link>
-              </Button>
+                </Button>
+              </Link>
             </Box>
           </Toolbar>
         </AppBar>

@@ -17,8 +17,6 @@ const HomeContainer = () => {
       <Membership />
       <Facilities />
       <EarnMoney />
-      <FrequentlyQuestion />
-      <PeopleSays />
       <Box sx={{ textAlign: "center", my: "50px" }}>
         <Typography
           variant="h3"
@@ -34,6 +32,8 @@ const HomeContainer = () => {
         </Typography>
       </Box>
       <OurBlog />
+      <PeopleSays />
+      <FrequentlyQuestion />
     </div>
   );
 };

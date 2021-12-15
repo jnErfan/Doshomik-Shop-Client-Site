@@ -4,7 +4,7 @@ import Link from "@mui/material/Link";
 import { Box, Typography } from "@mui/material";
 import "./Banner.css";
 
-const Banner = ({ pageName, from }) => {
+const Banner = ({ pageName, from, secondFrom }) => {
   return (
     <Box className="BannerContainer">
       <Box
@@ -31,6 +31,16 @@ const Banner = ({ pageName, from }) => {
             >
               {from}
             </Link>
+            {secondFrom && (
+              <Link
+                underline="hover"
+                color="inherit"
+                href={"/" + secondFrom?.toLowerCase()}
+                style={{ color: "#fff", cursor: "pointer" }}
+              >
+                {secondFrom}
+              </Link>
+            )}
             <Typography
               color="text.primary"
               style={{ color: "#fff", fontSize: "25px" }}
