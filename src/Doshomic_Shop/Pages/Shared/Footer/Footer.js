@@ -139,22 +139,78 @@ const Footer = () => {
         ></Box>
       </Box>
       <Box sx={{ textAlign: "center", py: "10px" }}>
-        <h6 style={{ color: "#fff" }}>
-          <i className="far fa-copyright"></i> Design With{" "}
-          <i style={{ color: "#01070C" }} className="fas fa-heart"></i> By
+        <Box className="footar-icon" style={{ textAlign: "center" }}>
           <a
-            style={{
-              textDecoration: "none",
-              color: "#01070C",
-              marginLeft: "5px",
-            }}
+            href="https://www.facebook.com/profile.php?id=100070357800423"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {" "}
+            <i
+              className="fab fa-facebook fb"
+              style={{ marginLeft: "15px" }}
+            ></i>{" "}
+          </a>
+          <a
+            href="https://www.instagram.com/j.n_erfan/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <i
+              className="fab fa-instagram ins"
+              style={{ marginLeft: "15px" }}
+            ></i>
+          </a>
+          <a
             href="https://www.linkedin.com/in/j-n-erfan-8368b0216/"
             target="_blank"
             rel="noreferrer"
           >
-            J.N.Erfan
+            <i
+              className="fab fa-linkedin link"
+              style={{ marginLeft: "15px" }}
+            ></i>
           </a>
-        </h6>
+
+          <a href="https://github.com/jnErfan" target="_blank" rel="noreferrer">
+            <i className="fab fa-github git" style={{ marginLeft: "15px" }}></i>
+          </a>
+          <a
+            href="https://twitter.com/JNErfan"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <i
+              className="fab fa-twitter twt "
+              style={{ marginLeft: "15px" }}
+            ></i>
+          </a>
+          <a
+            href="https://www.youtube.com/channel/UCRJ5d8nP2PBmv6rYdtNfFag"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <i className="fab fa-youtube yt" style={{ marginLeft: "15px" }}></i>
+          </a>
+        </Box>
+        <Box>
+          <h6 style={{ color: "#fff" }}>
+            <i className="far fa-copyright"></i> Design With{" "}
+            <i style={{ color: "#01070C" }} className="fas fa-heart"></i> By
+            <a
+              style={{
+                textDecoration: "none",
+                color: "#01070C",
+                marginLeft: "5px",
+              }}
+              href="https://www.linkedin.com/in/j-n-erfan-8368b0216/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              J.N.Erfan
+            </a>
+          </h6>
+        </Box>
       </Box>
     </Box>
   );
