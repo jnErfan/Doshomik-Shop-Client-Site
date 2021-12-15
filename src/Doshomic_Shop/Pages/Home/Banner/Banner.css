@@ -1,0 +1,43 @@
+.rightButton {
+  width: 30px;
+  height: 30px;
+  margin-left: 20px;
+  border-radius: 50px;
+  background-color: #1130798a;
+  position: absolute;
+}
+.rightButton:hover {
+  width: 50px;
+  height: 50px;
+}
+.leftButton {
+  width: 30px;
+  height: 30px;
+  margin-left: -20px;
+  border-radius: 50px;
+  background-color: #1130798a;
+  position: absolute;
+}
+.leftButton:hover {
+  width: 50px;
+  height: 50px;
+}
+.bannerTitle {
+  position: absolute;
+  z-index: 999;
+  text-align: center;
+  color: #fff;
+}
+.sliderImages {
+  width: 100%;
+
+  animation: zoom 20s infinite;
+}
+@keyframes zoom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.4);
+  }
+}
