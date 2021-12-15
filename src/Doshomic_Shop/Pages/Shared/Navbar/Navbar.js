@@ -121,7 +121,12 @@ const Navbar = () => {
               <Button
                 className="rounded-pill px-4 mx-3"
                 variant="contained"
-                sx={{ py: "12px", fontWeight: "600", fontSize: "15px" }}
+                sx={{
+                  py: "12px",
+                  fontWeight: "600",
+                  fontSize: "15px",
+                  backgroundColor: "#003BFF",
+                }}
               >
                 CONTACT
               </Button>
