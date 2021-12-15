@@ -1,5 +1,18 @@
+.facilitiePaper:hover .textSecondary {
+  color: #fff !important;
+}
+.facilitiePaper:hover .text-title {
+  color: #fff !important;
+}
+.facilitiePaper:hover .text-icon {
+  color: #fff !important;
+}
+.facilitiePaper {
+  margin-top: 0px !important;
+  transition: 400ms !important;
+}
 .facilitiePaper:hover {
-  background-color: #0004d431;
+  background-color: #003bff;
   margin-top: -8px !important;
   transition: 300ms;
 }

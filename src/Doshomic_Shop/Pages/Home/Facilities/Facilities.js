@@ -77,14 +77,21 @@ const Facilities = () => {
               }}
               className="shadow-sm facilitiePaper"
             >
-              <Icon sx={{ fontSize: "90px", color: "#003BFF" }} />
+              <Icon
+                sx={{ fontSize: "90px", color: "#003BFF" }}
+                className="text-icon"
+              />
               <Typography
                 variant="h5"
                 sx={{ fontWeight: "bold", my: "25px", color: "#363636" }}
+                className="text-title"
               >
                 {title}
               </Typography>
-              <Typography variant="body1" className="text-secondary">
+              <Typography
+                variant="body1"
+                className="text-secondary textSecondary"
+              >
                 {description}
               </Typography>
             </Paper>
