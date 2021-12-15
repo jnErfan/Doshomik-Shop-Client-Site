@@ -13,8 +13,8 @@ const StyledInputElement = styled("input")`
   font-size: 1.2rem;
   line-height: 1.4375em;
   background: #fff;
-  border: 1px solid gray;
-  border-radius: 10px;
+  border: 2px solid gray;
+  border-radius: 7px;
   padding: 6px 10px;
   color: #006ef2;
   transition: width 300ms ease;
@@ -154,8 +154,9 @@ const Contract = () => {
                 sx={{
                   backgroundColor: "#474747",
                   color: "#fff",
-                  borderRadius: "10px",
+                  borderRadius: "7px",
                   mt: "10px",
+                  border: "1px solid #474747",
                 }}
               >
                 Send

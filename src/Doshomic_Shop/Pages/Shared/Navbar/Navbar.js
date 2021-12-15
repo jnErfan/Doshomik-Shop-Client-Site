@@ -94,7 +94,13 @@ const Navbar = () => {
               <Button
                 className="navItem rounded-pill px-3 mx-2"
                 variant="text"
-                sx={{ fontWeight: "600", fontSize: "15px" }}
+                sx={{
+                  fontWeight: "600",
+                  fontSize: "15px",
+                  "&:hover": {
+                    backgroundColor: "#0099FF",
+                  },
+                }}
               >
                 <Link
                   to="/home"
@@ -107,7 +113,14 @@ const Navbar = () => {
               <Button
                 className="navItem rounded-pill px-3 mx-2"
                 variant="text"
-                sx={{ color: "white", fontWeight: "600", fontSize: "15px" }}
+                sx={{
+                  color: "white",
+                  fontWeight: "600",
+                  fontSize: "15px",
+                  "&:hover": {
+                    backgroundColor: "#0099FF",
+                  },
+                }}
               >
                 <Link
                   to="/about"
@@ -120,7 +133,14 @@ const Navbar = () => {
               <Button
                 className="navItem rounded-pill px-3 mx-2"
                 variant="text"
-                sx={{ color: "white", fontWeight: "600", fontSize: "15px" }}
+                sx={{
+                  color: "white",
+                  fontWeight: "600",
+                  fontSize: "15px",
+                  "&:hover": {
+                    backgroundColor: "#0099FF",
+                  },
+                }}
               >
                 <Link
                   to="/faq"
@@ -133,24 +153,39 @@ const Navbar = () => {
               <Button
                 className="navItem rounded-pill px-3 mx-2"
                 variant="text"
-                sx={{ color: "white", fontWeight: "600", fontSize: "15px" }}
+                sx={{
+                  color: "white",
+                  fontWeight: "600",
+                  fontSize: "15px",
+                  "&:hover": {
+                    backgroundColor: "#0099FF",
+                  },
+                }}
               >
                 <Link
                   to="/blog"
-                  style={{ color: "white", textDecoration: "none" }}
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                  }}
                 >
                   {" "}
-                  BLOG
+                  BLOGS
                 </Link>
               </Button>
               <Button
-                className="rounded-pill px-4 mx-3"
                 variant="contained"
                 sx={{
-                  py: "12px",
                   fontWeight: "600",
+                  borderRadius: "50px",
+                  px: "20px",
+                  py: "11px",
+                  mx: "10px",
                   fontSize: "15px",
-                  backgroundColor: "#003BFF",
+                  backgroundColor: "#0099FF",
+                  "&:hover": {
+                    backgroundColor: "#0099FF",
+                  },
                 }}
               >
                 <Link
