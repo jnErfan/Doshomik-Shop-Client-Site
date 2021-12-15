@@ -1,9 +1,18 @@
 import React from "react";
-import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import { Box, Button, Container, Typography } from "@mui/material";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
 import FrequentlyQuestion from "../Home/FrequentlyQuestion/FrequentlyQuestion";
+import { styled } from "@mui/system";
 
+const StyledInputElement = styled("textarea")`
+  line-height: 1.4375em;
+  border: 2px solid #006ef2;
+  &:focus {
+    outline: none;
+    border: 2px solid #000;
+  }
+`;
 const Faq = () => {
   return (
     <Box>
@@ -42,31 +51,52 @@ const Faq = () => {
           </Box>
         </Box>
       </Box>
-      <Box sx={{ my: "50px", textAlign: "center" }}>
+      <Box
+        sx={{
+          my: "150px",
+          textAlign: "center",
+        }}
+      >
         <Container>
-          <form>
-            <TextField
-              id="outlined-multiline-static"
-              label="Ask Questions"
-              placeholder="Write The Question"
-              multiline
-              rows={4}
-              sx={{ width: "50%" }}
-            />{" "}
-            <br />
-            <Button
-              variant="contained"
-              sx={{
-                width: "50%",
-                py: "15px",
-                mt: "20px",
-                background: "#006EF2",
-                "&:hover": { backgroundColor: "#000" },
-              }}
-            >
-              Submit Question
-            </Button>
-          </form>
+          <Box
+            sx={{
+              p: "50px",
+              borderRadius: "20px",
+              backgroundColor: "#e0e0e0",
+            }}
+          >
+            <h1 style={{ fontWeight: "bold", marginBottom: "30px" }}>
+              Ask Question
+            </h1>
+            <form>
+              <StyledInputElement
+                placeholder="Write The Question"
+                multiline
+                rows={4}
+                required
+                sx={{
+                  width: "50%",
+                  borderRadius: "5px",
+                  p: "10px",
+                }}
+              />
+              <br />
+              <Button
+                type="submit"
+                variant="contained"
+                sx={{
+                  width: "50%",
+                  py: "15px",
+                  mt: "20px",
+                  fontWeight: "bold",
+                  backgroundColor: "#006EF2",
+                  "&:hover": { backgroundColor: "#000" },
+                }}
+              >
+                Submit Question
+              </Button>
+            </form>
+          </Box>
         </Container>
       </Box>
       <FrequentlyQuestion />

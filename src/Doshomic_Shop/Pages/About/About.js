@@ -1,10 +1,9 @@
 import React from "react";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
 import AboutDS from "../Home/AboutDS/AboutDS";
 import PeopleSays from "../Home/PeopleSays/PeopleSays";
-import EarnMoney from "../Home/EarnMoney/EarnMoney";
 import Facilities from "../Home/Facilities/Facilities";
 
 const About = () => {
@@ -47,7 +46,6 @@ const About = () => {
       </Box>
       <AboutDS />
       <PeopleSays />
-      <EarnMoney />
       <Facilities />
     </Box>
   );
