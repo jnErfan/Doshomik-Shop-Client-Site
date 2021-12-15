@@ -1,1 +1,8 @@
-
+.contractPaper {
+  margin-top: 0px !important;
+  transition: 300ms;
+}
+.contractPaper:hover {
+  margin-top: -8px !important;
+  transition: 300ms;
+}
