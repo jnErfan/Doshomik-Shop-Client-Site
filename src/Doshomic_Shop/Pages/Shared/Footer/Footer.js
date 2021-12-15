@@ -202,6 +202,7 @@ const Footer = () => {
                 textDecoration: "none",
                 color: "#01070C",
                 marginLeft: "5px",
+                fontWeight: "bold",
               }}
               href="https://www.linkedin.com/in/j-n-erfan-8368b0216/"
               target="_blank"
