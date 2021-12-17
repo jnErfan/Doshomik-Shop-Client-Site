@@ -1,7 +1,8 @@
 import React from "react";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import "./Footer.css";
+import { HashLink } from "react-router-hash-link";
 
 const Footer = () => {
   return (
@@ -139,7 +140,10 @@ const Footer = () => {
         ></Box>
       </Box>
       <Box sx={{ textAlign: "center", py: "10px" }}>
-        <Box className="footar-icon" style={{ textAlign: "center" }}>
+        <Box
+          className="footar-icon"
+          style={{ textAlign: "center", color: "white" }}
+        >
           <a
             href="https://www.facebook.com/profile.php?id=100070357800423"
             target="_blank"
@@ -212,6 +216,29 @@ const Footer = () => {
             </a>
           </h6>
         </Box>
+      </Box>
+      <Box>
+        <HashLink
+          smooth
+          to="#"
+          style={{
+            textDecoration: "none",
+            position: "fixed",
+            bottom: "50px",
+            right: "20px",
+          }}
+          className="verticalScrollBar"
+        >
+          <Button
+            sx={{ borderRadius: "100%", width: "50px", height: "60px" }}
+            variant="contained"
+          >
+            <img
+              src="https://img.icons8.com/ios-glyphs/40/000000/launched-rocket.png"
+              alt="rocket"
+            />
+          </Button>
+        </HashLink>
       </Box>
     </Box>
   );
