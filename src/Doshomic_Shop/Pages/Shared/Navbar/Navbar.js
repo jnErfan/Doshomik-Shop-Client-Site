@@ -222,8 +222,8 @@ const Navbar = () => {
                   CONTACT
                 </Button>
               </Link>
-              <Link
-                to="/dashboard"
+              <a
+                href="/dashboard"
                 style={{ color: "white", textDecoration: "none" }}
               >
                 <Button
@@ -245,7 +245,7 @@ const Navbar = () => {
                   {" "}
                   Dashboard
                 </Button>
-              </Link>
+              </a>
             </Box>
           </Toolbar>
         </AppBar>

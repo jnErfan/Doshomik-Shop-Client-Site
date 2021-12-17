@@ -1,6 +1,5 @@
 import { Button, Grid } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
 import { Link } from "react-router-dom";
 import Banner from "../SharedItem/Banner";
 
