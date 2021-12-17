@@ -21,6 +21,7 @@ const Dashboard = () => {
             md={2}
             lg={2}
             sx={{ backgroundColor: "#101536", height: "110vh" }}
+            className="dashboardBackgroundImage"
           >
             <Box>
               <Typography
@@ -229,6 +230,7 @@ const Dashboard = () => {
                   boxShadow: 0,
                   width: "85%",
                 }}
+                className="dashboardBackgroundImage"
               >
                 <Toolbar variant="dense">
                   <Box sx={{ flexGrow: 1 }}>

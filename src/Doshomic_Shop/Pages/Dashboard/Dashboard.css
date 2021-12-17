@@ -33,3 +33,7 @@
   overflow-y: scroll !important;
   height: 100vh;
 }
+.dashboardBackgroundImage {
+  background-image: url("./spaceStar.png");
+  background-position: right !important;
+}

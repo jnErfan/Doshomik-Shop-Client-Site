@@ -4,45 +4,108 @@ import React from "react";
 
 const membershipPlans = [
   {
-    service: "Youtube View",
-    price: "10 bdt",
-    limit: "10 PTC",
-    bonus: "Upto 0 Level",
+    service: "Youtube Subscriber",
+    price: "1000 bdt",
+    limit: "1000 Subscriber",
+    bonus: "Upto 50",
     validity: "Life Time",
   },
   {
     service: "Facebook Like",
-    price: "10 bdt",
-    limit: "10 PTC",
-    bonus: "Upto 0 Level",
+    price: "300 bdt",
+    limit: "500 React",
+    bonus: "Upto 10",
     validity: "Life Time",
   },
   {
-    service: "Earn Life Time",
+    service: "Instagram Like",
+    price: "700 bdt",
+    limit: "1200 PTC",
+    bonus: "Upto 100",
+    validity: "Life Time",
+  },
+  {
+    service: "Facebook Follower",
     price: "500 bdt",
-    limit: "5 PTC",
-    bonus: "Upto 0 Level",
+    limit: "1000 PTC",
+    bonus: "Upto 50",
     validity: "Life Time",
   },
   {
-    service: "Earn Life Smart",
+    service: "Instagram Follower",
     price: "1000 bdt",
-    limit: "100 PTC",
-    bonus: "Upto 8 Level",
+    limit: "1500 PTC",
+    bonus: "Upto 100",
     validity: "Life Time",
   },
   {
-    service: "Earn Expert",
+    service: "Facebook Video Boost",
     price: "2000 bdt",
-    limit: "200 PTC",
+    limit: "No Limit",
+    bonus: "No Limit",
+    validity: "Life Time",
+  },
+  {
+    service: "Youtube Video Boost",
+    price: "2500 bdt",
+    limit: "No Limit",
+    bonus: "No Limit",
+    validity: "Life Time",
+  },
+  {
+    service: "Youtube View",
+    price: "400 bdt",
+    limit: "1000 View",
+    bonus: "Upto 100",
+    validity: "Life Time",
+  },
+  {
+    service: "Facebook View",
+    price: "300 bdt",
+    limit: "1000 PTC",
+    bonus: "Upto 100",
+    validity: "Life Time",
+  },
+  {
+    service: "Youtube Watch Time",
+    price: "1500 bdt",
+    limit: "1000 Hours",
     bonus: "Upto 10 Level",
     validity: "Life Time",
   },
   {
-    service: "Earn King",
-    price: "5000 bdt",
-    limit: "500 PTC",
+    service: "Facebook Watch Time",
+    price: "1000 bdt",
+    limit: "1000 Hours",
     bonus: "Upto 10 Level",
+    validity: "Life Time",
+  },
+  {
+    service: "Youtube Comments",
+    price: "250 bdt",
+    limit: "500 Comments",
+    bonus: "Upto 50",
+    validity: "Life Time",
+  },
+  {
+    service: "Facebook Comments",
+    price: "80 bdt",
+    limit: "100 Comments",
+    bonus: "Upto 20",
+    validity: "Life Time",
+  },
+  {
+    service: "Linkedin Follower",
+    price: "800 bdt",
+    limit: "1000 Follower",
+    bonus: "Upto 100",
+    validity: "Life Time",
+  },
+  {
+    service: "GitHub Follower",
+    price: "700 bdt",
+    limit: "1000 Follower",
+    bonus: "Upto 10",
     validity: "Life Time",
   },
 ];
@@ -116,36 +179,51 @@ const Membership = () => {
               >
                 <Typography
                   variant="h6"
-                  className="text-secondary fw-bold text-center mt-4 pb-3"
-                  sx={{ borderBottom: "1px dotted rgb(197, 197, 197)" }}
+                  className="fw-bold text-center mt-4 pb-3"
+                  sx={{
+                    borderBottom: "1px dotted rgb(197, 197, 197)",
+                    color: "#3a3a3a",
+                  }}
                 >
-                  Plan Details
+                  Membership Details
                 </Typography>
                 <Typography
                   variant="body1"
-                  className="text-secondary text-center mt-4 pb-3"
-                  sx={{ borderBottom: "1px dotted rgb(197, 197, 197)" }}
+                  className="text-center mt-4 pb-3"
+                  sx={{
+                    borderBottom: "1px dotted rgb(197, 197, 197)",
+                    color: "#3a3a3a",
+                  }}
                 >
-                  Daily Limit : {limit}
+                  Limit : {limit}
                 </Typography>
                 <Typography
                   variant="body1"
-                  className="text-secondary text-center mt-4 pb-3"
-                  sx={{ borderBottom: "1px dotted rgb(197, 197, 197)" }}
+                  className="text-center mt-4 pb-3"
+                  sx={{
+                    borderBottom: "1px dotted rgb(197, 197, 197)",
+                    color: "#3a3a3a",
+                  }}
                 >
                   Referral Bonus : {bonus}
                 </Typography>
                 <Typography
                   variant="body1"
-                  className="text-secondary text-center mt-4 pb-3"
-                  sx={{ borderBottom: "1px dotted rgb(197, 197, 197)" }}
+                  className="text-center mt-4 pb-3"
+                  sx={{
+                    borderBottom: "1px dotted rgb(197, 197, 197)",
+                    color: "#3a3a3a",
+                  }}
                 >
-                  Plan Price : {price}
+                  Membership Price : {price}
                 </Typography>
                 <Typography
                   variant="body1"
-                  className="text-secondary text-center mt-4 pb-3"
-                  sx={{ borderBottom: "1px dotted rgb(197, 197, 197)" }}
+                  className="text-center mt-4 pb-3"
+                  sx={{
+                    borderBottom: "1px dotted rgb(197, 197, 197)",
+                    color: "#3a3a3a",
+                  }}
                 >
                   Validity : {validity}
                 </Typography>

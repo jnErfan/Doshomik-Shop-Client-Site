@@ -66,10 +66,26 @@ const ManageMemberShips = () => {
         <Box sx={{ textAlign: "center", mb: "50px" }}>
           <Typography
             variant="h3"
-            sx={{ fontWeight: "bold", mb: "20px", color: "#101536" }}
+            sx={{ fontWeight: "bold", color: "#0C163C" }}
           >
             Manage All Memberships
-          </Typography>
+          </Typography>{" "}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              mb: "20px",
+            }}
+          >
+            <Box
+              sx={{
+                backgroundColor: "#0C163C",
+                height: "5px",
+                width: "100px",
+                mt: "10px",
+              }}
+            />
+          </Box>
         </Box>
         <Grid container spacing={3}>
           {membershipPlans.map(({ service, price, limit, bonus, validity }) => (

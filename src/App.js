@@ -13,13 +13,6 @@ import Contract from "./Doshomic_Shop/Pages/Contract/Contract";
 import BlogDetails from "./Doshomic_Shop/Pages/BlogDetails/BlogDetails";
 import MemberShips from "./Doshomic_Shop/Pages/MemberShip/MemberShip";
 import Dashboard from "./Doshomic_Shop/Pages/Dashboard/Dashboard";
-import { makeStyles } from "@mui/styles";
-
-const THEME = makeStyles({
-  Typography: {
-    fontFamily: "'Sora', sans-serif",
-  },
-});
 
 function App() {
   let location = window.location.pathname;
