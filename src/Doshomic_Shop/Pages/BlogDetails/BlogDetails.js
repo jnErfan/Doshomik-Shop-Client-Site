@@ -28,7 +28,7 @@ const BlogDetails = () => {
   const { blogId } = useParams();
 
   const blogDetails = blogsDes.filter((blog) => blog?.id === Number(blogId));
-  const { id, img, title, des } = blogDetails[0];
+  const { img, title, des } = blogDetails[0];
 
   return (
     <Box>
@@ -40,17 +40,123 @@ const BlogDetails = () => {
               <Box>
                 <img src={img} alt="" />
                 <Typography
-                  variant="h4"
-                  sx={{ mt: "20px", fontWeight: "bold" }}
+                  variant="h5"
+                  sx={{ mt: "20px", fontWeight: "bold", color: "#363636" }}
                 >
                   {title}
                 </Typography>
-                <Typography variant="body1" sx={{ mt: "15px" }}>
+                <Typography
+                  variant="body1"
+                  sx={{ mt: "15px", color: "#666666" }}
+                >
                   {des}
                 </Typography>
               </Box>
+              <Box sx={{ textAlign: "center", mt: "50px" }}>
+                <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                  Share This Post
+                </Typography>
+                <Box className="footar-icon" sx={{ mt: "20px" }}>
+                  <a
+                    href="https://www.facebook.com/profile.php?id=100070357800423"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {" "}
+                    <i
+                      className="fab fa-facebook fb"
+                      style={{ marginLeft: "15px" }}
+                    ></i>{" "}
+                  </a>
+                  <a
+                    href="https://www.instagram.com/j.n_erfan/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <i
+                      className="fab fa-instagram ins"
+                      style={{ marginLeft: "15px" }}
+                    ></i>
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/j-n-erfan-8368b0216/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <i
+                      className="fab fa-linkedin link"
+                      style={{ marginLeft: "15px" }}
+                    ></i>
+                  </a>
+
+                  <a
+                    href="https://twitter.com/JNErfan"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <i
+                      className="fab fa-twitter twt "
+                      style={{ marginLeft: "15px" }}
+                    ></i>
+                  </a>
+                </Box>
+              </Box>
             </Grid>
-            <Grid item xs={12} sm={12} md={6} lg={4}></Grid>
+            <Grid item xs={12} sm={12} md={6} lg={4}>
+              <Box>
+                <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+                  Recent Posts
+                </Typography>
+                <Box
+                  sx={{
+                    backgroundColor: "#006EF2",
+                    width: "30px",
+                    height: "3px",
+                  }}
+                />
+              </Box>
+              <Box
+                sx={{
+                  mt: "30px",
+                }}
+              >
+                {blogsDes.map(({ img, title }) => (
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      borderBottom: "1px solid #e8e8e8",
+                      py: "10px",
+                      "&:hover": {
+                        transform: "scale(1.05)",
+                        color: "#000",
+                      },
+                    }}
+                  >
+                    <Box>
+                      {" "}
+                      <img width="80px" src={img} alt="" />
+                    </Box>
+                    <Box>
+                      <Typography
+                        variant="body1"
+                        sx={{
+                          fontWeight: "bold",
+                          color: "#363636",
+                          cursor: "pointer",
+                          ml: "15px",
+                          "&:hover": {
+                            color: "#0099FF",
+                          },
+                        }}
+                      >
+                        {title}
+                      </Typography>
+                    </Box>
+                  </Box>
+                ))}
+              </Box>
+            </Grid>
           </Grid>
         </Box>
       </Container>
