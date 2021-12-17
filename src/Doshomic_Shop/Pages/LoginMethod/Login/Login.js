@@ -72,11 +72,13 @@ const Login = () => {
                 sx={{
                   width: "50%",
                 }}
+                type="email"
                 id="standard-textarea"
                 label="Email"
                 placeholder="Enter Email"
                 multiline
                 variant="standard"
+                required
               />
             </Box>
             <Box sx={{ display: "flex", justifyContent: "center", mt: "20px" }}>
@@ -95,6 +97,7 @@ const Login = () => {
                   Password
                 </InputLabel>
                 <Input
+                  required
                   id="standard-adornment-password"
                   type={values.showPassword ? "text" : "password"}
                   value={values.password}
@@ -190,9 +193,11 @@ const Login = () => {
                 label="Enter Code"
                 type="number"
                 variant="standard"
+                required
               />
             </Box>
             <Button
+              type="submit"
               variant="contained"
               sx={{ width: "54%", mt: "30px", py: "15px", fontWeight: "bold" }}
             >

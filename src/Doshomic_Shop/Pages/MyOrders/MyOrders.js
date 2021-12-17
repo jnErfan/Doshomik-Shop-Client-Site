@@ -77,8 +77,8 @@ const MyOrders = () => {
                         variant="contained"
                         sx={{
                           fontWeight: "bold",
-                          backgroundColor: "#FFA500",
                           display: "inline-block",
+                          backgroundColor: "#FFA500",
                           color: "#fff",
                           px: "25px",
                           py: "5px",
@@ -87,6 +87,7 @@ const MyOrders = () => {
                           borderRadius: "25px",
                           "&:hover": {
                             backgroundColor: "#FFA500",
+                            color: "#fff",
                           },
                         }}
                       >
