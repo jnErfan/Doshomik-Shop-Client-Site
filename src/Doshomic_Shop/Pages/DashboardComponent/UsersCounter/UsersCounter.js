@@ -1,12 +1,12 @@
 import { Box } from "@mui/material";
 import React from "react";
 
-const DashboardHome = () => {
+const UsersCounter = () => {
   return (
     <Box>
-      <h1>IM DashboardHome</h1>
+      <h1>IM Users Counter</h1>
     </Box>
   );
 };
 
-export default DashboardHome;
+export default UsersCounter;
