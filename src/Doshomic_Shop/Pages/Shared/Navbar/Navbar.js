@@ -113,6 +113,26 @@ const Navbar = () => {
                 </Button>
               </Link>
               <Link
+                to="/memberShip"
+                style={{ color: "white", textDecoration: "none" }}
+              >
+                <Button
+                  className="navItem rounded-pill px-3 mx-2"
+                  variant="text"
+                  sx={{
+                    fontWeight: "600",
+                    color: "white",
+                    fontSize: "15px",
+                    "&:hover": {
+                      backgroundColor: "#0099FF",
+                      color: "white",
+                    },
+                  }}
+                >
+                  Membership
+                </Button>
+              </Link>
+              <Link
                 to="/about"
                 style={{ color: "white", textDecoration: "none" }}
               >

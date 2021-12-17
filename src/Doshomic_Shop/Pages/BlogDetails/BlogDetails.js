@@ -37,8 +37,8 @@ const BlogDetails = () => {
         <Box>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={12} md={6} lg={8}>
-              <Box>
-                <img src={img} alt="" />
+              <Box sx={{ mr: "50px" }}>
+                <img width="100%" src={img} alt="" />
                 <Typography
                   variant="h5"
                   sx={{ mt: "20px", fontWeight: "bold", color: "#363636" }}
@@ -104,57 +104,114 @@ const BlogDetails = () => {
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={4}>
               <Box>
-                <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-                  Recent Posts
-                </Typography>
-                <Box
-                  sx={{
-                    backgroundColor: "#006EF2",
-                    width: "30px",
-                    height: "3px",
-                  }}
-                />
-              </Box>
-              <Box
-                sx={{
-                  mt: "30px",
-                }}
-              >
-                {blogsDes.map(({ img, title }) => (
+                <Box>
+                  <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+                    Recent Posts
+                  </Typography>
                   <Box
                     sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      borderBottom: "1px solid #e8e8e8",
-                      py: "10px",
-                      "&:hover": {
-                        transform: "scale(1.05)",
-                        color: "#000",
-                      },
+                      backgroundColor: "#006EF2",
+                      width: "30px",
+                      height: "3px",
                     }}
-                  >
-                    <Box>
-                      {" "}
-                      <img width="80px" src={img} alt="" />
+                  />
+                </Box>
+                <Box
+                  sx={{
+                    mt: "30px",
+                  }}
+                >
+                  {blogsDes.map(({ img, title }) => (
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        borderBottom: "1px solid #e8e8e8",
+                        py: "10px",
+                        "&:hover": {
+                          transform: "scale(1.05)",
+                          color: "#000",
+                          transition: "500ms",
+                        },
+                      }}
+                      key={title}
+                    >
+                      <Box>
+                        {" "}
+                        <img width="80px" src={img} alt="" />
+                      </Box>
+                      <Box>
+                        <Typography
+                          variant="body1"
+                          sx={{
+                            fontWeight: "bold",
+                            color: "#363636",
+                            cursor: "pointer",
+                            ml: "15px",
+                            "&:hover": {
+                              color: "#0099FF",
+                            },
+                          }}
+                        >
+                          {title}
+                        </Typography>
+                      </Box>
                     </Box>
-                    <Box>
-                      <Typography
-                        variant="body1"
-                        sx={{
-                          fontWeight: "bold",
-                          color: "#363636",
-                          cursor: "pointer",
-                          ml: "15px",
-                          "&:hover": {
-                            color: "#0099FF",
-                          },
-                        }}
-                      >
-                        {title}
-                      </Typography>
+                  ))}
+                </Box>
+              </Box>
+              <Box>
+                <Box sx={{ mt: "50px" }}>
+                  <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+                    Most Views
+                  </Typography>
+                  <Box
+                    sx={{
+                      backgroundColor: "#006EF2",
+                      width: "30px",
+                      height: "3px",
+                    }}
+                  />
+                </Box>
+                <Box sx={{ mt: "30px" }}>
+                  {blogsDes.map(({ img, title }) => (
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        borderBottom: "1px solid #e8e8e8",
+                        py: "10px",
+                        "&:hover": {
+                          transform: "scale(1.05)",
+                          color: "#000",
+                          transition: "500ms",
+                        },
+                      }}
+                      key={title}
+                    >
+                      <Box>
+                        {" "}
+                        <img width="80px" src={img} alt="" />
+                      </Box>
+                      <Box>
+                        <Typography
+                          variant="body1"
+                          sx={{
+                            fontWeight: "bold",
+                            color: "#363636",
+                            cursor: "pointer",
+                            ml: "15px",
+                            "&:hover": {
+                              color: "#0099FF",
+                            },
+                          }}
+                        >
+                          {title}
+                        </Typography>
+                      </Box>
                     </Box>
-                  </Box>
-                ))}
+                  ))}
+                </Box>
               </Box>
             </Grid>
           </Grid>
