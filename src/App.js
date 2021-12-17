@@ -13,6 +13,8 @@ import Contract from "./Doshomic_Shop/Pages/Contract/Contract";
 import BlogDetails from "./Doshomic_Shop/Pages/BlogDetails/BlogDetails";
 import MemberShips from "./Doshomic_Shop/Pages/MemberShip/MemberShip";
 import Dashboard from "./Doshomic_Shop/Pages/Dashboard/Dashboard";
+import MyOrders from "./Doshomic_Shop/Pages/MyOrders/MyOrders";
+import CustomerReview from "./Doshomic_Shop/Pages/CustomerReview/CustomerReview";
 
 function App() {
   let location = window.location.pathname;
@@ -45,6 +47,8 @@ function App() {
           <Route path="blogs" element={<Blog />} />
           <Route path="blogs/:blogId" element={<BlogDetails />} />
           <Route path="contract" element={<Contract />} />
+          <Route path="myOrders" element={<MyOrders />} />
+          <Route path="review" element={<CustomerReview />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Box

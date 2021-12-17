@@ -10,6 +10,7 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 import PublicIcon from "@mui/icons-material/Public";
 import { Link } from "react-router-dom";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const Navbar = () => {
   const [scrollChange, setSrollChainge] = useState(false);
@@ -72,6 +73,32 @@ const Navbar = () => {
                   Dashboard
                 </Button>
               </a>
+              <Link
+                to="/myOrders"
+                style={{ color: "white", textDecoration: "none" }}
+              >
+                <Button
+                  variant="contained"
+                  sx={{
+                    fontWeight: "600",
+                    borderRadius: "50px",
+                    px: "15px",
+                    py: "5px",
+                    mx: "10px",
+                    fontSize: "15px",
+                    backgroundColor: "#006EF2",
+                    "&:hover": {
+                      backgroundColor: "#0099FF",
+                      color: "#fff",
+                      transition: "500ms",
+                      transform: "scale(1.05)",
+                    },
+                  }}
+                >
+                  <ShoppingCartIcon />
+                  My Orders
+                </Button>
+              </Link>
               <Button
                 className="rounded-pill"
                 variant="text"

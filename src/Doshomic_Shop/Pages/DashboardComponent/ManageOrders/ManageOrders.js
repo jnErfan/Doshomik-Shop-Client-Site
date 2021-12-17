@@ -170,7 +170,7 @@ const ManageOrders = () => {
                             backgroundColor: "#079100",
                             display: "inline-block",
                             color: "#fff",
-                            px: "15px",
+                            px: "25px",
                             py: "5px",
                             borderRadius: "25px",
                           }}
@@ -184,7 +184,7 @@ const ManageOrders = () => {
                             backgroundColor: "#dbaf00",
                             display: "inline-block",
                             color: "#fff",
-                            px: "15px",
+                            px: "25px",
                             py: "5px",
                             mx: "5px",
 
@@ -200,7 +200,7 @@ const ManageOrders = () => {
                             backgroundColor: "#ff0000",
                             display: "inline-block",
                             color: "#fff",
-                            px: "15px",
+                            px: "25px",
                             py: "5px",
                             mx: "5px",
 
