@@ -46,6 +46,32 @@ const Navbar = () => {
               </select>
             </Box>
             <Box>
+              <a
+                href="/dashboard"
+                style={{ color: "white", textDecoration: "none" }}
+              >
+                <Button
+                  variant="contained"
+                  sx={{
+                    fontWeight: "600",
+                    borderRadius: "50px",
+                    px: "15px",
+                    py: "5px",
+                    mx: "10px",
+                    fontSize: "15px",
+                    backgroundColor: "#006EF2",
+                    "&:hover": {
+                      backgroundColor: "#0099FF",
+                      color: "#fff",
+                      transition: "500ms",
+                      transform: "scale(1.05)",
+                    },
+                  }}
+                >
+                  {" "}
+                  Dashboard
+                </Button>
+              </a>
               <Button
                 className="rounded-pill"
                 variant="text"
@@ -222,30 +248,6 @@ const Navbar = () => {
                   CONTACT
                 </Button>
               </Link>
-              <a
-                href="/dashboard"
-                style={{ color: "white", textDecoration: "none" }}
-              >
-                <Button
-                  variant="contained"
-                  sx={{
-                    fontWeight: "600",
-                    borderRadius: "50px",
-                    px: "20px",
-                    py: "11px",
-                    mx: "10px",
-                    fontSize: "15px",
-                    backgroundColor: "#0099FF",
-                    "&:hover": {
-                      backgroundColor: "#0099FF",
-                      color: "white",
-                    },
-                  }}
-                >
-                  {" "}
-                  Dashboard
-                </Button>
-              </a>
             </Box>
           </Toolbar>
         </AppBar>

@@ -1,14 +1,14 @@
-import {
-  AppBar,
-  Button,
-  Grid,
-  IconButton,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import { AppBar, Button, Grid, Toolbar, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { Link } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import "./Dashboard.css";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import DashboardHome from "../DashboardComponent/Dashboard/DashboardHome";
+import ManageOrders from "../DashboardComponent/ManageOrders/ManageOrders";
+import ManageMemberShips from "../DashboardComponent/ManageMemberShips/ManageMemberShips";
+import ManageUsers from "../DashboardComponent/ManageUsers/ManageUsers";
+import AddMemberShips from "../DashboardComponent/AddMemberShips/AddMemberShips";
+import Settings from "../DashboardComponent/Settings/Settings";
 
 const Dashboard = () => {
   return (
@@ -36,9 +36,9 @@ const Dashboard = () => {
                   𒆜Sᴴᴼᴾ
                 </span>
               </Typography>
-              <Box sx={{ mr: "10px" }}>
+              <Box sx={{ mr: "10px", mt: "50px" }} className="buttonContainer">
                 <Link
-                  to=""
+                  to="dashboardHome"
                   style={{
                     color: "white",
                     textDecoration: "none",
@@ -49,6 +49,7 @@ const Dashboard = () => {
                     sx={{
                       fontWeight: "600",
                       color: "white",
+                      my: "30px",
                       borderRadius: "0px",
                       width: "100%",
                       textAlign: "start",
@@ -63,8 +64,157 @@ const Dashboard = () => {
                       },
                     }}
                   >
-                    {" "}
-                    HOME
+                    <i className="fas fa-laptop-house"></i> Dashboard
+                  </Button>
+                </Link>
+                <Link
+                  to="manageOrders"
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                  }}
+                >
+                  <Button
+                    variant="text"
+                    sx={{
+                      fontWeight: "600",
+                      color: "white",
+                      my: "30px",
+                      borderRadius: "0px",
+                      width: "100%",
+                      textAlign: "start",
+                      borderTopRightRadius: "50px",
+                      borderBottomRightRadius: "50px",
+                      display: "block",
+                      pl: "20px",
+                      fontSize: "15px",
+                      "&:hover": {
+                        backgroundColor: "#dcecf53f",
+                        color: "white",
+                      },
+                    }}
+                  >
+                    <i className="fas fa-shopping-cart"></i> Manage Orders
+                  </Button>
+                </Link>
+                <Link
+                  to="manageMemberShips"
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                  }}
+                >
+                  <Button
+                    variant="text"
+                    sx={{
+                      fontWeight: "600",
+                      color: "white",
+                      my: "30px",
+                      borderRadius: "0px",
+                      width: "100%",
+                      textAlign: "start",
+                      borderTopRightRadius: "50px",
+                      borderBottomRightRadius: "50px",
+                      display: "block",
+                      pl: "20px",
+                      fontSize: "15px",
+                      "&:hover": {
+                        backgroundColor: "#dcecf53f",
+                        color: "white",
+                      },
+                    }}
+                  >
+                    <i class="fas fa-server"></i> Memberships
+                  </Button>
+                </Link>
+                <Link
+                  to="manageUsers"
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                  }}
+                >
+                  <Button
+                    variant="text"
+                    sx={{
+                      fontWeight: "600",
+                      color: "white",
+                      my: "30px",
+                      borderRadius: "0px",
+                      width: "100%",
+                      textAlign: "start",
+                      borderTopRightRadius: "50px",
+                      borderBottomRightRadius: "50px",
+                      display: "block",
+                      pl: "20px",
+                      fontSize: "15px",
+                      "&:hover": {
+                        backgroundColor: "#dcecf53f",
+                        color: "white",
+                      },
+                    }}
+                  >
+                    <i className="far fa-user"></i> Manage Users
+                  </Button>
+                </Link>
+                <Link
+                  to="addMemberShips"
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                  }}
+                >
+                  <Button
+                    variant="text"
+                    sx={{
+                      fontWeight: "600",
+                      color: "white",
+                      my: "30px",
+                      borderRadius: "0px",
+                      width: "100%",
+                      textAlign: "start",
+                      borderTopRightRadius: "50px",
+                      borderBottomRightRadius: "50px",
+                      display: "block",
+                      pl: "20px",
+                      fontSize: "15px",
+                      "&:hover": {
+                        backgroundColor: "#dcecf53f",
+                        color: "white",
+                      },
+                    }}
+                  >
+                    <i className="far fa-calendar-plus"></i> Membership Add
+                  </Button>
+                </Link>
+                <Link
+                  to="settings"
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                  }}
+                >
+                  <Button
+                    variant="text"
+                    sx={{
+                      fontWeight: "600",
+                      color: "white",
+                      my: "30px",
+                      borderRadius: "0px",
+                      width: "100%",
+                      textAlign: "start",
+                      borderTopRightRadius: "50px",
+                      borderBottomRightRadius: "50px",
+                      display: "block",
+                      pl: "20px",
+                      fontSize: "15px",
+                      "&:hover": {
+                        backgroundColor: "#dcecf53f",
+                        color: "white",
+                      },
+                    }}
+                  >
+                    <i className="fas fa-tools"></i> Settings
                   </Button>
                 </Link>
               </Box>
@@ -81,8 +231,15 @@ const Dashboard = () => {
                 }}
               >
                 <Toolbar variant="dense">
-                  <Box sx={{ display: "flex", justifyContent: "between" }}>
-                    <Box>
+                  <Box sx={{ flexGrow: 1 }}>
+                    {" "}
+                    <a
+                      href="/"
+                      style={{
+                        color: "white",
+                        textDecoration: "none",
+                      }}
+                    >
                       {" "}
                       <Button sx={{ color: "#fff", fontWeight: "bold" }}>
                         <span
@@ -94,19 +251,13 @@ const Dashboard = () => {
                         </span>
                         𒆜HOME
                       </Button>
-                    </Box>
-                    <Box>
-                      <Button sx={{ color: "#fff", fontWeight: "bold" }}>
-                        <span
-                          style={{
-                            color: "#0099FF",
-                          }}
-                        >
-                          Client
-                        </span>
-                        𒆜HOME
-                      </Button>
-                    </Box>
+                    </a>
+                  </Box>
+                  <Box>
+                    <Button sx={{ color: "#fff", fontWeight: "bold" }}>
+                      ADMIN
+                      <AccountCircle sx={{ fontSize: "25px", ml: "10px" }} />
+                    </Button>
                   </Box>
                 </Toolbar>
               </AppBar>
@@ -114,33 +265,19 @@ const Dashboard = () => {
             <Box className="border1" />
             <Box className="border2" />
             <Box className="dashboardOverflow">
-              <h1>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptate dolor repellendus tempora eaque libero sunt velit et
-                iste explicabo error possimus veritatis, vel obcaecati non amet
-                eligendi quos porro quibusdam delectus molestias sed
-                consectetur, officia molestiae. Quasi, quae veritatis? Ea quis
-                doloribus dolore fuga, ducimus blanditiis accusantium nesciunt
-                voluptatibus numquam impedit eius tenetur excepturi repudiandae
-                beatae obcaecati repellat facilis repellendus modi illum odit
-                voluptatum quibusdam, eveniet fugit. Soluta blanditiis nihil
-                assumenda? Aspernatur rerum ipsum voluptatum. Molestiae
-                assumenda, ducimus illo quae est culpa laudantium dolorum?
-                Laudantium similique ut minima eos laboriosam, fuga consequuntur
-                in omnis? Non, sint ab deleniti, excepturi ea exercitationem
-                maxime nisi vitae incidunt corporis asperiores iusto quae animi,
-                atque dolor molestiae ad aperiam consectetur omnis! Ea dolore
-                quasi cupiditate necessitatibus! Aliquid dignissimos saepe minus
-                sapiente mollitia quos distinctio optio doloremque cupiditate.
-                Cumque soluta quae tempora, et quasi architecto dolorum, fugit
-                qui cupiditate impedit optio hic, provident possimus ad quidem?
-                Natus perspiciatis error totam, rerum, nostrum facere nihil
-                perferendis dolores corporis rem ex voluptatibus, unde mollitia.
-                Ullam harum corrupti, dolor incidunt in nulla doloribus mollitia
-                at aliquam, odio totam sed error consequatur corporis cum iusto
-                excepturi officiis placeat eum numquam. Numquam voluptate
-                reiciendis fuga dignissimos est fugiat quas inventore?
-              </h1>
+              <Routes>
+                <Route path="/" element={<DashboardHome />} />
+                <Route path="dashboardHome" element={<DashboardHome />} />
+                <Route path="manageOrders" element={<ManageOrders />} />
+                <Route
+                  path="manageMemberShips"
+                  element={<ManageMemberShips />}
+                />
+                <Route path="manageUsers" element={<ManageUsers />} />
+                <Route path="addMemberShips" element={<AddMemberShips />} />
+                <Route path="settings" element={<Settings />} />
+              </Routes>
+              {/* All Dashboard Item */}
             </Box>
           </Grid>
         </Grid>

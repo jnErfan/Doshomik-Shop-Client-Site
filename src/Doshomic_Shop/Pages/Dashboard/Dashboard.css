@@ -7,7 +7,7 @@
 }
 .dashboardContainer {
   overflow-y: hidden;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
   height: 100vh;
 }
 .dashboardOverflow {
@@ -28,4 +28,8 @@
   border-left: 5px solid #2b3577 !important;
   height: 130px;
   position: absolute;
+}
+.buttonContainer {
+  overflow-y: scroll !important;
+  height: 100vh;
 }

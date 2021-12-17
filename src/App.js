@@ -13,18 +13,40 @@ import Contract from "./Doshomic_Shop/Pages/Contract/Contract";
 import BlogDetails from "./Doshomic_Shop/Pages/BlogDetails/BlogDetails";
 import MemberShips from "./Doshomic_Shop/Pages/MemberShip/MemberShip";
 import Dashboard from "./Doshomic_Shop/Pages/Dashboard/Dashboard";
+import { makeStyles } from "@mui/styles";
+
+const THEME = makeStyles({
+  Typography: {
+    fontFamily: "'Sora', sans-serif",
+  },
+});
 
 function App() {
   let location = window.location.pathname;
+  console.log(location);
   return (
     <Box className="App" sx={{ overflowX: "hidden" }}>
       <Router>
-        {location !== "/dashboard" && <Navbar />}
+        <Box
+          sx={
+            (location === "/dashboard" && { display: "none" }) ||
+            (location === "/dashboard/dashboardHome" && { display: "none" }) ||
+            (location === "/dashboard/manageOrders" && { display: "none" }) ||
+            (location === "/dashboard/manageMemberShips" && {
+              display: "none",
+            }) ||
+            (location === "/dashboard/manageUsers" && { display: "none" }) ||
+            (location === "/dashboard/addMemberShips" && { display: "none" }) ||
+            (location === "/dashboard/settings" && { display: "none" })
+          }
+        >
+          <Navbar />
+        </Box>
         <Routes>
           <Route path="/" element={<HomeContainer />} />
           <Route path="home" element={<HomeContainer />} />
           <Route path="memberShip" element={<MemberShips />} />
-          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="dashboard/*" element={<Dashboard />} />
           <Route path="about" element={<About />} />
           <Route path="faq" element={<Faq />} />
           <Route path="blogs" element={<Blog />} />
@@ -32,7 +54,21 @@ function App() {
           <Route path="contract" element={<Contract />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-        {location !== "/dashboard" && <Footer />}
+        <Box
+          sx={
+            (location === "/dashboard" && { display: "none" }) ||
+            (location === "/dashboard/dashboardHome" && { display: "none" }) ||
+            (location === "/dashboard/manageOrders" && { display: "none" }) ||
+            (location === "/dashboard/manageMemberShips" && {
+              display: "none",
+            }) ||
+            (location === "/dashboard/manageUsers" && { display: "none" }) ||
+            (location === "/dashboard/addMemberShips" && { display: "none" }) ||
+            (location === "/dashboard/settings" && { display: "none" })
+          }
+        >
+          <Footer />
+        </Box>
       </Router>
     </Box>
   );
