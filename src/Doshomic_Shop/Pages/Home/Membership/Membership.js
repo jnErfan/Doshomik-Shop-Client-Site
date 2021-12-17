@@ -5,107 +5,107 @@ import React from "react";
 const membershipPlans = [
   {
     service: "Youtube Subscriber",
-    price: "1000 bdt",
+    price: "1000",
     limit: "1000 Subscriber",
-    bonus: "Upto 50",
+    bonus: "50",
     validity: "Life Time",
   },
   {
     service: "Facebook Like",
-    price: "300 bdt",
+    price: "300",
     limit: "500 React",
-    bonus: "Upto 10",
+    bonus: "10",
     validity: "Life Time",
   },
   {
     service: "Instagram Like",
-    price: "700 bdt",
-    limit: "1200 PTC",
-    bonus: "Upto 100",
+    price: "700",
+    limit: "1200 Like",
+    bonus: "100",
     validity: "Life Time",
   },
   {
     service: "Facebook Follower",
-    price: "500 bdt",
-    limit: "1000 PTC",
-    bonus: "Upto 50",
+    price: "500",
+    limit: "1000 Follower",
+    bonus: "50",
     validity: "Life Time",
   },
   {
     service: "Instagram Follower",
-    price: "1000 bdt",
-    limit: "1500 PTC",
-    bonus: "Upto 100",
+    price: "1000",
+    limit: "1500 Follower",
+    bonus: "100",
     validity: "Life Time",
   },
   {
     service: "Facebook Video Boost",
-    price: "2000 bdt",
+    price: "2000",
     limit: "No Limit",
     bonus: "No Limit",
     validity: "Life Time",
   },
   {
     service: "Youtube Video Boost",
-    price: "2500 bdt",
+    price: "2500",
     limit: "No Limit",
     bonus: "No Limit",
     validity: "Life Time",
   },
   {
     service: "Youtube View",
-    price: "400 bdt",
+    price: "400",
     limit: "1000 View",
-    bonus: "Upto 100",
+    bonus: "100",
     validity: "Life Time",
   },
   {
     service: "Facebook View",
-    price: "300 bdt",
-    limit: "1000 PTC",
-    bonus: "Upto 100",
+    price: "300",
+    limit: "1000 View",
+    bonus: "100",
     validity: "Life Time",
   },
   {
     service: "Youtube Watch Time",
-    price: "1500 bdt",
+    price: "1500",
     limit: "1000 Hours",
-    bonus: "Upto 10 Level",
+    bonus: "10 Level",
     validity: "Life Time",
   },
   {
     service: "Facebook Watch Time",
-    price: "1000 bdt",
+    price: "1000",
     limit: "1000 Hours",
-    bonus: "Upto 10 Level",
+    bonus: "10 Level",
     validity: "Life Time",
   },
   {
     service: "Youtube Comments",
-    price: "250 bdt",
+    price: "250",
     limit: "500 Comments",
-    bonus: "Upto 50",
+    bonus: "50",
     validity: "Life Time",
   },
   {
     service: "Facebook Comments",
-    price: "80 bdt",
+    price: "80",
     limit: "100 Comments",
-    bonus: "Upto 20",
+    bonus: "20",
     validity: "Life Time",
   },
   {
     service: "Linkedin Follower",
-    price: "800 bdt",
+    price: "800",
     limit: "1000 Follower",
-    bonus: "Upto 100",
+    bonus: "100",
     validity: "Life Time",
   },
   {
     service: "GitHub Follower",
-    price: "700 bdt",
+    price: "700",
     limit: "1000 Follower",
-    bonus: "Upto 10",
+    bonus: "10",
     validity: "Life Time",
   },
 ];
@@ -169,7 +169,7 @@ const Membership = () => {
                   variant="h3"
                   sx={{ fontWeight: "bold", mt: "20px" }}
                 >
-                  {price}
+                  {price} ৳
                 </Typography>
               </Box>
               <Box
@@ -205,7 +205,7 @@ const Membership = () => {
                     color: "#3a3a3a",
                   }}
                 >
-                  Referral Bonus : {bonus}
+                  Referral Bonus : Upto {bonus}
                 </Typography>
                 <Typography
                   variant="body1"
@@ -215,7 +215,7 @@ const Membership = () => {
                     color: "#3a3a3a",
                   }}
                 >
-                  Membership Price : {price}
+                  Membership Price : {price} ৳
                 </Typography>
                 <Typography
                   variant="body1"
