@@ -36,12 +36,12 @@
 .dashboardBackgroundImage {
   background-image: url("./spaceStar.png");
   background-position: center !important;
-  animation: zoom 20s infinite;
+  animation: zoom 30s infinite;
 }
 .dashboardBackgroundImage2 {
   background-image: url("./spaceStar.png");
   background-position: center !important;
-  animation: zoom2 20s infinite;
+  animation: zoom2 50s infinite;
 }
 
 @keyframes zoom {
