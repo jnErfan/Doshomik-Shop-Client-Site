@@ -3,6 +3,7 @@ import React from "react";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import PriceCheckIcon from "@mui/icons-material/PriceCheck";
 import MoneyOffIcon from "@mui/icons-material/MoneyOff";
+import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 
 const DashboardHome = () => {
   const dashboardShort = [
@@ -76,7 +77,7 @@ const DashboardHome = () => {
     },
   ];
   return (
-    <Box>
+    <Box sx={{ mb: "200px" }}>
       <Box sx={{ mt: "50px", ml: "50px" }}>
         <h3 style={{ color: "#3a5775", fontWeight: "bold" }}>Dashboard</h3>
       </Box>
@@ -162,6 +163,18 @@ const DashboardHome = () => {
                   Earn
                 </Typography>
               </Box>
+              <Box sx={{ display: "flex", justifyContent: "center" }}>
+                {" "}
+                <Box width="250px" sx={{ mt: "30px" }}>
+                  <CircularProgressbar
+                    value={50}
+                    styles={buildStyles({
+                      pathColor: "#7367F0",
+                      trailColor: "#c3c0e8",
+                    })}
+                  />
+                </Box>
+              </Box>
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={4}>
               <Box
@@ -191,6 +204,18 @@ const DashboardHome = () => {
                   Deposit Charge
                 </Typography>
               </Box>
+              <Box sx={{ display: "flex", justifyContent: "center" }}>
+                {" "}
+                <Box width="250px" sx={{ mt: "30px" }}>
+                  <CircularProgressbar
+                    value={50}
+                    styles={buildStyles({
+                      pathColor: "#E91E63",
+                      trailColor: "#ddadbd",
+                    })}
+                  />
+                </Box>
+              </Box>
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={4}>
               <Box
@@ -219,6 +244,18 @@ const DashboardHome = () => {
                 <Typography variant="h5" sx={{ fontWeight: "bold" }}>
                   Total Earnings
                 </Typography>
+              </Box>{" "}
+              <Box sx={{ display: "flex", justifyContent: "center" }}>
+                {" "}
+                <Box width="250px" sx={{ mt: "30px" }}>
+                  <CircularProgressbar
+                    value={50}
+                    styles={buildStyles({
+                      pathColor: "#4CAF50",
+                      trailColor: "#becebe",
+                    })}
+                  />
+                </Box>
               </Box>
             </Grid>
           </Grid>
