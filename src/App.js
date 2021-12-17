@@ -11,7 +11,8 @@ import Faq from "./Doshomic_Shop/Pages/Faq/Faq";
 import Blog from "./Doshomic_Shop/Pages/Blog/Blog";
 import Contract from "./Doshomic_Shop/Pages/Contract/Contract";
 import BlogDetails from "./Doshomic_Shop/Pages/BlogDetails/BlogDetails";
-import MemberShip from "./Doshomic_Shop/Pages/MemberShip/MemberShip";
+import MemberShips from "./Doshomic_Shop/Pages/MemberShip/MemberShip";
+import Dashboard from "./Doshomic_Shop/Pages/Dashboard/Dashboard";
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomeContainer />} />
           <Route path="home" element={<HomeContainer />} />
-          <Route path="memberShip" element={<MemberShip />} />
+          <Route path="memberShip" element={<MemberShips />} />
+          <Route path="dashboard" element={<Dashboard />} />
           <Route path="about" element={<About />} />
           <Route path="faq" element={<Faq />} />
           <Route path="blogs" element={<Blog />} />

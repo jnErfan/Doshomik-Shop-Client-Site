@@ -52,11 +52,12 @@ const Membership = () => {
     background: "#003BFF",
     color: "#fff",
     fontWeight: "bold",
+    transition: "1s",
     padding: "15px 30px",
     "&:hover": {
       outline: "2px solid #003BFF",
       color: "#003BFF",
-      transition: "1s",
+      transition: "500ms",
     },
   }));
   return (

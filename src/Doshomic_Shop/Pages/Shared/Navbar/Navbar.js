@@ -222,6 +222,30 @@ const Navbar = () => {
                   CONTACT
                 </Button>
               </Link>
+              <Link
+                to="/dashboard"
+                style={{ color: "white", textDecoration: "none" }}
+              >
+                <Button
+                  variant="contained"
+                  sx={{
+                    fontWeight: "600",
+                    borderRadius: "50px",
+                    px: "20px",
+                    py: "11px",
+                    mx: "10px",
+                    fontSize: "15px",
+                    backgroundColor: "#0099FF",
+                    "&:hover": {
+                      backgroundColor: "#0099FF",
+                      color: "white",
+                    },
+                  }}
+                >
+                  {" "}
+                  Dashboard
+                </Button>
+              </Link>
             </Box>
           </Toolbar>
         </AppBar>
