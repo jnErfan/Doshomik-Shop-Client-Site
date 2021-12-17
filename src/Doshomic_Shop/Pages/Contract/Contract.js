@@ -1,5 +1,12 @@
 import React from "react";
-import { Box, Button, Container, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  CardActionArea,
+  Container,
+  Grid,
+  Typography,
+} from "@mui/material";
 import "./Contract.css";
 import Banner from "../SharedItem/Banner";
 import MapIcon from "@mui/icons-material/Map";
@@ -28,16 +35,19 @@ const contacts = [
     Icon: MapIcon,
     title: "Office Address",
     info: "Netrokona, Dhaka, Bangladesh",
+    link: "https://www.google.com/maps/place/Iqra+Technical+School+%26+College/@24.952275,90.5989352,85m/data=!3m1!1e3!4m5!3m4!1s0x3757aa7fb5492389:0xa26c5f5a91c70d66!8m2!3d24.9521608!4d90.5991698",
   },
   {
     Icon: PhoneEnabledIcon,
     title: "Phone Number",
     info: "+8801978352135",
+    link: +8801978352135,
   },
   {
     Icon: MailOutlineIcon,
     title: "Email Address",
     info: "j.n.erfan420@gmail.com",
+    link: "https://mail.google.com/",
   },
 ];
 
@@ -49,7 +59,7 @@ const Contract = () => {
       </Box>
       <Container sx={{ my: "150px" }}>
         <Grid container spacing={3}>
-          {contacts.map(({ Icon, title, info }) => (
+          {contacts.map(({ Icon, title, info, link }) => (
             <Grid
               item
               xs={12}
@@ -59,48 +69,57 @@ const Contract = () => {
               sx={{ textAlign: "center" }}
               className="contractPaper"
             >
-              <Box
-                sx={{
-                  backgroundColor: "#0056FB",
-                  px: "50px",
-                  py: "40px",
-                  borderRadius: "10px",
-                }}
-              >
-                <Box sx={{ mt: "-90px", mb: "50px" }}>
-                  <Icon
+              <CardActionArea style={{ borderRadius: "10px" }}>
+                <a
+                  href={link}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ textDecoration: "none" }}
+                >
+                  <Box
                     sx={{
-                      fontSize: "50px",
-                      color: "#0056FB",
-                      backgroundColor: "#fff",
-                      borderRadius: "100%",
-                      height: "100px",
-                      width: "100px",
-                      padding: "20px",
-                    }}
-                  />
-                </Box>
-                <Box>
-                  <h4
-                    style={{
-                      fontWeight: 500,
-                      marginTop: "20px",
-                      color: "#fff",
+                      backgroundColor: "#0056FB",
+                      px: "50px",
+                      py: "40px",
+                      borderRadius: "10px",
                     }}
                   >
-                    {title}
-                  </h4>
-                  <p
-                    style={{
-                      fontWeight: 500,
-                      marginTop: "20px",
-                      color: "#fff",
-                    }}
-                  >
-                    {info}
-                  </p>
-                </Box>
-              </Box>
+                    <Box sx={{ mt: "-90px", mb: "50px" }}>
+                      <Icon
+                        sx={{
+                          fontSize: "50px",
+                          color: "#0056FB",
+                          backgroundColor: "#fff",
+                          borderRadius: "100%",
+                          height: "100px",
+                          width: "100px",
+                          padding: "20px",
+                        }}
+                      />
+                    </Box>
+                    <Box>
+                      <h4
+                        style={{
+                          fontWeight: 500,
+                          marginTop: "20px",
+                          color: "#fff",
+                        }}
+                      >
+                        {title}
+                      </h4>
+                      <p
+                        style={{
+                          fontWeight: 500,
+                          marginTop: "20px",
+                          color: "#fff",
+                        }}
+                      >
+                        {info}
+                      </p>
+                    </Box>
+                  </Box>
+                </a>
+              </CardActionArea>
             </Grid>
           ))}
         </Grid>
