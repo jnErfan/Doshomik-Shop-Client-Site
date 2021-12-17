@@ -1,0 +1,31 @@
+::-webkit-scrollbar {
+  background: #006df200 !important;
+  width: 4px !important;
+}
+::-webkit-scrollbar-thumb {
+  background: #2b3577;
+}
+.dashboardContainer {
+  overflow-y: hidden;
+  overflow-x: hidden;
+  height: 100vh;
+}
+.dashboardOverflow {
+  border-radius: 5px !important;
+  padding-top: 5px !important;
+  padding-left: 15px !important;
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden !important;
+  margin-right: 10px !important;
+}
+.border1 {
+  background-color: #2b3577;
+  height: 4px !important;
+  width: 150px !important;
+}
+.border2 {
+  border-left: 5px solid #2b3577 !important;
+  height: 130px;
+  position: absolute;
+}
