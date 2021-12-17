@@ -230,7 +230,7 @@ const Dashboard = () => {
                   boxShadow: 0,
                   width: "85%",
                 }}
-                className="dashboardBackgroundImage"
+                className="dashboardBackgroundImage2"
               >
                 <Toolbar variant="dense">
                   <Box sx={{ flexGrow: 1 }}>

@@ -35,5 +35,35 @@
 }
 .dashboardBackgroundImage {
   background-image: url("./spaceStar.png");
-  background-position: right !important;
+  background-position: center !important;
+  animation: zoom 20s infinite;
+}
+.dashboardBackgroundImage2 {
+  background-image: url("./spaceStar.png");
+  background-position: center !important;
+  animation: zoom2 20s infinite;
+}
+
+@keyframes zoom {
+  0% {
+    background-size: 150%;
+  }
+  50% {
+    background-size: 120%;
+  }
+  100% {
+    background-size: 150%;
+  }
+}
+
+@keyframes zoom2 {
+  0% {
+    background-size: 50%;
+  }
+  50% {
+    background-size: 30%;
+  }
+  100% {
+    background-size: 50%;
+  }
 }
