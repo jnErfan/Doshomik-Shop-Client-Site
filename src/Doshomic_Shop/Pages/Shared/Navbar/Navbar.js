@@ -99,22 +99,27 @@ const Navbar = () => {
                   My Orders
                 </Button>
               </Link>
-              <Button
-                className="rounded-pill"
-                variant="text"
-                sx={{ color: "#fff", mx: "10px", fontSize: "15px" }}
-              >
-                <ExitToAppIcon sx={{ fontSize: "20px", mr: "5px" }} />
-                Login
-              </Button>
-              <Button
-                className="rounded-pill"
-                variant="text"
-                sx={{ color: "#fff", mx: "10px" }}
-              >
-                <HowToRegIcon />
-                Registration
-              </Button>
+              <Link to="/login" style={{ textDecoration: "none" }}>
+                {" "}
+                <Button
+                  className="rounded-pill"
+                  variant="text"
+                  sx={{ color: "#fff", mx: "10px", fontSize: "15px" }}
+                >
+                  <ExitToAppIcon sx={{ fontSize: "20px", mr: "5px" }} />
+                  Login
+                </Button>
+              </Link>
+              <Link to="/signUp" style={{ textDecoration: "none" }}>
+                <Button
+                  className="rounded-pill"
+                  variant="text"
+                  sx={{ color: "#fff", mx: "10px" }}
+                >
+                  <HowToRegIcon />
+                  Registration
+                </Button>
+              </Link>
             </Box>
           </Toolbar>
         </AppBar>

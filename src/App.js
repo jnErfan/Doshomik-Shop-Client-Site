@@ -15,6 +15,9 @@ import MemberShips from "./Doshomic_Shop/Pages/MemberShip/MemberShip";
 import Dashboard from "./Doshomic_Shop/Pages/Dashboard/Dashboard";
 import MyOrders from "./Doshomic_Shop/Pages/MyOrders/MyOrders";
 import CustomerReview from "./Doshomic_Shop/Pages/CustomerReview/CustomerReview";
+import Login from "./Doshomic_Shop/Pages/LoginMethod/Login/Login";
+import SignUp from "./Doshomic_Shop/Pages/LoginMethod/SignUp/SignUp";
+import AdminLogin from "./Doshomic_Shop/Pages/LoginMethod/AdminLogin/AdminLogin";
 
 function App() {
   let location = window.location.pathname;
@@ -49,6 +52,9 @@ function App() {
           <Route path="contract" element={<Contract />} />
           <Route path="myOrders" element={<MyOrders />} />
           <Route path="review" element={<CustomerReview />} />
+          <Route path="login" element={<Login />} />
+          <Route path="signUp" element={<SignUp />} />
+          <Route path="adminLogin" element={<AdminLogin />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Box
