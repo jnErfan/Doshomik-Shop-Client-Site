@@ -19,10 +19,12 @@ import Login from "./Doshomic_Shop/Pages/LoginMethod/Login/Login";
 import SignUp from "./Doshomic_Shop/Pages/LoginMethod/SignUp/SignUp";
 import AdminLogin from "./Doshomic_Shop/Pages/LoginMethod/AdminLogin/AdminLogin";
 import AuthContext from "./Doshomic_Shop/Context/AuthContext";
+import Profile from "./Doshomic_Shop/Pages/Profile/Profile";
+import PrivateRoute from "./Doshomic_Shop/PrivateRoutes/PrivateRoute";
 
 function App() {
   let location = window.location.pathname;
-  console.log(location);
+
   return (
     <AuthContext>
       <Box className="App" sx={{ overflowX: "hidden" }}>
@@ -52,12 +54,55 @@ function App() {
             <Route path="memberShip" element={<MemberShips />} />
             <Route path="dashboard/*" element={<Dashboard />} />
             <Route path="about" element={<About />} />
-            <Route path="faq" element={<Faq />} />
+            <Route
+              path="faq"
+              element={
+                <PrivateRoute>
+                  <Faq />
+                </PrivateRoute>
+              }
+            />
             <Route path="blogs" element={<Blog />} />
-            <Route path="blogs/:blogId" element={<BlogDetails />} />
-            <Route path="contract" element={<Contract />} />
-            <Route path="myOrders" element={<MyOrders />} />
-            <Route path="review" element={<CustomerReview />} />
+            <Route
+              path="blogs/:blogId"
+              element={
+                <PrivateRoute>
+                  <BlogDetails />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="contract"
+              element={
+                <PrivateRoute>
+                  <Contract />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="myOrders"
+              element={
+                <PrivateRoute>
+                  <MyOrders />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="review"
+              element={
+                <PrivateRoute>
+                  <CustomerReview />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="profile"
+              element={
+                <PrivateRoute>
+                  <Profile />
+                </PrivateRoute>
+              }
+            />
             <Route path="login" element={<Login />} />
             <Route path="signUp" element={<SignUp />} />
             <Route path="adminLogin" element={<AdminLogin />} />

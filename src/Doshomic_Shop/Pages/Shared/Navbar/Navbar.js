@@ -9,16 +9,35 @@ import "./Navbar.css";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 import PublicIcon from "@mui/icons-material/Public";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import useAuth from "../../../Hooks/useAuth";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { Avatar, Menu, MenuItem, Tooltip } from "@mui/material";
 
 const Navbar = () => {
   const [scrollChange, setSrollChainge] = useState(false);
-
+  const navigate = useNavigate();
   const onScrollHeader = () => {
     window.scrollY >= 10 ? setSrollChainge(true) : setSrollChainge(false);
   };
   window.addEventListener("scroll", onScrollHeader);
+
+  const { user, logOutAll } = useAuth();
+
+  const logOut = () => {
+    logOutAll();
+  };
+
+  const [anchorElUser, setAnchorElUser] = useState(null);
+
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
   return (
     <Box>
       <Box sx={{ flexGrow: 1 }}>
@@ -46,80 +65,233 @@ const Navbar = () => {
                 <option className="text-dark">Spanish</option>
               </select>
             </Box>
-            <Box>
-              <a
-                href="/dashboard"
-                style={{ color: "white", textDecoration: "none" }}
-              >
-                <Button
-                  variant="contained"
-                  sx={{
-                    fontWeight: "600",
-                    borderRadius: "50px",
-                    px: "15px",
-                    py: "5px",
-                    mx: "10px",
-                    fontSize: "15px",
-                    backgroundColor: "#006EF2",
-                    "&:hover": {
-                      backgroundColor: "#0099FF",
-                      color: "#fff",
-                      transition: "500ms",
-                      transform: "scale(1.05)",
-                    },
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              {user.email === "Admin" && (
+                <a
+                  href="/dashboard"
+                  style={{ color: "white", textDecoration: "none" }}
+                >
+                  <Button
+                    variant="contained"
+                    sx={{
+                      fontWeight: "600",
+                      borderRadius: "50px",
+                      px: "15px",
+                      py: "5px",
+                      mx: "10px",
+                      fontSize: "15px",
+                      backgroundColor: "#006EF2",
+                      "&:hover": {
+                        backgroundColor: "#0099FF",
+                        color: "#fff",
+                        transition: "500ms",
+                        transform: "scale(1.05)",
+                      },
+                    }}
+                  >
+                    {" "}
+                    Dashboard
+                  </Button>
+                </a>
+              )}
+              {user.email && (
+                <Link
+                  to="/myOrders"
+                  style={{
+                    color: "white",
+                    textDecoration: "none",
+                    marginRight: "30px",
                   }}
                 >
-                  {" "}
-                  Dashboard
-                </Button>
-              </a>
-              <Link
-                to="/myOrders"
-                style={{ color: "white", textDecoration: "none" }}
-              >
-                <Button
-                  variant="contained"
+                  <Button
+                    variant="contained"
+                    sx={{
+                      fontWeight: "600",
+                      borderRadius: "50px",
+                      px: "15px",
+                      py: "5px",
+                      mx: "10px",
+                      fontSize: "15px",
+                      backgroundColor: "#006EF2",
+                      "&:hover": {
+                        backgroundColor: "#0099FF",
+                        color: "#fff",
+                        transition: "500ms",
+                        transform: "scale(1.05)",
+                      },
+                    }}
+                  >
+                    <ShoppingCartIcon />
+                    My Orders
+                  </Button>
+                </Link>
+              )}
+              {!user.email ? (
+                <Box
                   sx={{
-                    fontWeight: "600",
-                    borderRadius: "50px",
-                    px: "15px",
-                    py: "5px",
-                    mx: "10px",
-                    fontSize: "15px",
-                    backgroundColor: "#006EF2",
-                    "&:hover": {
-                      backgroundColor: "#0099FF",
-                      color: "#fff",
-                      transition: "500ms",
-                      transform: "scale(1.05)",
-                    },
+                    display: "inline",
                   }}
                 >
-                  <ShoppingCartIcon />
-                  My Orders
-                </Button>
-              </Link>
-              <Link to="/login" style={{ textDecoration: "none" }}>
-                {" "}
-                <Button
-                  className="rounded-pill"
-                  variant="text"
-                  sx={{ color: "#fff", mx: "10px", fontSize: "15px" }}
-                >
-                  <ExitToAppIcon sx={{ fontSize: "20px", mr: "5px" }} />
-                  Login
-                </Button>
-              </Link>
-              <Link to="/signUp" style={{ textDecoration: "none" }}>
-                <Button
-                  className="rounded-pill"
-                  variant="text"
-                  sx={{ color: "#fff", mx: "10px" }}
-                >
-                  <HowToRegIcon />
-                  Registration
-                </Button>
-              </Link>
+                  <Link to="/login" style={{ textDecoration: "none" }}>
+                    {" "}
+                    <Button
+                      className="rounded-pill"
+                      variant="text"
+                      sx={{ color: "#fff", mx: "10px", fontSize: "15px" }}
+                    >
+                      <ExitToAppIcon sx={{ fontSize: "20px", mr: "5px" }} />
+                      Login
+                    </Button>
+                  </Link>
+                  <Link to="/signUp" style={{ textDecoration: "none" }}>
+                    <Button
+                      className="rounded-pill"
+                      variant="text"
+                      sx={{ color: "#fff", mx: "10px" }}
+                    >
+                      <HowToRegIcon />
+                      Registration
+                    </Button>
+                  </Link>
+                </Box>
+              ) : (
+                <Box sx={{ flexGrow: 2 }}>
+                  <Tooltip
+                    title="Profile"
+                    sx={{
+                      display: "inline",
+                    }}
+                  >
+                    <IconButton
+                      onClick={handleOpenUserMenu}
+                      sx={{
+                        display: "inline",
+                      }}
+                    >
+                      <Avatar
+                        alt="users"
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJM0tIHNcX1KiwFaVYxny0VCJgHrHi2I5IOQ&usqp=CAU"
+                        sx={{
+                          width: "60px",
+                          height: "60px",
+                        }}
+                      />
+                    </IconButton>
+                  </Tooltip>
+                  <Menu
+                    sx={{ mt: "70px" }}
+                    anchorEl={anchorElUser}
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                      vertical: "top",
+                      horizontal: "right",
+                    }}
+                    open={Boolean(anchorElUser)}
+                    onClose={handleCloseUserMenu}
+                  >
+                    <MenuItem onClick={handleCloseUserMenu}>
+                      <Button
+                        className="animate__animated animate__heartBeat animate__slower animate__infinite"
+                        onClick={() => navigate("/profile")}
+                        sx={{
+                          textTransform: "uppercase",
+                          fontWeight: "bold",
+                          textAlign: "center",
+                          color: "#000",
+                          fontSize: "20px",
+                          width: "100%",
+                        }}
+                      >
+                        {user.displayName}
+                      </Button>
+                    </MenuItem>
+                    <MenuItem onClick={handleCloseUserMenu}>
+                      <Button
+                        onClick={() => navigate("/profile")}
+                        sx={{
+                          textTransform: "revert",
+                          fontWeight: "bold",
+                          textAlign: "center",
+                          color: "gray",
+                          fontSize: "13px",
+                        }}
+                      >
+                        {user.email}
+                      </Button>
+                    </MenuItem>
+                    <MenuItem onClick={handleCloseUserMenu}>
+                      <Button
+                        onClick={() => navigate("/profile")}
+                        variant="contained"
+                        style={{
+                          backgroundColor: "#fff",
+                          color: "#000",
+                          fontWeight: "bold",
+                          width: "100%",
+                          borderRadius: "50px",
+                        }}
+                      >
+                        Profile
+                      </Button>
+                    </MenuItem>
+                    <MenuItem onClick={handleCloseUserMenu}>
+                      <Button
+                        onClick={() => navigate("/dashboard")}
+                        variant="contained"
+                        style={{
+                          backgroundColor: "#fff",
+                          color: "#000",
+                          fontWeight: "bold",
+                          borderRadius: "50px",
+                          width: "100%",
+                        }}
+                      >
+                        Dashboard
+                      </Button>
+                    </MenuItem>
+                    <MenuItem onClick={handleCloseUserMenu}>
+                      <Button
+                        onClick={() => navigate("/myOrders")}
+                        variant="contained"
+                        style={{
+                          backgroundColor: "#fff",
+                          color: "#000",
+                          fontWeight: "bold",
+                          borderRadius: "50px",
+                          width: "100%",
+                        }}
+                      >
+                        My Orders
+                      </Button>
+                    </MenuItem>
+                    <MenuItem onClick={handleCloseUserMenu}>
+                      <Button
+                        onClick={logOut}
+                        variant="contained"
+                        style={{
+                          backgroundColor: "#c40000",
+                          weight: "10px",
+                          borderRadius: "50px",
+                          width: "100%",
+                          padding: "2px 30px",
+                        }}
+                      >
+                        <LogoutIcon sx={{ fontSize: "30px", ml: "5px" }} />
+                      </Button>
+                    </MenuItem>
+                  </Menu>
+                </Box>
+              )}
             </Box>
           </Toolbar>
         </AppBar>

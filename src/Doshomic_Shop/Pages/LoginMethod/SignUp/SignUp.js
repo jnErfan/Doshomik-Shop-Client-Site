@@ -10,28 +10,68 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import Banner from "../../SharedItem/Banner";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import ContactMailOutlinedIcon from "@mui/icons-material/ContactMailOutlined";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
-import { styled } from "@mui/system";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import useAuth from "../../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
-const InputUpload = styled("input")({
-  display: "none",
-});
 const SignUp = () => {
-  const [values, setValues] = React.useState(false);
+  const { register, handleSubmit } = useForm();
+  const { emailPasswordSignUp, googleSignIn, githubSignIn, facebookSignIn } =
+    useAuth();
+  const [values, setValues] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const code1 = Math.floor(Math.random() * 10);
-  const code2 = Math.floor(Math.random() * 10);
-  const code3 = Math.floor(Math.random() * 10);
-  const code4 = Math.floor(Math.random() * 10);
-  const code5 = Math.floor(Math.random() * 10);
+  const onSubmit = (data) => {
+    const fullName = data.firstName + " " + data.lastName;
+
+    const formData = new FormData();
+    formData.append("name", fullName);
+    formData.append("email", data.email);
+    formData.append("password", data.email);
+    formData.append("image", data.image[0]);
+    if (data.password1 === data.password2) {
+      emailPasswordSignUp(
+        data.email,
+        data.password1,
+        fullName,
+        navigate,
+        location,
+        formData
+      );
+    } else {
+      const passwordError = "Password Did't Matched";
+      Swal.fire({
+        icon: "error",
+        title: "Something Went Wrong",
+        text: passwordError,
+        height: 600,
+        padding: "3em",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    }
+  };
+
+  const googleSignInHandler = () => {
+    googleSignIn(navigate, location);
+  };
+  const gitHubSignInHandler = () => {
+    githubSignIn(navigate, location);
+  };
+  const facebookSignInHandler = () => {
+    facebookSignIn(navigate, location);
+  };
+
   return (
     <Box>
       <Box>
@@ -54,7 +94,7 @@ const SignUp = () => {
           >
             Welcome To <span style={{ color: "#006ef2" }}>DOSHOMIK𒆜Sᴴᴼᴾ</span>
           </Typography>
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <Box
               sx={{
                 display: "flex",
@@ -78,12 +118,12 @@ const SignUp = () => {
                   width: "50%",
                 }}
                 type="name"
-                id="standard-textarea"
                 label="First Name"
                 placeholder="Enter First Name"
                 multiline
                 variant="standard"
                 required
+                {...register("firstName")}
               />
             </Box>
             <Box
@@ -115,6 +155,7 @@ const SignUp = () => {
                 multiline
                 variant="standard"
                 required
+                {...register("lastName")}
               />
             </Box>
             <Box
@@ -146,6 +187,7 @@ const SignUp = () => {
                 multiline
                 variant="standard"
                 required
+                {...register("email")}
               />
             </Box>
             <Box sx={{ display: "flex", justifyContent: "center", mt: "20px" }}>
@@ -165,6 +207,7 @@ const SignUp = () => {
                 </InputLabel>
                 <Input
                   required
+                  {...register("password1")}
                   id="standard-adornment-password"
                   type={values.showPassword ? "text" : "password"}
                   value={values.password}
@@ -214,17 +257,20 @@ const SignUp = () => {
                 label="Re-Type Password"
                 variant="standard"
                 required
+                {...register("password2")}
               />
             </Box>
             <Box sx={{ mt: "30px" }}>
               <label htmlFor="contained-button-file">
-                <InputUpload
-                  accept="image/*"
+                <TextField
+                  sx={{ filter: "opacity(0%)", width: "10px", height: "0px" }}
                   id="contained-button-file"
-                  multiple
                   type="file"
+                  accept="image/*"
                   required
+                  {...register("image")}
                 />
+                <br />
                 <Button variant="contained" component="span">
                   Upload Image <PhotoCamera sx={{ ml: "10px" }} />
                 </Button>
@@ -248,9 +294,9 @@ const SignUp = () => {
                     color: "#a0a0a0",
                     marginRight: "20px",
                   }}
-                  className="firstCode"
+                  className="securityCode"
                 >
-                  {code1}
+                  {Math.floor(Math.random() * 10)}
                 </span>
                 <span
                   style={{
@@ -259,8 +305,9 @@ const SignUp = () => {
                     color: "#a0a0a0",
                     marginRight: "20px",
                   }}
+                  className="securityCode"
                 >
-                  {code2}
+                  {Math.floor(Math.random() * 10)}
                 </span>
                 <span
                   style={{
@@ -269,8 +316,9 @@ const SignUp = () => {
                     color: "#a0a0a0",
                     marginRight: "20px",
                   }}
+                  className="securityCode"
                 >
-                  {code3}
+                  {Math.floor(Math.random() * 10)}
                 </span>
                 <span
                   style={{
@@ -279,8 +327,9 @@ const SignUp = () => {
                     color: "#a0a0a0",
                     marginRight: "20px",
                   }}
+                  className="securityCode"
                 >
-                  {code4}
+                  {Math.floor(Math.random() * 10)}
                 </span>
                 <span
                   style={{
@@ -289,8 +338,9 @@ const SignUp = () => {
                     color: "#a0a0a0",
                     marginRight: "20px",
                   }}
+                  className="securityCode"
                 >
-                  {code5}
+                  {Math.floor(Math.random() * 10)}
                 </span>
               </Box>
               <TextField
@@ -303,8 +353,10 @@ const SignUp = () => {
                 type="number"
                 variant="standard"
                 required
+                {...register("loginCode")}
               />
             </Box>
+
             <Button
               type="submit"
               variant="contained"
@@ -324,6 +376,7 @@ const SignUp = () => {
               </Link>
             </p>
             <Button
+              onClick={googleSignInHandler}
               variant="outlined"
               sx={{
                 height: "70px",
@@ -338,6 +391,7 @@ const SignUp = () => {
               />
             </Button>
             <Button
+              onClick={gitHubSignInHandler}
               variant="outlined"
               sx={{
                 height: "70px",
@@ -352,6 +406,7 @@ const SignUp = () => {
               />
             </Button>
             <Button
+              onClick={facebookSignInHandler}
               variant="outlined"
               sx={{
                 height: "70px",

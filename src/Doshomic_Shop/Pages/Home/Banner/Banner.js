@@ -2,11 +2,15 @@ import { Button } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import { Carousel } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import "./Banner.css";
 import b1 from "./banner1.jpg";
 import b2 from "./banner2.jpg";
+import useAuth from "../../../Hooks/useAuth";
 
 const Banner = () => {
+  const navigate = useNavigate();
+  const { user } = useAuth();
   return (
     <Carousel fade>
       <Carousel.Item>
@@ -27,28 +31,62 @@ const Banner = () => {
             sx={{ mt: "50px" }}
             className="animate__animated animate__slideInUp animate__slow"
           >
-            <Button
-              variant="contained"
-              sx={{
-                borderRadius: "50px",
-                marginLeft: "20px",
-                fontSize: "17px",
-                padding: "9px 27px",
-              }}
-            >
-              SIGN UP
-            </Button>
-            <Button
-              variant="contained"
-              sx={{
-                borderRadius: "50px",
-                marginLeft: "20px",
-                fontSize: "17px",
-                padding: "9px 27px",
-              }}
-            >
-              SIGN IN
-            </Button>
+            {user.email && (
+              <Box>
+                <Button
+                  onClick={() => navigate("/memberShip")}
+                  variant="contained"
+                  sx={{
+                    borderRadius: "50px",
+                    marginLeft: "20px",
+                    fontSize: "17px",
+                    padding: "9px 27px",
+                  }}
+                >
+                  MemberShips
+                </Button>
+                <Button
+                  onClick={() => navigate("/blogs")}
+                  variant="contained"
+                  sx={{
+                    borderRadius: "50px",
+                    marginLeft: "20px",
+                    fontSize: "17px",
+                    padding: "9px 27px",
+                  }}
+                >
+                  Blogs
+                </Button>
+              </Box>
+            )}
+            {!user.email && (
+              <Box>
+                <Button
+                  onClick={() => navigate("/signUp")}
+                  variant="contained"
+                  sx={{
+                    borderRadius: "50px",
+                    marginLeft: "20px",
+                    fontSize: "17px",
+                    padding: "9px 27px",
+                  }}
+                >
+                  SIGN UP
+                </Button>
+                <Button
+                  onClick={() => navigate("/login")}
+                  variant="contained"
+                  sx={{
+                    borderRadius: "50px",
+                    marginLeft: "20px",
+                    fontSize: "17px",
+                    padding: "9px 27px",
+                  }}
+                >
+                  SIGN IN
+                </Button>
+              </Box>
+            )}
           </Box>
         </Carousel.Caption>
       </Carousel.Item>
@@ -71,28 +109,64 @@ const Banner = () => {
             sx={{ mt: "50px" }}
             className="animate__animated animate__slideInUp animate__slow"
           >
-            <Button
-              variant="contained"
-              sx={{
-                borderRadius: "50px",
-                marginLeft: "20px",
-                fontSize: "17px",
-                padding: "9px 27px",
-              }}
-            >
-              LOGIN
-            </Button>
-            <Button
-              variant="contained"
-              sx={{
-                borderRadius: "50px",
-                marginLeft: "20px",
-                fontSize: "17px",
-                padding: "9px 27px",
-              }}
-            >
-              REGISTER
-            </Button>
+            {user.email && (
+              <Box>
+                {" "}
+                <Button
+                  onClick={() => navigate("/contract")}
+                  variant="contained"
+                  sx={{
+                    borderRadius: "50px",
+                    marginLeft: "20px",
+                    fontSize: "17px",
+                    padding: "9px 27px",
+                  }}
+                >
+                  Contract
+                </Button>
+                <Button
+                  onClick={() => navigate("/about")}
+                  variant="contained"
+                  sx={{
+                    borderRadius: "50px",
+                    marginLeft: "20px",
+                    fontSize: "17px",
+                    padding: "9px 27px",
+                  }}
+                >
+                  About
+                </Button>
+              </Box>
+            )}
+            {!user.email && (
+              <Box>
+                {" "}
+                <Button
+                  onClick={() => navigate("/login")}
+                  variant="contained"
+                  sx={{
+                    borderRadius: "50px",
+                    marginLeft: "20px",
+                    fontSize: "17px",
+                    padding: "9px 27px",
+                  }}
+                >
+                  LOGIN
+                </Button>
+                <Button
+                  onClick={() => navigate("/signUp")}
+                  variant="contained"
+                  sx={{
+                    borderRadius: "50px",
+                    marginLeft: "20px",
+                    fontSize: "17px",
+                    padding: "9px 27px",
+                  }}
+                >
+                  REGISTER
+                </Button>
+              </Box>
+            )}
           </Box>
         </Carousel.Caption>
       </Carousel.Item>
