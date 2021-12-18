@@ -19,6 +19,7 @@ import ContactMailOutlinedIcon from "@mui/icons-material/ContactMailOutlined";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import { styled } from "@mui/system";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
+import { Link } from "react-router-dom";
 
 const InputUpload = styled("input")({
   display: "none",
@@ -312,6 +313,59 @@ const SignUp = () => {
               Sign Up
             </Button>
           </form>
+          <Box sx={{ textAlign: "center", mt: "50px" }}>
+            <p className="text-secondary my-4">
+              ____________________Or____________________
+            </p>
+            <p className="mb-4 text-secondary">
+              You Have An Account ?{" "}
+              <Link to="/login" className="ms-3">
+                Login
+              </Link>
+            </p>
+            <Button
+              variant="outlined"
+              sx={{
+                height: "70px",
+                width: "70px",
+                borderRadius: "100%",
+                mx: "20px",
+              }}
+            >
+              <img
+                src="https://img.icons8.com/fluency/40/000000/google-logo.png"
+                alt=""
+              />
+            </Button>
+            <Button
+              variant="outlined"
+              sx={{
+                height: "70px",
+                width: "70px",
+                borderRadius: "100%",
+                mx: "20px",
+              }}
+            >
+              <img
+                src="https://img.icons8.com/color/40/000000/github--v3.png"
+                alt=""
+              />
+            </Button>
+            <Button
+              variant="outlined"
+              sx={{
+                height: "70px",
+                width: "70px",
+                borderRadius: "100%",
+                mx: "20px",
+              }}
+            >
+              <img
+                src="https://img.icons8.com/fluency/40/000000/facebook-new.png"
+                alt=""
+              />
+            </Button>
+          </Box>
         </Box>
       </Container>
     </Box>

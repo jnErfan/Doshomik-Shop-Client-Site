@@ -16,6 +16,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import ContactMailOutlinedIcon from "@mui/icons-material/ContactMailOutlined";
+import { Link } from "react-router-dom";
 import "./Login.css";
 
 const Login = () => {
@@ -204,6 +205,59 @@ const Login = () => {
               Login
             </Button>
           </form>
+          <Box sx={{ textAlign: "center", mt: "50px" }}>
+            <p className="text-secondary my-4">
+              ____________________Or____________________
+            </p>
+            <p className="mb-4 text-secondary">
+              You Don't Have An Account ?{" "}
+              <Link to="/signUp" className="ms-3">
+                Sign Up
+              </Link>
+            </p>
+            <Button
+              variant="outlined"
+              sx={{
+                height: "70px",
+                width: "70px",
+                borderRadius: "100%",
+                mx: "20px",
+              }}
+            >
+              <img
+                src="https://img.icons8.com/fluency/40/000000/google-logo.png"
+                alt=""
+              />
+            </Button>
+            <Button
+              variant="outlined"
+              sx={{
+                height: "70px",
+                width: "70px",
+                borderRadius: "100%",
+                mx: "20px",
+              }}
+            >
+              <img
+                src="https://img.icons8.com/color/40/000000/github--v3.png"
+                alt=""
+              />
+            </Button>
+            <Button
+              variant="outlined"
+              sx={{
+                height: "70px",
+                width: "70px",
+                borderRadius: "100%",
+                mx: "20px",
+              }}
+            >
+              <img
+                src="https://img.icons8.com/fluency/40/000000/facebook-new.png"
+                alt=""
+              />
+            </Button>
+          </Box>
         </Box>
       </Container>
     </Box>
