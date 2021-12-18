@@ -27,24 +27,18 @@ const useFirebase = () => {
   const auth = getAuth();
 
   //  Email And Password Create Account And Image Name Info
-  const emailPasswordSignUp = (
-    email,
-    password,
-    name,
-    navigate,
-    location,
-    formData
-  ) => {
+  const emailPasswordSignUp = (email, password, name, navigate, location) => {
     setIsLoading(true);
     setError("");
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
         setUser(result?.user);
+        savedUserInfo(name, email, "POST");
         Swal.fire({
           icon: "success",
           title: "Great!",
           text: "SignUp Successful",
-          height: 600,
+
           padding: "3em",
           showConfirmButton: false,
           timer: 3000,
@@ -64,7 +58,7 @@ const useFirebase = () => {
           icon: "error",
           title: "Something Went Wrong",
           text: error.message,
-          height: 600,
+
           padding: "3em",
           showConfirmButton: false,
           timer: 3000,
@@ -84,7 +78,7 @@ const useFirebase = () => {
           icon: "success",
           title: "Welcome Back",
           text: "Login Successful",
-          height: 600,
+
           padding: "3em",
           showConfirmButton: false,
           timer: 3000,
@@ -97,7 +91,7 @@ const useFirebase = () => {
           icon: "error",
           title: "Something Went Wrong",
           text: error.message,
-          height: 600,
+
           padding: "3em",
           showConfirmButton: false,
           timer: 3000,
@@ -116,7 +110,7 @@ const useFirebase = () => {
           icon: "success",
           title: "Password Reset Email Send",
           text: "Please Check Email",
-          height: 600,
+
           padding: "3em",
           showConfirmButton: false,
           timer: 3000,
@@ -128,7 +122,7 @@ const useFirebase = () => {
           icon: "error",
           title: "Something Went Wrong",
           text: "Please Try Again",
-          height: 600,
+
           padding: "3em",
           showConfirmButton: false,
           timer: 3000,
@@ -147,12 +141,12 @@ const useFirebase = () => {
           icon: "success",
           title: "Welcome",
           text: "Sign In Successful",
-          height: 600,
+
           padding: "3em",
           showConfirmButton: false,
           timer: 3000,
         });
-        // savedUserInfo(result.user?.displayName, result.user?.email, "PUT");
+        savedUserInfo(result?.user?.displayName, result?.user?.email, "PUT");
         const redirect = location?.state?.from || "/";
         navigate(redirect);
       })
@@ -162,7 +156,7 @@ const useFirebase = () => {
           icon: "error",
           title: "Something Wrong",
           text: error.message,
-          height: 600,
+
           padding: "3em",
           showConfirmButton: false,
           timer: 3000,
@@ -181,12 +175,12 @@ const useFirebase = () => {
           icon: "success",
           title: "Welcome",
           text: "Sign In Successful",
-          height: 600,
+
           padding: "3em",
           showConfirmButton: false,
           timer: 3000,
         });
-        // savedUserInfo(result.user?.displayName, result.user?.email, "PUT");
+        savedUserInfo(result.user?.displayName, result.user?.email, "PUT");
         const redirect = location?.state?.from || "/";
         navigate(redirect);
       })
@@ -195,7 +189,7 @@ const useFirebase = () => {
           icon: "error",
           title: "Something Wrong",
           text: error.message,
-          height: 600,
+
           padding: "3em",
           showConfirmButton: false,
           timer: 3000,
@@ -214,12 +208,12 @@ const useFirebase = () => {
           icon: "success",
           title: "Welcome",
           text: "Sign In Successful",
-          height: 600,
+
           padding: "3em",
           showConfirmButton: false,
           timer: 3000,
         });
-        // savedUserInfo(result.user?.displayName, result.user?.email, "PUT");
+        savedUserInfo(result.user?.displayName, result.user?.email, "PUT");
         const redirect = location?.state?.from || "/";
         navigate(redirect);
       })
@@ -228,7 +222,7 @@ const useFirebase = () => {
           icon: "error",
           title: "Something Wrong",
           text: error.message,
-          height: 600,
+
           padding: "3em",
           showConfirmButton: false,
           timer: 3000,
@@ -257,7 +251,7 @@ const useFirebase = () => {
               icon: "success",
               title: "LogOut Success",
               text: "I Hope You'll Come Back",
-              height: 600,
+
               padding: "3em",
               showConfirmButton: false,
               timer: 3000,
@@ -271,11 +265,10 @@ const useFirebase = () => {
     });
   };
 
-  //  Saved All Users Login Info In DataBase And This Is Jwt Token Secured
   const savedUserInfo = (name, email, method) => {
     const date = new Date();
     const userDetails = { name, email, date };
-    fetch("https://linux-pc-builder-backend.herokuapp.com/users", {
+    fetch("https://doshomik-shop-server.herokuapp.com/users", {
       method: method,
       headers: { "content-type": "application/json" },
       body: JSON.stringify(userDetails),

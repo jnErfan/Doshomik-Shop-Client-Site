@@ -16,7 +16,10 @@ const Banner = ({ pageName, from, secondFrom }) => {
         }}
       >
         <Box sx={{ ml: "50px", mb: "50px" }}>
-          <Typography variant="h1" sx={{ color: "#fff", pb: "10px" }}>
+          <Typography
+            sx={{ color: "#fff", pb: "10px" }}
+            className="bannerNames"
+          >
             {pageName}
           </Typography>
           <Breadcrumbs

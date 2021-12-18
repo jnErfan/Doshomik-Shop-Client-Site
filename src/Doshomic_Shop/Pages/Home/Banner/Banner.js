@@ -7,32 +7,50 @@ import "./Banner.css";
 import b1 from "./banner1.jpg";
 import b2 from "./banner2.jpg";
 import useAuth from "../../../Hooks/useAuth";
+import { useTheme } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
 const Banner = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
+  const theme = useTheme();
+
+  const useStyle = makeStyles({
+    navItemRes: {
+      [theme.breakpoints.down("md")]: {
+        display: "none",
+      },
+    },
+  });
+
+  const { navItemRes } = useStyle();
   return (
     <Carousel fade>
       <Carousel.Item>
         <img className="d-block sliderImages" src={b1} alt="First slide" />
-        <Carousel.Caption style={{ marginBottom: "12%" }}>
+        <Carousel.Caption
+          style={{ marginBottom: "12%" }}
+          className="bannerTitle"
+        >
           <h3
-            className="animate__animated animate__slideInUp "
+            className="animate__animated animate__slideInUp"
             style={{ fontSize: "70px", fontWeight: "bolder" }}
           >
             Start Earning From The Comfort of Home
           </h3>
-          <h6 className="px-5 mt-5 animate__animated animate__slideInUp animate__slow">
-            Indeed online selling business is one of the businesses that can
-            help us earn at the comfort of our homes. Internet Connection,
-            diligent posting. Internet Connection, diligent posting
-          </h6>
+          <div className={navItemRes}>
+            <h6 className="px-5 mt-5 animate__animated animate__slideInUp animate__slow">
+              Indeed online selling business is one of the businesses that can
+              help us earn at the comfort of our homes. Internet Connection,
+              diligent posting. Internet Connection, diligent posting
+            </h6>
+          </div>
           <Box
             sx={{ mt: "50px" }}
             className="animate__animated animate__slideInUp animate__slow"
           >
             {user.email && (
-              <Box>
+              <Box className={navItemRes}>
                 <Button
                   onClick={() => navigate("/memberShip")}
                   variant="contained"
@@ -60,7 +78,7 @@ const Banner = () => {
               </Box>
             )}
             {!user.email && (
-              <Box>
+              <Box className={navItemRes}>
                 <Button
                   onClick={() => navigate("/signUp")}
                   variant="contained"
@@ -93,24 +111,29 @@ const Banner = () => {
       <Carousel.Item>
         <img className="d-block sliderImages" src={b2} alt="Second slide" />
 
-        <Carousel.Caption style={{ marginBottom: "12%" }}>
-          <h1
+        <Carousel.Caption
+          style={{ marginBottom: "12%" }}
+          className="bannerTitle"
+        >
+          <h3
             className="animate__animated animate__slideInUp"
             style={{ fontSize: "70px", fontWeight: "bold" }}
           >
             Best Possible Way for Earn From Home
-          </h1>
-          <h6 className="px-5 mt-5 animate__animated animate__slideInUp animate__slow">
-            Earn From Home With a situation involving more time at home and/or
-            more. Freelancing has always been a popular way to earn money online
-            situation involving more time.
-          </h6>
+          </h3>
+          <Box className={navItemRes}>
+            <h6 className="px-5 mt-5 animate__animated animate__slideInUp animate__slow">
+              Earn From Home With a situation involving more time at home and/or
+              more. Freelancing has always been a popular way to earn money
+              online situation involving more time.
+            </h6>
+          </Box>
           <Box
             sx={{ mt: "50px" }}
             className="animate__animated animate__slideInUp animate__slow"
           >
             {user.email && (
-              <Box>
+              <Box className={navItemRes}>
                 {" "}
                 <Button
                   onClick={() => navigate("/contract")}
@@ -139,7 +162,7 @@ const Banner = () => {
               </Box>
             )}
             {!user.email && (
-              <Box>
+              <Box className={navItemRes}>
                 {" "}
                 <Button
                   onClick={() => navigate("/login")}

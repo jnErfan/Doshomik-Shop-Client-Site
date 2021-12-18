@@ -21,6 +21,8 @@ import AdminLogin from "./Doshomic_Shop/Pages/LoginMethod/AdminLogin/AdminLogin"
 import AuthContext from "./Doshomic_Shop/Context/AuthContext";
 import Profile from "./Doshomic_Shop/Pages/Profile/Profile";
 import PrivateRoute from "./Doshomic_Shop/PrivateRoutes/PrivateRoute";
+import AdminRoute from "./Doshomic_Shop/AdminRoutes/AdminRoute";
+import MembershipDetails from "./Doshomic_Shop/Pages/MembershipDetails/MembershipDetails";
 
 function App() {
   let location = window.location.pathname;
@@ -52,7 +54,22 @@ function App() {
             <Route path="/" element={<HomeContainer />} />
             <Route path="home" element={<HomeContainer />} />
             <Route path="memberShip" element={<MemberShips />} />
-            <Route path="dashboard/*" element={<Dashboard />} />
+            <Route
+              path="memberShips/:memberShipDetailsId"
+              element={
+                <PrivateRoute>
+                  <MembershipDetails />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="dashboard/*"
+              element={
+                <AdminRoute>
+                  <Dashboard />
+                </AdminRoute>
+              }
+            />
             <Route path="about" element={<About />} />
             <Route
               path="faq"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -13,7 +13,17 @@ import { Link, useNavigate } from "react-router-dom";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import useAuth from "../../../Hooks/useAuth";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { Avatar, Menu, MenuItem, Tooltip } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import {
+  Avatar,
+  List,
+  Menu,
+  MenuItem,
+  SwipeableDrawer,
+  Tooltip,
+} from "@mui/material";
+import { useTheme } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
 const Navbar = () => {
   const [scrollChange, setSrollChainge] = useState(false);
@@ -38,6 +48,25 @@ const Navbar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const theme = useTheme();
+
+  const useStyle = makeStyles({
+    navItemRes: {
+      [theme.breakpoints.down("md")]: {
+        display: "none",
+      },
+    },
+    navItemResUp: {
+      [theme.breakpoints.up("md")]: {
+        display: "none",
+      },
+    },
+  });
+  const { navItemRes, navItemResUp } = useStyle();
+
+  const [state, setState] = useState(false);
+
   return (
     <Box>
       <Box sx={{ flexGrow: 1 }}>
@@ -46,7 +75,7 @@ const Navbar = () => {
           className={scrollChange ? "d-none" : ""}
           sx={{ boxShadow: 0, borderBottom: "1px solid #9fb6fc4f" }}
         >
-          <Toolbar>
+          <Toolbar className={navItemRes}>
             <IconButton
               size="large"
               edge="start"
@@ -176,7 +205,7 @@ const Navbar = () => {
                     >
                       <Avatar
                         alt="users"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJM0tIHNcX1KiwFaVYxny0VCJgHrHi2I5IOQ&usqp=CAU"
+                        src={user.photoURL}
                         sx={{
                           width: "60px",
                           height: "60px",
@@ -244,21 +273,23 @@ const Navbar = () => {
                         Profile
                       </Button>
                     </MenuItem>
-                    <MenuItem onClick={handleCloseUserMenu}>
-                      <Button
-                        onClick={() => navigate("/dashboard")}
-                        variant="contained"
-                        style={{
-                          backgroundColor: "#fff",
-                          color: "#000",
-                          fontWeight: "bold",
-                          borderRadius: "50px",
-                          width: "100%",
-                        }}
-                      >
-                        Dashboard
-                      </Button>
-                    </MenuItem>
+                    <a href="/dashboard" style={{ textDecoration: "none" }}>
+                      {" "}
+                      <MenuItem onClick={handleCloseUserMenu}>
+                        <Button
+                          variant="contained"
+                          style={{
+                            backgroundColor: "#fff",
+                            color: "#000",
+                            fontWeight: "bold",
+                            borderRadius: "50px",
+                            width: "100%",
+                          }}
+                        >
+                          Dashboard
+                        </Button>
+                      </MenuItem>
+                    </a>
                     <MenuItem onClick={handleCloseUserMenu}>
                       <Button
                         onClick={() => navigate("/myOrders")}
@@ -314,13 +345,23 @@ const Navbar = () => {
               sx={{ mr: 2 }}
             ></IconButton>
             <Typography
+              onClick={() => navigate("/")}
               variant="h6"
               component="div"
-              sx={{ flexGrow: 1, color: "#fff" }}
+              sx={{
+                flexGrow: 1,
+                color: "#fff",
+                cursor: "pointer",
+                fontWeight: "bold",
+                "&:hover": {
+                  transform: "scale(1.01)",
+                  color: "#0099FF",
+                },
+              }}
             >
               DOSHOMIK𒆜Sᴴᴼᴾ
             </Typography>
-            <Box>
+            <Box className={navItemRes}>
               <Link
                 to="/home"
                 style={{ color: "white", textDecoration: "none" }}
@@ -448,13 +489,332 @@ const Navbar = () => {
                     },
                   }}
                 >
-                  {" "}
                   CONTACT
                 </Button>
               </Link>
             </Box>
+            <Button className={navItemResUp} onClick={() => setState(true)}>
+              <MenuIcon sx={{ color: "#fff", fontSize: "40px" }} />
+            </Button>
           </Toolbar>
         </AppBar>
+      </Box>
+
+      <Box className={navItemResUp}>
+        <Fragment>
+          <SwipeableDrawer open={state} onClose={() => setState(false)}>
+            <Box
+              sx={{
+                width: 150,
+                backgroundColor: "#111111",
+                height: "150vh",
+              }}
+              role="presentation"
+              onClick={() => setState(false)}
+              onKeyDown={() => setState(false)}
+            >
+              <List>
+                <Box component="div" sx={{ flexGrow: 1, textAlign: "center" }}>
+                  <PublicIcon sx={{ color: "#fff" }} />{" "}
+                  <select className="bg-transparent border-0 text-white">
+                    <option className="text-dark" selected>
+                      English
+                    </option>
+                    <option className="text-dark">Bangla</option>
+                    <option className="text-dark">Hindi</option>
+                    <option className="text-dark">Spanish</option>
+                  </select>
+                </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  {!user.email ? (
+                    <Box
+                      sx={{
+                        display: "block",
+                        mt: "20px",
+                      }}
+                    >
+                      <Link to="/login" style={{ textDecoration: "none" }}>
+                        {" "}
+                        <Button
+                          className="rounded-pill"
+                          variant="text"
+                          sx={{ color: "#fff", fontSize: "15px" }}
+                        >
+                          <ExitToAppIcon sx={{ fontSize: "15px", mr: "5px" }} />
+                          Login
+                        </Button>
+                      </Link>
+                      <Link to="/signUp" style={{ textDecoration: "none" }}>
+                        <Button
+                          className="rounded-pill"
+                          variant="text"
+                          sx={{ color: "#fff" }}
+                        >
+                          <HowToRegIcon />
+                          Registration
+                        </Button>
+                      </Link>
+                    </Box>
+                  ) : (
+                    <Box sx={{ flexGrow: 2, textAlign: "center", my: "40px" }}>
+                      <Tooltip
+                        title="Profile"
+                        sx={{
+                          display: "inline",
+                        }}
+                      >
+                        <IconButton
+                          onClick={handleOpenUserMenu}
+                          sx={{
+                            display: "inline",
+                          }}
+                        >
+                          <Avatar
+                            alt="users"
+                            src={user.photoURL}
+                            sx={{
+                              width: "60px",
+                              height: "60px",
+                            }}
+                          />
+                        </IconButton>
+                      </Tooltip>
+                      <Menu
+                        sx={{ mt: "70px" }}
+                        anchorEl={anchorElUser}
+                        anchorOrigin={{
+                          vertical: "top",
+                          horizontal: "right",
+                        }}
+                        keepMounted
+                        transformOrigin={{
+                          vertical: "top",
+                          horizontal: "right",
+                        }}
+                        open={Boolean(anchorElUser)}
+                        onClose={handleCloseUserMenu}
+                      >
+                        <MenuItem onClick={handleCloseUserMenu}>
+                          <Button
+                            className="animate__animated animate__heartBeat animate__slower animate__infinite"
+                            onClick={() => navigate("/profile")}
+                            sx={{
+                              textTransform: "uppercase",
+                              fontWeight: "bold",
+                              textAlign: "center",
+                              color: "#000",
+                              fontSize: "20px",
+                              width: "100%",
+                            }}
+                          >
+                            {user.displayName}
+                          </Button>
+                        </MenuItem>
+                        <MenuItem onClick={handleCloseUserMenu}>
+                          <Button
+                            onClick={() => navigate("/profile")}
+                            sx={{
+                              textTransform: "revert",
+                              fontWeight: "bold",
+                              textAlign: "center",
+                              color: "gray",
+                              fontSize: "13px",
+                            }}
+                          >
+                            {user.email}
+                          </Button>
+                        </MenuItem>
+                        <MenuItem onClick={handleCloseUserMenu}>
+                          <Button
+                            onClick={() => navigate("/profile")}
+                            variant="contained"
+                            style={{
+                              backgroundColor: "#fff",
+                              color: "#000",
+                              fontWeight: "bold",
+                              width: "100%",
+                              borderRadius: "50px",
+                            }}
+                          >
+                            Profile
+                          </Button>
+                        </MenuItem>
+                        <a href="/dashboard" style={{ textDecoration: "none" }}>
+                          {" "}
+                          <MenuItem onClick={handleCloseUserMenu}>
+                            <Button
+                              variant="contained"
+                              style={{
+                                backgroundColor: "#fff",
+                                color: "#000",
+                                fontWeight: "bold",
+                                borderRadius: "50px",
+                                width: "100%",
+                              }}
+                            >
+                              Dashboard
+                            </Button>
+                          </MenuItem>
+                        </a>
+
+                        <MenuItem onClick={handleCloseUserMenu}>
+                          <Button
+                            onClick={logOut}
+                            variant="contained"
+                            style={{
+                              backgroundColor: "#c40000",
+                              weight: "10px",
+                              borderRadius: "50px",
+                              width: "100%",
+                              padding: "2px 30px",
+                            }}
+                          >
+                            <LogoutIcon sx={{ fontSize: "30px", ml: "5px" }} />
+                          </Button>
+                        </MenuItem>
+                      </Menu>
+                    </Box>
+                  )}
+                </Box>
+                <Box>
+                  <Link
+                    to="/home"
+                    style={{ color: "white", textDecoration: "none" }}
+                  >
+                    <Button
+                      className="navItem rounded-pill px-3 my-3"
+                      variant="text"
+                      sx={{
+                        fontWeight: "600",
+                        color: "white",
+                        fontSize: "15px",
+                        "&:hover": {
+                          backgroundColor: "#0099FF",
+                          color: "white",
+                        },
+                      }}
+                    >
+                      {" "}
+                      HOME
+                    </Button>
+                  </Link>
+                  <Link
+                    to="/memberShip"
+                    style={{ color: "white", textDecoration: "none" }}
+                  >
+                    <Button
+                      className="navItem rounded-pill px-3 my-3"
+                      variant="text"
+                      sx={{
+                        fontWeight: "600",
+                        color: "white",
+                        fontSize: "15px",
+                        "&:hover": {
+                          backgroundColor: "#0099FF",
+                          color: "white",
+                        },
+                      }}
+                    >
+                      Membership
+                    </Button>
+                  </Link>
+                  <Link
+                    to="/about"
+                    style={{ color: "white", textDecoration: "none" }}
+                  >
+                    <Button
+                      className="navItem rounded-pill px-3 my-3"
+                      variant="text"
+                      sx={{
+                        color: "white",
+                        fontWeight: "600",
+                        fontSize: "15px",
+                        "&:hover": {
+                          backgroundColor: "#0099FF",
+                          color: "white",
+                        },
+                      }}
+                    >
+                      {" "}
+                      ABOUT
+                    </Button>
+                  </Link>
+                  <Link
+                    to="/faq"
+                    style={{ color: "white", textDecoration: "none" }}
+                  >
+                    <Button
+                      className="navItem rounded-pill px-3 my-3"
+                      variant="text"
+                      sx={{
+                        color: "white",
+                        fontWeight: "600",
+                        fontSize: "15px",
+                        "&:hover": {
+                          backgroundColor: "#0099FF",
+                          color: "white",
+                        },
+                      }}
+                    >
+                      {" "}
+                      FAQ
+                    </Button>
+                  </Link>
+                  <Link
+                    to="/blogs"
+                    style={{
+                      color: "white",
+                      textDecoration: "none",
+                    }}
+                  >
+                    <Button
+                      className="navItem rounded-pill px-3 my-3"
+                      variant="text"
+                      sx={{
+                        color: "white",
+                        fontWeight: "600",
+                        fontSize: "15px",
+                        "&:hover": {
+                          backgroundColor: "#0099FF",
+                          color: "white",
+                        },
+                      }}
+                    >
+                      {" "}
+                      BLOGS
+                    </Button>
+                  </Link>
+                  <Link
+                    to="/contract"
+                    style={{ color: "white", textDecoration: "none" }}
+                  >
+                    <Button
+                      className="navItem rounded-pill px-3 my-3"
+                      variant="text"
+                      sx={{
+                        color: "white",
+                        fontWeight: "600",
+                        fontSize: "15px",
+                        "&:hover": {
+                          backgroundColor: "#0099FF",
+                          color: "white",
+                        },
+                      }}
+                    >
+                      CONTACT
+                    </Button>
+                  </Link>
+                </Box>
+              </List>
+            </Box>
+          </SwipeableDrawer>
+        </Fragment>
       </Box>
     </Box>
   );

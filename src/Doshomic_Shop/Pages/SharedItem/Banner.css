@@ -9,3 +9,18 @@
   background-color: #0b2750c5;
   height: 80vh;
 }
+.bannerNames {
+  font-size: 70px !important;
+  font-weight: bold !important;
+}
+@media only screen and (max-width: 768px) {
+  .bannerNames {
+    font-size: 50px !important;
+  }
+  .BannerContainer {
+    height: 50vh;
+  }
+  .BannerContainer2 {
+    height: 50vh;
+  }
+}

@@ -16,6 +16,10 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import ContactMailOutlinedIcon from "@mui/icons-material/ContactMailOutlined";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import useAuth from "../../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const AdminLogin = () => {
   const [values, setValues] = React.useState(false);
@@ -25,6 +29,45 @@ const AdminLogin = () => {
   const code3 = Math.floor(Math.random() * 10);
   const code4 = Math.floor(Math.random() * 10);
   const code5 = Math.floor(Math.random() * 10);
+
+  const { register, handleSubmit } = useForm();
+  const {
+    emailPasswordLogin,
+    resetPassword,
+    googleSignIn,
+    githubSignIn,
+    facebookSignIn,
+  } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const onSubmit = (data) => {
+    emailPasswordLogin(data.email, data.password, navigate, location);
+  };
+
+  async function resetPasswordInput() {
+    const { value: email } = await Swal.fire({
+      title: "Email address",
+      input: "email",
+      inputLabel: "Enter Current Account Email Address",
+      inputPlaceholder: "Enter Email Address",
+    });
+    console.log(email);
+    if (email) {
+      resetPassword(email);
+    }
+  }
+
+  const googleSignInHandler = () => {
+    googleSignIn(navigate, location);
+  };
+  const gitHubSignInHandler = () => {
+    githubSignIn(navigate, location);
+  };
+  const facebookSignInHandler = () => {
+    facebookSignIn(navigate, location);
+  };
+
   return (
     <Box>
       <Box>
@@ -47,7 +90,7 @@ const AdminLogin = () => {
           >
             Admin <span style={{ color: "#006ef2" }}>Panel</span>
           </Typography>
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <Box
               sx={{
                 display: "flex",
@@ -77,6 +120,7 @@ const AdminLogin = () => {
                 multiline
                 variant="standard"
                 required
+                {...register("email")}
               />
             </Box>
             <Box sx={{ display: "flex", justifyContent: "center", mt: "20px" }}>
@@ -95,6 +139,7 @@ const AdminLogin = () => {
                   Password
                 </InputLabel>
                 <Input
+                  {...register("password")}
                   required
                   id="standard-adornment-password"
                   type={values.showPassword ? "text" : "password"}
@@ -118,6 +163,20 @@ const AdminLogin = () => {
                   }
                 />
               </FormControl>
+            </Box>
+            <Box sx={{ width: "138%", mt: "20px" }}>
+              <Button
+                variant="outlined"
+                sx={{
+                  textTransform: "revert",
+                  py: "1px",
+                  borderRadius: "50px",
+                  fontWeight: "bold",
+                }}
+                onClick={resetPasswordInput}
+              >
+                Reset Password ?
+              </Button>
             </Box>
             <Box sx={{ textAlign: "center", mt: "20px" }}>
               <Box
@@ -208,6 +267,7 @@ const AdminLogin = () => {
             </p>
 
             <Button
+              onClick={googleSignInHandler}
               variant="outlined"
               sx={{
                 height: "70px",
@@ -231,11 +291,13 @@ const AdminLogin = () => {
               }}
             >
               <img
+                onClick={gitHubSignInHandler}
                 src="https://img.icons8.com/color/40/000000/github--v3.png"
                 alt=""
               />
             </Button>
             <Button
+              onClick={facebookSignInHandler}
               variant="outlined"
               sx={{
                 height: "70px",

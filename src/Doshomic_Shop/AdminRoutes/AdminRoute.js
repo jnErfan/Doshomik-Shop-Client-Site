@@ -1,9 +1,10 @@
 import { LinearProgress, Stack } from "@mui/material";
 import React from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 
-const PrivateRoute = ({ children, ...rest }) => {
+const AdminRoute = ({ children }) => {
   const location = useLocation();
   const { user, isLoading } = useAuth();
   if (isLoading) {
@@ -55,11 +56,11 @@ const PrivateRoute = ({ children, ...rest }) => {
       </Stack>
     );
   }
-  return user?.email ? (
+  return user?.email === "hypereyegaming@gmail.com" ? (
     children
   ) : (
-    <Navigate to="/login" state={{ from: location.pathname }} />
+    <Navigate to="/adminLogin" state={{ from: location.pathname }} />
   );
 };
 
-export default PrivateRoute;
+export default AdminRoute;

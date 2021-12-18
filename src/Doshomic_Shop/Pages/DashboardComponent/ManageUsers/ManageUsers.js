@@ -1,6 +1,7 @@
 import { Button, Grid, Typography } from "@mui/material";
 import { Box, styled } from "@mui/system";
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 const UserButton = styled(Button)(({ theme }) => ({
   background: "#003BFF",
   color: "#fff",
@@ -24,45 +25,19 @@ const UserButtonDemote = styled(Button)(({ theme }) => ({
   },
 }));
 
-const users = [
-  {
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJM0tIHNcX1KiwFaVYxny0VCJgHrHi2I5IOQ&usqp=CAU",
-    name: "J.N.Erfan",
-    email: "j.n.erfan@gmail.com",
-    number: "+8801978352135",
-  },
-  {
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJM0tIHNcX1KiwFaVYxny0VCJgHrHi2I5IOQ&usqp=CAU",
-    name: "J.N.Erfan",
-    email: "j.n.erfan@gmail.com",
-    number: "+8801978352135",
-  },
-  {
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJM0tIHNcX1KiwFaVYxny0VCJgHrHi2I5IOQ&usqp=CAU",
-    name: "J.N.Erfan",
-    email: "j.n.erfan@gmail.com",
-    number: "+8801978352135",
-  },
-  {
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJM0tIHNcX1KiwFaVYxny0VCJgHrHi2I5IOQ&usqp=CAU",
-    name: "J.N.Erfan",
-    email: "j.n.erfan@gmail.com",
-    number: "+8801978352135",
-  },
-  {
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJM0tIHNcX1KiwFaVYxny0VCJgHrHi2I5IOQ&usqp=CAU",
-    name: "J.N.Erfan",
-    email: "j.n.erfan@gmail.com",
-    number: "+8801978352135",
-  },
-];
-
 const ManageUsers = () => {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch("https://doshomik-shop-server.herokuapp.com/allUsers")
+      .then((result) => result.json())
+      .then((data) => setUsers(data));
+  }, []);
+
+  const makeAdmin = (email) => {
+    axios.put(`https://doshomik-shop-server.herokuapp.com/?email=${email}`);
+  };
+
   return (
     <Box sx={{ my: "100px" }}>
       <Box sx={{ textAlign: "center", mb: "50px" }}>
@@ -87,8 +62,8 @@ const ManageUsers = () => {
         </Box>
       </Box>
       <Grid container spacing={3}>
-        {users.map(({ image, name, email, number }) => (
-          <Grid item xs={12} md={6} lg={4}>
+        {users.map(({ _id, name, email, number }) => (
+          <Grid item xs={12} md={6} lg={4} key={_id}>
             <Box sx={{ p: "30px" }}>
               {" "}
               <Box
@@ -99,15 +74,8 @@ const ManageUsers = () => {
                   boxShadow: "1px 1px 10px gray",
                 }}
               >
-                <img
-                  width="150px"
-                  height="150px"
-                  style={{ borderRadius: "100%", marginBottom: "20px" }}
-                  src={image}
-                  alt=""
-                />
                 <h5>{name}</h5>
-                <h5>{email}</h5>
+                <p>{email}</p>
                 <h5>{number}</h5>
                 <hr />
                 <Typography
@@ -124,7 +92,12 @@ const ManageUsers = () => {
                   }}
                 />
                 <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                  <UserButton sx={{ mt: "20px", px: "15px" }}>Admin</UserButton>
+                  <UserButton
+                    sx={{ mt: "20px", px: "15px" }}
+                    onClick={() => makeAdmin(email)}
+                  >
+                    Admin
+                  </UserButton>
                   <UserButton sx={{ mt: "20px", px: "15px" }}>
                     Moderator
                   </UserButton>

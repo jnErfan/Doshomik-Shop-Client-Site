@@ -1,116 +1,17 @@
 import { Button, Container, Divider, Grid, Typography } from "@mui/material";
 import { Box, styled } from "@mui/system";
-import React from "react";
-
-const membershipPlans = [
-  {
-    service: "Youtube Subscriber",
-    price: "1000",
-    limit: "1000 Subscriber",
-    bonus: "50",
-    validity: "Life Time",
-  },
-  {
-    service: "Facebook Like",
-    price: "300",
-    limit: "500 React",
-    bonus: "10",
-    validity: "Life Time",
-  },
-  {
-    service: "Instagram Like",
-    price: "700",
-    limit: "1200 Like",
-    bonus: "100",
-    validity: "Life Time",
-  },
-  {
-    service: "Facebook Follower",
-    price: "500",
-    limit: "1000 Follower",
-    bonus: "50",
-    validity: "Life Time",
-  },
-  {
-    service: "Instagram Follower",
-    price: "1000",
-    limit: "1500 Follower",
-    bonus: "100",
-    validity: "Life Time",
-  },
-  {
-    service: "Facebook Video Boost",
-    price: "2000",
-    limit: "No Limit",
-    bonus: "No Limit",
-    validity: "Life Time",
-  },
-  {
-    service: "Youtube Video Boost",
-    price: "2500",
-    limit: "No Limit",
-    bonus: "No Limit",
-    validity: "Life Time",
-  },
-  {
-    service: "Youtube View",
-    price: "400",
-    limit: "1000 View",
-    bonus: "100",
-    validity: "Life Time",
-  },
-  {
-    service: "Facebook View",
-    price: "300",
-    limit: "1000 View",
-    bonus: "100",
-    validity: "Life Time",
-  },
-  {
-    service: "Youtube Watch Time",
-    price: "1500",
-    limit: "1000 Hours",
-    bonus: "10 Level",
-    validity: "Life Time",
-  },
-  {
-    service: "Facebook Watch Time",
-    price: "1000",
-    limit: "1000 Hours",
-    bonus: "10 Level",
-    validity: "Life Time",
-  },
-  {
-    service: "Youtube Comments",
-    price: "250",
-    limit: "500 Comments",
-    bonus: "50",
-    validity: "Life Time",
-  },
-  {
-    service: "Facebook Comments",
-    price: "80",
-    limit: "100 Comments",
-    bonus: "20",
-    validity: "Life Time",
-  },
-  {
-    service: "Linkedin Follower",
-    price: "800",
-    limit: "1000 Follower",
-    bonus: "100",
-    validity: "Life Time",
-  },
-  {
-    service: "GitHub Follower",
-    price: "700",
-    limit: "1000 Follower",
-    bonus: "10",
-    validity: "Life Time",
-  },
-];
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Membership = () => {
+  const [membership, setMembership] = useState([]);
+
+  useEffect(() => {
+    fetch("https://doshomik-shop-server.herokuapp.com/memberShips")
+      .then((result) => result.json())
+      .then((data) => setMembership(data));
+  }, []);
+  const navigate = useNavigate();
   const SubscribeButton = styled(Button)(({ theme }) => ({
     background: "#003BFF",
     color: "#fff",
@@ -123,6 +24,7 @@ const Membership = () => {
       transition: "500ms",
     },
   }));
+
   return (
     <Container sx={{ mb: "100px" }}>
       <Box sx={{ textAlign: "center", mb: "50px" }}>
@@ -140,7 +42,7 @@ const Membership = () => {
         </Typography>
       </Box>
       <Grid container spacing={3}>
-        {membershipPlans.map(({ service, price, limit, bonus, validity }) => (
+        {membership.map(({ _id, service, price, limit, bonus, validity }) => (
           <Grid item xs={12} md={6} lg={4}>
             <Box
               sx={{
@@ -228,7 +130,11 @@ const Membership = () => {
                   Validity : {validity}
                 </Typography>
               </Box>
-              <SubscribeButton fullWidth sx={{ mt: "20px", py: "17px" }}>
+              <SubscribeButton
+                fullWidth
+                sx={{ mt: "20px", py: "17px" }}
+                onClick={() => navigate(`/memberShips/${_id}`)}
+              >
                 Subscribe Now
               </SubscribeButton>
             </Box>

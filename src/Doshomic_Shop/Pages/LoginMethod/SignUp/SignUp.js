@@ -54,7 +54,6 @@ const SignUp = () => {
         icon: "error",
         title: "Something Went Wrong",
         text: passwordError,
-        height: 600,
         padding: "3em",
         showConfirmButton: false,
         timer: 3000,
