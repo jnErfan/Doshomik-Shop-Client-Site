@@ -2,14 +2,15 @@ import { Button, Grid, Typography } from "@mui/material";
 import { Box, styled } from "@mui/system";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+import useAuth from "../../../Hooks/useAuth";
 const UserButton = styled(Button)(({ theme }) => ({
   background: "#003BFF",
   color: "#fff",
   fontWeight: "bold",
   transition: "1s",
   "&:hover": {
-    outline: "2px solid #003BFF",
-    color: "#003BFF",
+    background: "#00DDF7",
     transition: "500ms",
   },
 }));
@@ -26,18 +27,53 @@ const UserButtonDemote = styled(Button)(({ theme }) => ({
 }));
 
 const ManageUsers = () => {
-  const [users, setUsers] = useState([]);
+  const [allUsers, setUsers] = useState([]);
+  const [change, setChange] = useState("");
+  const { users } = useAuth();
 
   useEffect(() => {
-    fetch("https://doshomik-shop-server.herokuapp.com/allUsers")
+    fetch("http://localhost:5000/allUsers")
       .then((result) => result.json())
-      .then((data) => setUsers(data));
-  }, []);
+      .then((data) => {
+        setChange(data);
+        setUsers(data);
+      });
+  }, [change]);
 
   const makeAdmin = (email) => {
-    axios.put(`https://doshomik-shop-server.herokuapp.com/?email=${email}`);
+    console.log(email);
+    axios.put(`http://localhost:5000/makeAdmin/${email}`).then((res) => {
+      Swal.fire({
+        icon: "success",
+        title: "Make User To Admin Successful",
+        padding: "3em",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    });
   };
-
+  const makeModerator = (email) => {
+    axios.put(`http://localhost:5000/makeModerator/${email}`).then((res) => {
+      Swal.fire({
+        icon: "success",
+        title: "Make User To Moderator Successful",
+        padding: "3em",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    });
+  };
+  const makeUser = (email) => {
+    axios.put(`http://localhost:5000/makeUser/${email}`).then((res) => {
+      Swal.fire({
+        icon: "error",
+        title: "Demote To User Successful",
+        padding: "3em",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    });
+  };
   return (
     <Box sx={{ my: "100px" }}>
       <Box sx={{ textAlign: "center", mb: "50px" }}>
@@ -62,8 +98,8 @@ const ManageUsers = () => {
         </Box>
       </Box>
       <Grid container spacing={3}>
-        {users.map(({ _id, name, email, number }) => (
-          <Grid item xs={12} md={6} lg={4} key={_id}>
+        {allUsers.map(({ _id, name, email, number, position }) => (
+          <Grid item xs={12} sm={12} md={6} lg={4} key={_id}>
             <Box sx={{ p: "30px" }}>
               {" "}
               <Box
@@ -74,16 +110,26 @@ const ManageUsers = () => {
                   boxShadow: "1px 1px 10px gray",
                 }}
               >
-                <h5>{name}</h5>
+                <h5>{name} </h5>
                 <p>{email}</p>
                 <h5>{number}</h5>
                 <hr />
-                <Typography
-                  variant="h5"
-                  sx={{ textAlign: "start", fontWeight: "bold" }}
-                >
-                  Promote To
-                </Typography>
+                {position === "Admin" || position === "Moderator" ? (
+                  <Typography
+                    variant="h5"
+                    sx={{ textAlign: "start", fontWeight: "bold" }}
+                  >
+                    {position}
+                  </Typography>
+                ) : (
+                  <Typography
+                    variant="h5"
+                    sx={{ textAlign: "start", fontWeight: "bold" }}
+                  >
+                    Promote To
+                  </Typography>
+                )}
+
                 <Box
                   sx={{
                     backgroundColor: "#003BFF",
@@ -91,20 +137,47 @@ const ManageUsers = () => {
                     width: "100px",
                   }}
                 />
-                <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                  <UserButton
-                    sx={{ mt: "20px", px: "15px" }}
-                    onClick={() => makeAdmin(email)}
+                {position === "Admin" || position === "Moderator" ? (
+                  <UserButtonDemote
+                    onClick={() => makeUser(email)}
+                    sx={{ mt: "20px", px: "15px", textTransform: "revert" }}
                   >
-                    Admin
-                  </UserButton>
-                  <UserButton sx={{ mt: "20px", px: "15px" }}>
-                    Moderator
-                  </UserButton>
-                </Box>
-                <UserButtonDemote sx={{ mt: "20px", px: "15px" }}>
-                  Make User <i className="fas fa-user-times ms-1"></i>
-                </UserButtonDemote>
+                    Remove To {position}{" "}
+                    <i className="fas fa-user-times ms-1"></i>
+                  </UserButtonDemote>
+                ) : (
+                  <Box
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    {users.position === "Moderator" ? (
+                      <Button
+                        variant="contained"
+                        style={{
+                          marginTop: "20px",
+                          paddingLeft: "15px",
+                          paddingRight: "15px",
+                          backgroundColor: "gray",
+                          cursor: "not-allowed",
+                        }}
+                      >
+                        Admin
+                      </Button>
+                    ) : (
+                      <UserButton
+                        sx={{ mt: "20px", px: "15px" }}
+                        onClick={() => makeAdmin(email)}
+                      >
+                        Admin
+                      </UserButton>
+                    )}
+                    <UserButton
+                      onClick={() => makeModerator(email)}
+                      sx={{ mt: "20px", px: "15px" }}
+                    >
+                      Moderator
+                    </UserButton>
+                  </Box>
+                )}
               </Box>
             </Box>
           </Grid>

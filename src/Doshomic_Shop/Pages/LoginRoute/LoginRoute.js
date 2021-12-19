@@ -1,12 +1,11 @@
-import { Box } from "@mui/system";
+import { Box } from "@mui/material";
 import React from "react";
-import { useLocation } from "react-router-dom";
-import { Navigate } from "react-router-dom";
-import useAuth from "../Hooks/useAuth";
+import { Navigate, useLocation } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
-const AdminRoute = ({ children }) => {
+const LoginRoute = ({ children }) => {
   const location = useLocation();
-  const { isLoading, users } = useAuth();
+  const { user, isLoading } = useAuth();
   if (isLoading) {
     return (
       <Box
@@ -18,6 +17,8 @@ const AdminRoute = ({ children }) => {
           zIndex: "99999",
           backgroundColor: "#a6e8fc",
           overflow: "hidden",
+          width: "100%",
+          position: "fixed",
         }}
       >
         <img
@@ -32,11 +33,11 @@ const AdminRoute = ({ children }) => {
       </Box>
     );
   }
-  return users?.position === "Admin" || users?.position === "Moderator" ? (
-    children
+  return user?.email ? (
+    <Navigate to="/" state={{ from: location.pathname }} />
   ) : (
-    <Navigate to="/adminLogin" state={{ from: location.pathname }} />
+    children
   );
 };
 
-export default AdminRoute;
+export default LoginRoute;

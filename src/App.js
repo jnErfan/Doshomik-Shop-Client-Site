@@ -23,6 +23,8 @@ import Profile from "./Doshomic_Shop/Pages/Profile/Profile";
 import PrivateRoute from "./Doshomic_Shop/PrivateRoutes/PrivateRoute";
 import AdminRoute from "./Doshomic_Shop/AdminRoutes/AdminRoute";
 import MembershipDetails from "./Doshomic_Shop/Pages/MembershipDetails/MembershipDetails";
+import LoginRoute from "./Doshomic_Shop/Pages/LoginRoute/LoginRoute";
+import DashboardRoute from "./Doshomic_Shop/Pages/DashboardRoute/DashboardRoute";
 
 function App() {
   let location = window.location.pathname;
@@ -120,9 +122,30 @@ function App() {
                 </PrivateRoute>
               }
             />
-            <Route path="login" element={<Login />} />
-            <Route path="signUp" element={<SignUp />} />
-            <Route path="adminLogin" element={<AdminLogin />} />
+            <Route
+              path="login"
+              element={
+                <LoginRoute>
+                  <Login />
+                </LoginRoute>
+              }
+            />
+            <Route
+              path="signUp"
+              element={
+                <LoginRoute>
+                  <SignUp />
+                </LoginRoute>
+              }
+            />
+            <Route
+              path="adminLogin"
+              element={
+                <DashboardRoute>
+                  <AdminLogin />
+                </DashboardRoute>
+              }
+            />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Box

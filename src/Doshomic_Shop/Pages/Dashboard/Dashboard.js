@@ -1,16 +1,40 @@
-import { AppBar, Button, Grid, Toolbar, Typography } from "@mui/material";
+import {
+  AppBar,
+  Avatar,
+  Button,
+  Grid,
+  IconButton,
+  Menu,
+  MenuItem,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 import { Box } from "@mui/system";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
 import "./Dashboard.css";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 import DashboardHome from "../DashboardComponent/Dashboard/DashboardHome";
 import ManageOrders from "../DashboardComponent/ManageOrders/ManageOrders";
 import ManageMemberShips from "../DashboardComponent/ManageMemberShips/ManageMemberShips";
 import ManageUsers from "../DashboardComponent/ManageUsers/ManageUsers";
 import AddMemberShips from "../DashboardComponent/AddMemberShips/AddMemberShips";
 import Settings from "../DashboardComponent/Settings/Settings";
+import useAuth from "../../Hooks/useAuth";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import ShieldIcon from "@mui/icons-material/Shield";
+import { useState } from "react";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const Dashboard = () => {
+  const { users, logOutAll, user } = useAuth();
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const navigate = useNavigate();
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
   return (
     <Box className="dashboardContainer">
       <Box>
@@ -256,10 +280,125 @@ const Dashboard = () => {
                     </a>
                   </Box>
                   <Box>
-                    <Button sx={{ color: "#fff", fontWeight: "bold" }}>
-                      ADMIN
-                      <AccountCircle sx={{ fontSize: "25px", ml: "10px" }} />
+                    <Button
+                      sx={{ color: "#fff", fontWeight: "bold" }}
+                      onClick={handleOpenUserMenu}
+                    >
+                      {users.position}
+                      {users.position === "Moderator" && (
+                        <ShieldIcon sx={{ fontSize: "25px", ml: "10px" }} />
+                      )}
+                      {users.position === "Admin" && (
+                        <AdminPanelSettingsIcon
+                          sx={{ fontSize: "25px", ml: "10px" }}
+                        />
+                      )}
                     </Button>
+                    <Menu
+                      sx={{ mt: "70px" }}
+                      anchorEl={anchorElUser}
+                      anchorOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                      }}
+                      keepMounted
+                      transformOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                      }}
+                      open={Boolean(anchorElUser)}
+                      onClose={handleCloseUserMenu}
+                    >
+                      <Box className="profilePopover">
+                        <Box>
+                          <IconButton
+                            color="primary"
+                            aria-label="upload picture"
+                            component="span"
+                            sx={{ display: "flex", justifyContent: "center" }}
+                          >
+                            <Avatar
+                              className="animate__animated animate__pulse animate__slower animate__infinite"
+                              alt="users"
+                              src={user.photoURL}
+                              sx={{
+                                width: "100px",
+                                height: "100px",
+                              }}
+                            />
+                          </IconButton>
+                          <MenuItem onClick={handleCloseUserMenu}>
+                            <Button
+                              className="animate__animated animate__pulse animate__slower animate__infinite"
+                              onClick={() => navigate("/")}
+                              sx={{
+                                textTransform: "uppercase",
+                                fontWeight: "bold",
+                                textAlign: "center",
+                                color: "#000",
+                                fontSize: "20px",
+                                width: "100%",
+                              }}
+                            >
+                              {user.displayName}
+                            </Button>
+                          </MenuItem>
+                          <MenuItem
+                            onClick={handleCloseUserMenu}
+                            sx={{ display: "flex", justifyContent: "center" }}
+                          >
+                            <Typography
+                              variant="body1"
+                              sx={{
+                                textTransform: "revert",
+                                fontWeight: "bold",
+                                textAlign: "center",
+                                color: "gray",
+                                fontSize: "13px",
+                                mt: "-20px",
+                              }}
+                            >
+                              {user.email}
+                            </Typography>
+                          </MenuItem>
+                          <a href="/" style={{ textDecoration: "none" }}>
+                            <MenuItem onClick={handleCloseUserMenu}>
+                              <Button
+                                className="animate__animated animate__pulse animate__slower animate__infinite"
+                                variant="contained"
+                                style={{
+                                  backgroundColor: "#0099FF",
+                                  color: "#fff",
+                                  fontWeight: "bold",
+                                  borderRadius: "50px",
+                                  width: "100%",
+                                }}
+                              >
+                                Home
+                              </Button>
+                            </MenuItem>
+                          </a>
+                          <MenuItem onClick={handleCloseUserMenu}>
+                            <Button
+                              className="animate__animated animate__pulse animate__slower animate__infinite"
+                              onClick={() => logOutAll()}
+                              variant="contained"
+                              style={{
+                                backgroundColor: "#c40000",
+                                weight: "10px",
+                                borderRadius: "50px",
+                                width: "100%",
+                                padding: "2px 30px",
+                              }}
+                            >
+                              <LogoutIcon
+                                sx={{ fontSize: "30px", ml: "5px" }}
+                              />
+                            </Button>
+                          </MenuItem>
+                        </Box>
+                      </Box>
+                    </Menu>
                   </Box>
                 </Toolbar>
               </AppBar>

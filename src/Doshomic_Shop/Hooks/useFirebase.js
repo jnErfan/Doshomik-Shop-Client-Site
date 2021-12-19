@@ -22,6 +22,7 @@ const githubProvider = new GithubAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
 const useFirebase = () => {
   const [user, setUser] = useState("");
+  const [users, setUsers] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const auth = getAuth();
@@ -137,11 +138,11 @@ const useFirebase = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         setUser(result?.user);
+
         Swal.fire({
           icon: "success",
           title: "Welcome",
           text: "Sign In Successful",
-
           padding: "3em",
           showConfirmButton: false,
           timer: 3000,
@@ -156,7 +157,6 @@ const useFirebase = () => {
           icon: "error",
           title: "Something Wrong",
           text: error.message,
-
           padding: "3em",
           showConfirmButton: false,
           timer: 3000,
@@ -268,7 +268,7 @@ const useFirebase = () => {
   const savedUserInfo = (name, email, method) => {
     const date = new Date();
     const userDetails = { name, email, date };
-    fetch("https://doshomik-shop-server.herokuapp.com/users", {
+    fetch("http://localhost:5000/users", {
       method: method,
       headers: { "content-type": "application/json" },
       body: JSON.stringify(userDetails),
@@ -287,8 +287,15 @@ const useFirebase = () => {
     });
   }, [auth]);
 
+  useEffect(() => {
+    fetch(`http://localhost:5000/users/${user.email}`)
+      .then((res) => res.json())
+      .then((data) => setUsers(data?.[0]));
+  }, [user?.email]);
+
   return {
     user,
+    users,
     setError,
     emailPasswordSignUp,
     emailPasswordLogin,

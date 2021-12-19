@@ -16,6 +16,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
   Avatar,
+  Input,
   List,
   Menu,
   MenuItem,
@@ -24,6 +25,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import PhotoCamera from "@mui/icons-material/PhotoCamera";
 
 const Navbar = () => {
   const [scrollChange, setSrollChainge] = useState(false);
@@ -33,7 +35,7 @@ const Navbar = () => {
   };
   window.addEventListener("scroll", onScrollHeader);
 
-  const { user, logOutAll } = useAuth();
+  const { user, logOutAll, users } = useAuth();
 
   const logOut = () => {
     logOutAll();
@@ -101,66 +103,73 @@ const Navbar = () => {
                 justifyContent: "space-between",
               }}
             >
-              {user.email === "Admin" && (
-                <a
-                  href="/dashboard"
-                  style={{ color: "white", textDecoration: "none" }}
-                >
-                  <Button
-                    variant="contained"
-                    sx={{
-                      fontWeight: "600",
-                      borderRadius: "50px",
-                      px: "15px",
-                      py: "5px",
-                      mx: "10px",
-                      fontSize: "15px",
-                      backgroundColor: "#006EF2",
-                      "&:hover": {
-                        backgroundColor: "#0099FF",
-                        color: "#fff",
-                        transition: "500ms",
-                        transform: "scale(1.05)",
-                      },
-                    }}
+              {users?.position === "Admin" ||
+                (users?.position === "Moderator" && (
+                  <a
+                    href="/dashboard"
+                    style={{ color: "white", textDecoration: "none" }}
                   >
-                    {" "}
-                    Dashboard
-                  </Button>
-                </a>
-              )}
-              {user.email && (
-                <Link
-                  to="/myOrders"
-                  style={{
-                    color: "white",
-                    textDecoration: "none",
-                    marginRight: "30px",
-                  }}
-                >
-                  <Button
-                    variant="contained"
-                    sx={{
-                      fontWeight: "600",
-                      borderRadius: "50px",
-                      px: "15px",
-                      py: "5px",
-                      mx: "10px",
-                      fontSize: "15px",
-                      backgroundColor: "#006EF2",
-                      "&:hover": {
-                        backgroundColor: "#0099FF",
-                        color: "#fff",
-                        transition: "500ms",
-                        transform: "scale(1.05)",
-                      },
-                    }}
-                  >
-                    <ShoppingCartIcon />
-                    My Orders
-                  </Button>
-                </Link>
-              )}
+                    <Button
+                      variant="contained"
+                      sx={{
+                        fontWeight: "600",
+                        borderRadius: "50px",
+                        px: "15px",
+                        py: "5px",
+                        mx: "10px",
+                        fontSize: "15px",
+                        backgroundColor: "#006EF2",
+                        "&:hover": {
+                          backgroundColor: "#0099FF",
+                          color: "#fff",
+                          transition: "500ms",
+                          transform: "scale(1.05)",
+                        },
+                      }}
+                    >
+                      Dashboard
+                    </Button>
+                  </a>
+                ))}
+              {users?.position === "Admin" ||
+                (users?.position === "Moderator" ? (
+                  <></>
+                ) : (
+                  <Box>
+                    {user && (
+                      <Link
+                        to="/myOrders"
+                        style={{
+                          color: "white",
+                          textDecoration: "none",
+                          marginRight: "30px",
+                        }}
+                      >
+                        <Button
+                          variant="contained"
+                          sx={{
+                            fontWeight: "600",
+                            borderRadius: "50px",
+                            px: "15px",
+                            py: "5px",
+                            mx: "10px",
+                            fontSize: "15px",
+                            backgroundColor: "#006EF2",
+                            "&:hover": {
+                              backgroundColor: "#0099FF",
+                              color: "#fff",
+                              transition: "500ms",
+                              transform: "scale(1.05)",
+                            },
+                          }}
+                        >
+                          <ShoppingCartIcon />
+                          My Orders
+                        </Button>
+                      </Link>
+                    )}
+                  </Box>
+                ))}
               {!user.email ? (
                 <Box
                   sx={{
@@ -228,98 +237,155 @@ const Navbar = () => {
                     open={Boolean(anchorElUser)}
                     onClose={handleCloseUserMenu}
                   >
-                    <MenuItem onClick={handleCloseUserMenu}>
-                      <Button
-                        className="animate__animated animate__heartBeat animate__slower animate__infinite"
-                        onClick={() => navigate("/profile")}
-                        sx={{
-                          textTransform: "uppercase",
-                          fontWeight: "bold",
-                          textAlign: "center",
-                          color: "#000",
-                          fontSize: "20px",
-                          width: "100%",
-                        }}
-                      >
-                        {user.displayName}
-                      </Button>
-                    </MenuItem>
-                    <MenuItem onClick={handleCloseUserMenu}>
-                      <Button
-                        onClick={() => navigate("/profile")}
-                        sx={{
-                          textTransform: "revert",
-                          fontWeight: "bold",
-                          textAlign: "center",
-                          color: "gray",
-                          fontSize: "13px",
-                        }}
-                      >
-                        {user.email}
-                      </Button>
-                    </MenuItem>
-                    <MenuItem onClick={handleCloseUserMenu}>
-                      <Button
-                        onClick={() => navigate("/profile")}
-                        variant="contained"
-                        style={{
-                          backgroundColor: "#fff",
-                          color: "#000",
-                          fontWeight: "bold",
-                          width: "100%",
-                          borderRadius: "50px",
-                        }}
-                      >
-                        Profile
-                      </Button>
-                    </MenuItem>
-                    <a href="/dashboard" style={{ textDecoration: "none" }}>
-                      {" "}
-                      <MenuItem onClick={handleCloseUserMenu}>
-                        <Button
-                          variant="contained"
+                    <Box className="profilePopover">
+                      <Box>
+                        <label
+                          htmlFor="icon-button-file"
                           style={{
-                            backgroundColor: "#fff",
-                            color: "#000",
-                            fontWeight: "bold",
-                            borderRadius: "50px",
-                            width: "100%",
+                            display: "flex",
+                            justifyContent: "center",
                           }}
                         >
-                          Dashboard
-                        </Button>
-                      </MenuItem>
-                    </a>
-                    <MenuItem onClick={handleCloseUserMenu}>
-                      <Button
-                        onClick={() => navigate("/myOrders")}
-                        variant="contained"
-                        style={{
-                          backgroundColor: "#fff",
-                          color: "#000",
-                          fontWeight: "bold",
-                          borderRadius: "50px",
-                          width: "100%",
-                        }}
-                      >
-                        My Orders
-                      </Button>
-                    </MenuItem>
-                    <MenuItem onClick={handleCloseUserMenu}>
-                      <Button
-                        onClick={logOut}
-                        variant="contained"
-                        style={{
-                          backgroundColor: "#c40000",
-                          weight: "10px",
-                          borderRadius: "50px",
-                          width: "100%",
-                          padding: "2px 30px",
-                        }}
-                      >
-                        <LogoutIcon sx={{ fontSize: "30px", ml: "5px" }} />
-                      </Button>
-                    </MenuItem>
+                          <Input
+                            sx={{ display: "none" }}
+                            accept="image/*"
+                            id="icon-button-file"
+                            type="file"
+                          />
+                          <IconButton
+                            color="primary"
+                            aria-label="upload picture"
+                            component="span"
+                          >
+                            <Avatar
+                              className="animate__animated animate__pulse animate__slower animate__infinite"
+                              alt="users"
+                              src={user.photoURL}
+                              sx={{
+                                width: "100px",
+                                height: "100px",
+                              }}
+                            />
+                            <PhotoCamera
+                              sx={{ display: "block", mt: "100px" }}
+                              className="animate__animated animate__heartBeat animate__slower animate__infinite"
+                            />
+                          </IconButton>
+                        </label>{" "}
+                        <MenuItem onClick={handleCloseUserMenu}>
+                          <Button
+                            className="animate__animated animate__pulse animate__slower animate__infinite"
+                            onClick={() => navigate("/profile")}
+                            sx={{
+                              textTransform: "uppercase",
+                              fontWeight: "bold",
+                              textAlign: "center",
+                              color: "#000",
+                              fontSize: "20px",
+                              width: "100%",
+                            }}
+                          >
+                            {user.displayName}
+                          </Button>
+                        </MenuItem>
+                        <MenuItem
+                          onClick={handleCloseUserMenu}
+                          sx={{ display: "flex", justifyContent: "center" }}
+                        >
+                          <Typography
+                            variant="body1"
+                            sx={{
+                              textTransform: "revert",
+                              fontWeight: "bold",
+                              textAlign: "center",
+                              color: "gray",
+                              fontSize: "13px",
+                              mt: "-20px",
+                            }}
+                          >
+                            {user.email}
+                          </Typography>
+                        </MenuItem>
+                        <MenuItem onClick={handleCloseUserMenu}>
+                          <Button
+                            className="animate__animated animate__pulse animate__slower animate__infinite"
+                            onClick={() => navigate("/profile")}
+                            variant="contained"
+                            style={{
+                              backgroundColor: "#006EF2",
+                              color: "#fff",
+                              fontWeight: "bold",
+                              width: "100%",
+                              borderRadius: "50px",
+                            }}
+                          >
+                            Profile
+                          </Button>
+                        </MenuItem>
+                        {users?.position === "Admin" ||
+                        users?.position === "Moderator" ? (
+                          <></>
+                        ) : (
+                          <MenuItem onClick={handleCloseUserMenu}>
+                            <Button
+                              className="animate__animated animate__pulse animate__slower animate__infinite"
+                              onClick={() => navigate("/myOrders")}
+                              variant="contained"
+                              style={{
+                                backgroundColor: "#0099FF",
+                                color: "#fff",
+                                fontWeight: "bold",
+                                borderRadius: "50px",
+                                width: "100%",
+                              }}
+                            >
+                              My Orders
+                            </Button>
+                          </MenuItem>
+                        )}
+                        {users?.position === "Admin" ||
+                        users?.position === "Moderator" ? (
+                          <a
+                            href="/dashboard"
+                            style={{ textDecoration: "none" }}
+                          >
+                            <MenuItem onClick={handleCloseUserMenu}>
+                              <Button
+                                className="animate__animated animate__pulse animate__slower animate__infinite"
+                                variant="contained"
+                                style={{
+                                  backgroundColor: "#0099FF",
+                                  color: "#fff",
+                                  fontWeight: "bold",
+                                  borderRadius: "50px",
+                                  width: "100%",
+                                }}
+                              >
+                                Dashboard
+                              </Button>
+                            </MenuItem>
+                          </a>
+                        ) : (
+                          <></>
+                        )}
+                        <MenuItem onClick={handleCloseUserMenu}>
+                          <Button
+                            className="animate__animated animate__pulse animate__slower animate__infinite"
+                            onClick={logOut}
+                            variant="contained"
+                            style={{
+                              backgroundColor: "#c40000",
+                              weight: "10px",
+                              borderRadius: "50px",
+                              width: "100%",
+                              padding: "2px 30px",
+                            }}
+                          >
+                            <LogoutIcon sx={{ fontSize: "30px", ml: "5px" }} />
+                          </Button>
+                        </MenuItem>
+                      </Box>
+                    </Box>
                   </Menu>
                 </Box>
               )}
@@ -563,18 +629,8 @@ const Navbar = () => {
                     </Box>
                   ) : (
                     <Box sx={{ flexGrow: 2, textAlign: "center", my: "40px" }}>
-                      <Tooltip
-                        title="Profile"
-                        sx={{
-                          display: "inline",
-                        }}
-                      >
-                        <IconButton
-                          onClick={handleOpenUserMenu}
-                          sx={{
-                            display: "inline",
-                          }}
-                        >
+                      <Tooltip title="Profile">
+                        <IconButton onClick={handleOpenUserMenu}>
                           <Avatar
                             alt="users"
                             src={user.photoURL}
@@ -585,100 +641,6 @@ const Navbar = () => {
                           />
                         </IconButton>
                       </Tooltip>
-                      <Menu
-                        sx={{ mt: "70px" }}
-                        anchorEl={anchorElUser}
-                        anchorOrigin={{
-                          vertical: "top",
-                          horizontal: "right",
-                        }}
-                        keepMounted
-                        transformOrigin={{
-                          vertical: "top",
-                          horizontal: "right",
-                        }}
-                        open={Boolean(anchorElUser)}
-                        onClose={handleCloseUserMenu}
-                      >
-                        <MenuItem onClick={handleCloseUserMenu}>
-                          <Button
-                            className="animate__animated animate__heartBeat animate__slower animate__infinite"
-                            onClick={() => navigate("/profile")}
-                            sx={{
-                              textTransform: "uppercase",
-                              fontWeight: "bold",
-                              textAlign: "center",
-                              color: "#000",
-                              fontSize: "20px",
-                              width: "100%",
-                            }}
-                          >
-                            {user.displayName}
-                          </Button>
-                        </MenuItem>
-                        <MenuItem onClick={handleCloseUserMenu}>
-                          <Button
-                            onClick={() => navigate("/profile")}
-                            sx={{
-                              textTransform: "revert",
-                              fontWeight: "bold",
-                              textAlign: "center",
-                              color: "gray",
-                              fontSize: "13px",
-                            }}
-                          >
-                            {user.email}
-                          </Button>
-                        </MenuItem>
-                        <MenuItem onClick={handleCloseUserMenu}>
-                          <Button
-                            onClick={() => navigate("/profile")}
-                            variant="contained"
-                            style={{
-                              backgroundColor: "#fff",
-                              color: "#000",
-                              fontWeight: "bold",
-                              width: "100%",
-                              borderRadius: "50px",
-                            }}
-                          >
-                            Profile
-                          </Button>
-                        </MenuItem>
-                        <a href="/dashboard" style={{ textDecoration: "none" }}>
-                          {" "}
-                          <MenuItem onClick={handleCloseUserMenu}>
-                            <Button
-                              variant="contained"
-                              style={{
-                                backgroundColor: "#fff",
-                                color: "#000",
-                                fontWeight: "bold",
-                                borderRadius: "50px",
-                                width: "100%",
-                              }}
-                            >
-                              Dashboard
-                            </Button>
-                          </MenuItem>
-                        </a>
-
-                        <MenuItem onClick={handleCloseUserMenu}>
-                          <Button
-                            onClick={logOut}
-                            variant="contained"
-                            style={{
-                              backgroundColor: "#c40000",
-                              weight: "10px",
-                              borderRadius: "50px",
-                              width: "100%",
-                              padding: "2px 30px",
-                            }}
-                          >
-                            <LogoutIcon sx={{ fontSize: "30px", ml: "5px" }} />
-                          </Button>
-                        </MenuItem>
-                      </Menu>
                     </Box>
                   )}
                 </Box>

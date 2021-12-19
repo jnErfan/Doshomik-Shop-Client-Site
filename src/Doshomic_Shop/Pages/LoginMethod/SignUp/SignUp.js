@@ -17,7 +17,6 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import ContactMailOutlinedIcon from "@mui/icons-material/ContactMailOutlined";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
-import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../Hooks/useAuth";
@@ -34,19 +33,13 @@ const SignUp = () => {
   const onSubmit = (data) => {
     const fullName = data.firstName + " " + data.lastName;
 
-    const formData = new FormData();
-    formData.append("name", fullName);
-    formData.append("email", data.email);
-    formData.append("password", data.email);
-    formData.append("image", data.image[0]);
     if (data.password1 === data.password2) {
       emailPasswordSignUp(
         data.email,
         data.password1,
         fullName,
         navigate,
-        location,
-        formData
+        location
       );
     } else {
       const passwordError = "Password Did't Matched";
@@ -259,22 +252,7 @@ const SignUp = () => {
                 {...register("password2")}
               />
             </Box>
-            <Box sx={{ mt: "30px" }}>
-              <label htmlFor="contained-button-file">
-                <TextField
-                  sx={{ filter: "opacity(0%)", width: "10px", height: "0px" }}
-                  id="contained-button-file"
-                  type="file"
-                  accept="image/*"
-                  required
-                  {...register("image")}
-                />
-                <br />
-                <Button variant="contained" component="span">
-                  Upload Image <PhotoCamera sx={{ ml: "10px" }} />
-                </Button>
-              </label>
-            </Box>
+
             <Box sx={{ textAlign: "center", mt: "20px" }}>
               <Box
                 className="codes"

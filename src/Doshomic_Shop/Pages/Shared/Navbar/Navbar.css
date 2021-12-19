@@ -9,3 +9,10 @@
     margin-top: 0px !important;
   }
 }
+.profilePopover {
+  width: 50vh !important;
+  height: 60vh !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

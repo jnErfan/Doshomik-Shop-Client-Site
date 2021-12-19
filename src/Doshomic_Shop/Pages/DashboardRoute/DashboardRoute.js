@@ -1,12 +1,12 @@
-import { Box } from "@mui/system";
+import { Box } from "@mui/material";
 import React from "react";
-import { useLocation } from "react-router-dom";
-import { Navigate } from "react-router-dom";
-import useAuth from "../Hooks/useAuth";
+import { Navigate, useLocation } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
-const AdminRoute = ({ children }) => {
+const DashboardRoute = ({ children }) => {
   const location = useLocation();
-  const { isLoading, users } = useAuth();
+  const { users, isLoading } = useAuth();
+
   if (isLoading) {
     return (
       <Box
@@ -32,11 +32,12 @@ const AdminRoute = ({ children }) => {
       </Box>
     );
   }
-  return users?.position === "Admin" || users?.position === "Moderator" ? (
-    children
+
+  return users?.position ? (
+    <Navigate to="/dashboard" state={{ from: location.pathname }} />
   ) : (
-    <Navigate to="/adminLogin" state={{ from: location.pathname }} />
+    children
   );
 };
 
-export default AdminRoute;
+export default DashboardRoute;
