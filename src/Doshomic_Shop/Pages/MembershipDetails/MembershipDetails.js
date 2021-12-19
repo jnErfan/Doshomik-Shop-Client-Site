@@ -21,7 +21,9 @@ const MembershipDetails = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { user } = useAuth();
   useEffect(() => {
-    fetch(`http://localhost:5000/memberShips/${memberShipDetailsId}`)
+    fetch(
+      `https://doshomik-shop-server.herokuapp.com/memberShips/${memberShipDetailsId}`
+    )
       .then((result) => result.json())
       .then((data) => setMembership(data));
   }, [memberShipDetailsId]);
@@ -66,7 +68,10 @@ const MembershipDetails = () => {
           orderDetail,
         };
         axios
-          .post("http://localhost:5000/membershipOrder", detailOrder)
+          .post(
+            "https://doshomik-shop-server.herokuapp.com/membershipOrder",
+            detailOrder
+          )
           .then((res) => {
             setIsLoading(true);
             setTimeout(() => {

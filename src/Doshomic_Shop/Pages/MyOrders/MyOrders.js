@@ -12,7 +12,7 @@ const MyOrders = () => {
   const [orders, setOrders] = useState([]);
   const [changeOrders, setChangeOrders] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/myOrder/${user.email}`)
+    fetch(`https://doshomik-shop-server.herokuapp.com/myOrder/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setChangeOrders(data);
@@ -36,16 +36,18 @@ const MyOrders = () => {
       },
     });
     if (password === "CANCEL") {
-      axios.delete(`http://localhost:5000/deleteOrder/${id}`).then((data) => {
-        console.log(data.result);
-        Swal.fire({
-          icon: "success",
-          title: "Order Cancel Success",
-          padding: "3em",
-          showConfirmButton: false,
-          timer: 3000,
+      axios
+        .delete(`https://doshomik-shop-server.herokuapp.com/deleteOrder/${id}`)
+        .then((data) => {
+          console.log(data.result);
+          Swal.fire({
+            icon: "success",
+            title: "Order Cancel Success",
+            padding: "3em",
+            showConfirmButton: false,
+            timer: 3000,
+          });
         });
-      });
     } else {
       Swal.fire({
         icon: "error",

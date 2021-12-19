@@ -32,7 +32,7 @@ const ManageUsers = () => {
   const { users } = useAuth();
 
   useEffect(() => {
-    fetch("http://localhost:5000/allUsers")
+    fetch("https://doshomik-shop-server.herokuapp.com/allUsers")
       .then((result) => result.json())
       .then((data) => {
         setChange(data);
@@ -42,37 +42,43 @@ const ManageUsers = () => {
 
   const makeAdmin = (email) => {
     console.log(email);
-    axios.put(`http://localhost:5000/makeAdmin/${email}`).then((res) => {
-      Swal.fire({
-        icon: "success",
-        title: "Make User To Admin Successful",
-        padding: "3em",
-        showConfirmButton: false,
-        timer: 3000,
+    axios
+      .put(`https://doshomik-shop-server.herokuapp.com/makeAdmin/${email}`)
+      .then((res) => {
+        Swal.fire({
+          icon: "success",
+          title: "Make User To Admin Successful",
+          padding: "3em",
+          showConfirmButton: false,
+          timer: 3000,
+        });
       });
-    });
   };
   const makeModerator = (email) => {
-    axios.put(`http://localhost:5000/makeModerator/${email}`).then((res) => {
-      Swal.fire({
-        icon: "success",
-        title: "Make User To Moderator Successful",
-        padding: "3em",
-        showConfirmButton: false,
-        timer: 3000,
+    axios
+      .put(`https://doshomik-shop-server.herokuapp.com/makeModerator/${email}`)
+      .then((res) => {
+        Swal.fire({
+          icon: "success",
+          title: "Make User To Moderator Successful",
+          padding: "3em",
+          showConfirmButton: false,
+          timer: 3000,
+        });
       });
-    });
   };
   const makeUser = (email) => {
-    axios.put(`http://localhost:5000/makeUser/${email}`).then((res) => {
-      Swal.fire({
-        icon: "error",
-        title: "Demote To User Successful",
-        padding: "3em",
-        showConfirmButton: false,
-        timer: 3000,
+    axios
+      .put(`https://doshomik-shop-server.herokuapp.com/makeUser/${email}`)
+      .then((res) => {
+        Swal.fire({
+          icon: "error",
+          title: "Demote To User Successful",
+          padding: "3em",
+          showConfirmButton: false,
+          timer: 3000,
+        });
       });
-    });
   };
   return (
     <Box sx={{ my: "100px" }}>

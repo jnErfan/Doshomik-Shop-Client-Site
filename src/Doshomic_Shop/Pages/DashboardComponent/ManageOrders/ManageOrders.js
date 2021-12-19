@@ -12,7 +12,7 @@ import "./ManageOrders.css";
 const ManageOrders = () => {
   const [memberShips, setMemberships] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/membershipOrder")
+    fetch("https://doshomik-shop-server.herokuapp.com/membershipOrder")
       .then((res) => res.json())
       .then((data) => setMemberships(data));
   }, []);

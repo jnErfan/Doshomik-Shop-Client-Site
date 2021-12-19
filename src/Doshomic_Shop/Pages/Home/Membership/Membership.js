@@ -7,7 +7,7 @@ const Membership = () => {
   const [membership, setMembership] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/memberShips")
+    fetch("https://doshomik-shop-server.herokuapp.com/memberShips")
       .then((result) => result.json())
       .then((data) => setMembership(data));
   }, []);

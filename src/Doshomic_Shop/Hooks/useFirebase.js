@@ -268,7 +268,7 @@ const useFirebase = () => {
   const savedUserInfo = (name, email, method) => {
     const date = new Date();
     const userDetails = { name, email, date };
-    fetch("http://localhost:5000/users", {
+    fetch("https://doshomik-shop-server.herokuapp.com/users", {
       method: method,
       headers: { "content-type": "application/json" },
       body: JSON.stringify(userDetails),
@@ -288,7 +288,7 @@ const useFirebase = () => {
   }, [auth]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/users/${user.email}`)
+    fetch(`https://doshomik-shop-server.herokuapp.com/users/${user.email}`)
       .then((res) => res.json())
       .then((data) => setUsers(data?.[0]));
   }, [user?.email]);
