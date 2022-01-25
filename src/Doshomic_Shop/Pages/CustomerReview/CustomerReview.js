@@ -4,6 +4,10 @@ import Banner from "../SharedItem/Banner";
 import { styled } from "@mui/system";
 import Rating from "@mui/material/Rating";
 import StarIcon from "@mui/icons-material/Star";
+import useAuth from "../../Hooks/useAuth";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const StyledInputElement = styled("textarea")`
   line-height: 1.4375em;
@@ -16,19 +20,44 @@ const StyledInputElement = styled("textarea")`
   }
 `;
 const labels = {
-  0.5: "Useless",
-  1: "Useless",
-  1.5: "Poor",
-  2: "Poor",
-  2.5: "Ok",
-  3: "Good",
-  3.5: "Great",
-  4: "Great",
-  4.5: "Excellent",
-  5: "Excellent",
+  0.5: "Useless 😔",
+  1: "Useless 😞",
+  1.5: "Poor 😟",
+  2: "Poor 😑",
+  2.5: "Ok 😐",
+  3: "Good 🙂",
+  3.5: "Great 😇",
+  4: "Great 😊",
+  4.5: "Excellent 🥰",
+  5: "Excellent 🥳",
 };
 const CustomerReview = () => {
   const [value, setValue] = useState(0);
+  const { user } = useAuth();
+  const { register, handleSubmit, reset } = useForm();
+  const onSubmit = (data) => {
+    data.image = user.photoURL;
+    data.name = user.displayName;
+    data.rating = value;
+    if (value === 0) {
+      Swal.fire("Please Give Some Rating");
+    } else {
+      axios
+        .post("http://localhost:5000/customerReview", data)
+        .then((result) => {
+          if (result.data.insertedId) {
+            Swal.fire({
+              icon: "success",
+              title: "Review Shared Successful",
+              text: "Thank For Your Valuable Review, Your Review Was Added To HomePage",
+              showConfirmButton: false,
+              timer: 3000,
+            });
+            reset();
+          }
+        });
+    }
+  };
   return (
     <Box>
       <Box>
@@ -67,7 +96,10 @@ const CustomerReview = () => {
                     width: "150px",
                     marginTop: "-80px",
                   }}
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJM0tIHNcX1KiwFaVYxny0VCJgHrHi2I5IOQ&usqp=CAU"
+                  src={
+                    user.photoURL ||
+                    "https://www.theponderingmom.com/wp-content/uploads/2020/04/kisspng-emoticon-smiley-wink-emoji-clip-art-emoji-5abc679b27c4e7.9951670115222967311629.jpg"
+                  }
                   alt=""
                 />
               </Box>
@@ -75,7 +107,7 @@ const CustomerReview = () => {
                 variant="h4"
                 sx={{ fontWeight: "bold", color: "#081e3e", mt: "20px" }}
               >
-                {"J.N.Erfan"}
+                {user.displayName}
               </Typography>
               <Box sx={{ display: "flex", justifyContent: "center" }}>
                 {" "}
@@ -101,12 +133,15 @@ const CustomerReview = () => {
                 >
                   Rate Your Experience
                 </Typography>
+              </Box>
+              <form onSubmit={handleSubmit(onSubmit)}>
                 <Box
                   sx={{
                     alignItems: "center",
                   }}
                 >
                   <Rating
+                    required
                     value={value}
                     precision={0.5}
                     onChange={(event, newValue) => {
@@ -126,8 +161,6 @@ const CustomerReview = () => {
                     </Typography>
                   )}
                 </Box>
-              </Box>
-              <form>
                 <Box sx={{ mt: "30px" }}>
                   <StyledInputElement
                     type="text"
@@ -135,6 +168,7 @@ const CustomerReview = () => {
                     sx={{ borderRadius: "5px", p: "10px", mt: "20px" }}
                     rows={4}
                     required
+                    {...register("reviewDetails")}
                   />
                   <br />
                   <Button
