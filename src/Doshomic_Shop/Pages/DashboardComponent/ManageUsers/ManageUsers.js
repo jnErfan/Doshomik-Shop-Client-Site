@@ -143,14 +143,27 @@ const ManageUsers = () => {
                     width: "100px",
                   }}
                 />
+
                 {position === "Admin" || position === "Moderator" ? (
-                  <UserButtonDemote
-                    onClick={() => makeUser(email)}
-                    sx={{ mt: "20px", px: "15px", textTransform: "revert" }}
-                  >
-                    Remove To {position}{" "}
-                    <i className="fas fa-user-times ms-1"></i>
-                  </UserButtonDemote>
+                  <Box>
+                    {users.position === "Moderator" ? (
+                      <UserButtonDemote
+                        disabled
+                        sx={{ mt: "20px", px: "15px", textTransform: "revert" }}
+                      >
+                        Remove To {position}{" "}
+                        <i className="fas fa-user-times ms-1"></i>
+                      </UserButtonDemote>
+                    ) : (
+                      <UserButtonDemote
+                        onClick={() => makeUser(email)}
+                        sx={{ mt: "20px", px: "15px", textTransform: "revert" }}
+                      >
+                        Remove To {position}{" "}
+                        <i className="fas fa-user-times ms-1"></i>
+                      </UserButtonDemote>
+                    )}
+                  </Box>
                 ) : (
                   <Box
                     sx={{ display: "flex", justifyContent: "space-between" }}
@@ -176,12 +189,27 @@ const ManageUsers = () => {
                         Admin
                       </UserButton>
                     )}
-                    <UserButton
-                      onClick={() => makeModerator(email)}
-                      sx={{ mt: "20px", px: "15px" }}
-                    >
-                      Moderator
-                    </UserButton>
+                    {users.position === "Moderator" ? (
+                      <Button
+                        variant="contained"
+                        style={{
+                          marginTop: "20px",
+                          paddingLeft: "15px",
+                          paddingRight: "15px",
+                          backgroundColor: "gray",
+                          cursor: "not-allowed",
+                        }}
+                      >
+                        Moderator
+                      </Button>
+                    ) : (
+                      <UserButton
+                        onClick={() => makeModerator(email)}
+                        sx={{ mt: "20px", px: "15px" }}
+                      >
+                        Moderator
+                      </UserButton>
+                    )}
                   </Box>
                 )}
               </Box>

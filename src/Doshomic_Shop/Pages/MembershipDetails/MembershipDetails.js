@@ -59,6 +59,7 @@ const MembershipDetails = () => {
       }).then((result) => {
         const date = new Date().toDateString();
         const orderDetail = membership;
+        const status = "Pending";
         const detailOrder = {
           name: name,
           email: user.email,
@@ -66,6 +67,7 @@ const MembershipDetails = () => {
           url: url,
           date,
           orderDetail,
+          status,
         };
         axios
           .post(
