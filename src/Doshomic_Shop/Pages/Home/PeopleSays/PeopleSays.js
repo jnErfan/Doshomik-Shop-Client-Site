@@ -1,42 +1,29 @@
-import React, { useState } from "react";
-import { Container, Grid, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Container, Grid, Rating, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useTheme } from "@mui/material/styles";
 import MobileStepper from "@mui/material/MobileStepper";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
+import StarIcon from "@mui/icons-material/Star";
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-
-const portfolio = [
-  {
-    label: "Rajendra",
-    job: "DS Player",
-    port: "form of a Game Boy Advance cartridge, the Rumble Pak vibrates to reflect the action in compatible games, such as when the player bumps ",
-    img: "https://i.ibb.co/Z686NP1/user3.jpg",
-  },
-  {
-    label: "Cris Hamsort",
-    job: "Web Developer",
-    port: "web developer is a programmer who specializes in, or is specifically engaged in, the development of World Wide Web applications using a client–server ",
-    img: "https://i.ibb.co/b6SnmrZ/user1.jpg",
-  },
-  {
-    label: "John Doe",
-    job: "Businessman",
-    port: "Businessman is a 2012 Indian Telugu-language action crime film written and directed by Puri Jagannadh. Based on a concept by Ram Gopal Varma and produced by ",
-    img: "https://i.ibb.co/pnMjwhV/user2.jpg",
-  },
-];
 
 const PeopleSays = () => {
   const theme = useTheme();
   const [activeStep, setActiveStep] = useState(0);
-  const maxSteps = portfolio.length;
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/customerReview")
+      .then((res) => res.json())
+      .then((data) => setReviews(data));
+  });
+
+  const maxSteps = reviews.length;
 
   const handleStepChange = (step) => {
     setActiveStep(step);
   };
-
   return (
     <Container sx={{ mb: "100px" }}>
       <Box sx={{ textAlign: "center", my: "50px" }}>
@@ -46,7 +33,13 @@ const PeopleSays = () => {
         >
           What People Says
         </Typography>
-        <Typography variant="body1" className="text-secondary px-5">
+        <Typography
+          variant="body"
+          sx={{ fontWeight: "bold", mb: "20px", color: "#000" }}
+        >
+          Valuable Customers Review
+        </Typography>
+        <Typography variant="body1" className="text-secondary px-5 mt-2">
           One of our experts will correct your English. some people say vs some
           people says. A complete search of the Whatever <br /> People Say I Am,
           That's What I'm Not is the debut studio album by English rock band
@@ -61,8 +54,16 @@ const PeopleSays = () => {
             onChangeIndex={handleStepChange}
             enableMouseEvents
           >
-            {portfolio.map(({ img, label, job, port }) => (
-              <Grid container spacing={2}>
+            {reviews.map(({ image, name, rating, reviewDetails }) => (
+              <Grid
+                container
+                spacing={2}
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
                 <Grid
                   item
                   xs={12}
@@ -74,33 +75,16 @@ const PeopleSays = () => {
                     <img
                       className="rounded-circle"
                       style={{ border: "5px solid #E2E0E0" }}
-                      width="100px"
-                      height="100px"
-                      src={img}
+                      width="150px"
+                      height="150px"
+                      src={image}
                       alt=""
                     />
                     <Typography
-                      variant="h6"
+                      variant="h5"
                       sx={{ fontWeight: "bold", mb: "5px", mt: "20px" }}
                     >
-                      {label}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        color: "#0056FB",
-                      }}
-                    >
-                      {job}
-                    </Typography>
-                    <Typography
-                      variant="body1"
-                      sx={{
-                        color: "#808080",
-                        mt: "30px",
-                      }}
-                    >
-                      {port}
+                      {name}
                     </Typography>
                   </Box>
                 </Grid>
@@ -112,28 +96,19 @@ const PeopleSays = () => {
                   sx={{ textAlign: "center", cursor: "pointer" }}
                 >
                   <Box className="shadow-sm rounded-3 p-5 m-5">
-                    <img
-                      className="rounded-circle"
-                      style={{ border: "5px solid #E2E0E0" }}
-                      width="100px"
-                      height="100px"
-                      src={img}
-                      alt=""
+                    <Rating
+                      value={rating}
+                      readOnly
+                      size="large"
+                      precision={0.5}
+                      emptyIcon={
+                        <StarIcon
+                          style={{ opacity: 0.55 }}
+                          fontSize="inherit"
+                        />
+                      }
                     />
-                    <Typography
-                      variant="h6"
-                      sx={{ fontWeight: "bold", mb: "5px", mt: "20px" }}
-                    >
-                      {label}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      sx={{
-                        color: "#0056FB",
-                      }}
-                    >
-                      {job}
-                    </Typography>
+
                     <Typography
                       variant="body1"
                       sx={{
@@ -141,7 +116,7 @@ const PeopleSays = () => {
                         mt: "30px",
                       }}
                     >
-                      {port}
+                      {reviewDetails}
                     </Typography>
                   </Box>
                 </Grid>

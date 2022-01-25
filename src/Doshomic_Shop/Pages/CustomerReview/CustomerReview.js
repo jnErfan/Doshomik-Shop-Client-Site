@@ -35,8 +35,12 @@ const CustomerReview = () => {
   const [value, setValue] = useState(0);
   const { user } = useAuth();
   const { register, handleSubmit, reset } = useForm();
+
   const onSubmit = (data) => {
-    data.image = user.photoURL;
+    data.image =
+      user?.photoURL ||
+      "https://www.theponderingmom.com/wp-content/uploads/2020/04/kisspng-emoticon-smiley-wink-emoji-clip-art-emoji-5abc679b27c4e7.9951670115222967311629.jpg";
+    data.email = user.email;
     data.name = user.displayName;
     data.rating = value;
     if (value === 0) {
