@@ -1,79 +1,137 @@
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import PriceCheckIcon from "@mui/icons-material/PriceCheck";
 import MoneyOffIcon from "@mui/icons-material/MoneyOff";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
+import CountUp from "react-countup";
+import VisibilitySensor from "react-visibility-sensor";
+import { useNavigate } from "react-router-dom";
 
 const DashboardHome = () => {
+  const [allUsers, setUsers] = useState([]);
+  const navigate = useNavigate();
+  const [change, setChange] = useState("");
+  const [memberShips, setMemberships] = useState([]);
+  const [orderChange, setOrderChange] = useState([]);
+  const [membership, setMembership] = useState([]);
+
+  // Total Users
+  useEffect(() => {
+    fetch("https://doshomik-shop-server.herokuapp.com/allUsers")
+      .then((result) => result.json())
+      .then((data) => {
+        setChange(data);
+        setUsers(data);
+      });
+  }, [change]);
+
+  // Total Order
+  useEffect(() => {
+    fetch("https://doshomik-shop-server.herokuapp.com/membershipOrder")
+      .then((res) => res.json())
+      .then((data) => {
+        setOrderChange(data);
+        setMemberships(data);
+      });
+  }, [orderChange]);
+
+  //  Filtering All Status
+  const pending = memberShips.filter((order) => order.status === "Pending");
+  const reject = memberShips.filter((order) => order.status === "Canceled");
+  const shipped = memberShips.filter((order) => order.status === "Placed");
+  const earn = memberShips.filter((order) => order.status === "Placed");
+
+  let Earn = 0;
+  for (const totalEarn of earn) {
+    Earn = Number(totalEarn.orderDetail[0].price) + Earn;
+  }
+
+  // All Membership
+  useEffect(() => {
+    fetch("https://doshomik-shop-server.herokuapp.com/allMemberShips")
+      .then((result) => result.json())
+      .then((data) => setMembership(data));
+  }, []);
+
+  // Cards
   const dashboardShort = [
     {
-      number: "00",
+      number: allUsers.length,
       title: "Total Users",
       image:
         "https://www.mittalskinclinic.com/wp-content/uploads/2017/08/client-icon-18.png",
       color1: "#8757E9",
       color2: "#5171E6",
       degree: "0deg",
+      viewLink: "/dashboard/manageUsers",
     },
     {
-      number: "00",
+      number: memberShips.length,
       title: "Total Orders",
       image: "https://icon-library.com/images/orders-icon/orders-icon-5.jpg",
       color1: "#32E280",
       color2: "#129B8E",
       degree: "30deg",
+      viewLink: "/dashboard/manageOrders",
     },
     {
-      number: "00",
-      title: "Memberships",
-      image:
-        "https://cdn4.iconfinder.com/data/icons/seo-glyph-3/614/Analysis-512.png",
-      color1: "#7149AB",
-      color2: "#9A50BA",
-      degree: "0deg",
+      number: pending.length,
+      title: "Pending Order",
+      image: "https://image.flaticon.com/icons/png/512/1250/1250725.png",
+      color1: "#4C0348",
+      color2: "#BA4448",
+      degree: "20deg",
+      viewLink: "/dashboard/manageOrders",
     },
     {
-      number: "00",
-      title: "Total Sales",
-      image:
-        "https://icon-library.com/images/sales_chart_graph_financial_report_stock_market_statistics_stats_increase-512_111762.png",
-      color1: "#FF8A62",
-      color2: "#bc4b00",
-      degree: "10deg",
-    },
-    {
-      number: "00",
+      number: shipped.length,
       title: "Placed Order",
       image:
         "https://cdn2.iconfinder.com/data/icons/shopping-e-commerce-2-1/32/Success-Place-Order-Complete-Shopping-Tick-512.png",
       color1: "#158468",
       color2: "#009688",
       degree: "80deg",
+      viewLink: "/dashboard/manageOrders",
     },
     {
-      number: "00",
-      title: "Pending Order",
-      image: "https://image.flaticon.com/icons/png/512/1250/1250725.png",
-      color1: "#4C0348",
-      color2: "#BA4448",
-      degree: "20deg",
+      number: reject.length,
+      title: "Cancel Order",
+      image: "https://img.icons8.com/windows/32/000000/--cancel-delete.png",
+      color1: "#ff0000",
+      color2: "#3f2121",
+      degree: "80deg",
+      viewLink: "/dashboard/manageOrders",
     },
     {
-      number: "00",
+      number: membership.length,
+      title: "Memberships",
+      image:
+        "https://cdn4.iconfinder.com/data/icons/seo-glyph-3/614/Analysis-512.png",
+      color1: "#7149AB",
+      color2: "#9A50BA",
+      degree: "0deg",
+      viewLink: "/dashboard/manageMemberShips",
+    },
+    {
+      number: shipped.length,
+      title: "Total Sales",
+      image:
+        "https://icon-library.com/images/sales_chart_graph_financial_report_stock_market_statistics_stats_increase-512_111762.png",
+      color1: "#FF8A62",
+      color2: "#bc4b00",
+      degree: "10deg",
+      viewLink: "/dashboard/manageOrders",
+    },
+
+    {
+      number: shipped.length,
       title: "Today Sales",
       image: "https://fxbitcoinpro365options.com/img/cashout.png",
       color1: "#19294A",
       color2: "#4A6AB4",
       degree: "150deg",
-    },
-    {
-      number: "00",
-      title: "Total Withdraw",
-      image: "http://cdn.onlinewebfonts.com/svg/img_459178.png",
-      color1: "#962875",
-      color2: "#B34592",
-      degree: "80deg",
+      viewLink: "/dashboard/manageOrders",
     },
   ];
   return (
@@ -84,7 +142,7 @@ const DashboardHome = () => {
       <Container sx={{ my: "100px" }}>
         <Grid container spacing={4}>
           {dashboardShort.map(
-            ({ number, title, image, color1, color2, degree }) => (
+            ({ number, title, image, color1, color2, degree, viewLink }) => (
               <Grid item xs={6} sm={6} md={4} lg={3}>
                 <Box
                   sx={{
@@ -103,13 +161,27 @@ const DashboardHome = () => {
                     }}
                   >
                     {" "}
-                    <Typography variant="h5" sx={{ color: "#fff" }}>
-                      {number}
+                    <Typography
+                      variant="h4"
+                      sx={{ color: "#fff", fontWeight: "bold" }}
+                    >
+                      <VisibilitySensor>
+                        {({ isVisible }) => (
+                          <span>
+                            {isVisible ? (
+                              <CountUp end={number} duration={1} delay={0} />
+                            ) : (
+                              0
+                            )}
+                          </span>
+                        )}
+                      </VisibilitySensor>
                     </Typography>
                     <Typography variant="h5" sx={{ color: "#fff" }}>
                       {title}
                     </Typography>
                     <Button
+                      onClick={() => navigate(viewLink)}
                       variant="contained"
                       sx={{
                         backgroundColor: "#fff",
@@ -157,7 +229,17 @@ const DashboardHome = () => {
                   variant="h4"
                   sx={{ fontWeight: "bold", mt: "20px" }}
                 >
-                  000
+                  <VisibilitySensor>
+                    {({ isVisible }) => (
+                      <span>
+                        {isVisible ? (
+                          <CountUp end={Earn} duration={2} delay={0} />
+                        ) : (
+                          0
+                        )}
+                      </span>
+                    )}
+                  </VisibilitySensor>
                 </Typography>
                 <Typography variant="h5" sx={{ fontWeight: "bold" }}>
                   Earn
@@ -167,7 +249,7 @@ const DashboardHome = () => {
                 {" "}
                 <Box width="250px" sx={{ mt: "30px" }}>
                   <CircularProgressbar
-                    value={50}
+                    value={Earn / 100}
                     styles={buildStyles({
                       pathColor: "#7367F0",
                       trailColor: "#c3c0e8",
@@ -208,7 +290,7 @@ const DashboardHome = () => {
                 {" "}
                 <Box width="250px" sx={{ mt: "30px" }}>
                   <CircularProgressbar
-                    value={50}
+                    value={1}
                     styles={buildStyles({
                       pathColor: "#E91E63",
                       trailColor: "#ddadbd",
@@ -239,7 +321,17 @@ const DashboardHome = () => {
                   variant="h4"
                   sx={{ fontWeight: "bold", mt: "20px" }}
                 >
-                  000
+                  <VisibilitySensor>
+                    {({ isVisible }) => (
+                      <span>
+                        {isVisible ? (
+                          <CountUp end={Earn} duration={2} delay={0} />
+                        ) : (
+                          0
+                        )}
+                      </span>
+                    )}
+                  </VisibilitySensor>
                 </Typography>
                 <Typography variant="h5" sx={{ fontWeight: "bold" }}>
                   Total Earnings
@@ -249,7 +341,7 @@ const DashboardHome = () => {
                 {" "}
                 <Box width="250px" sx={{ mt: "30px" }}>
                   <CircularProgressbar
-                    value={50}
+                    value={Earn / 200}
                     styles={buildStyles({
                       pathColor: "#4CAF50",
                       trailColor: "#becebe",

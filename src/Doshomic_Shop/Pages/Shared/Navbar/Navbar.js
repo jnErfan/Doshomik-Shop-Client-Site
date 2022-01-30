@@ -104,33 +104,35 @@ const Navbar = () => {
               }}
             >
               {users?.position === "Admin" ||
-                (users?.position === "Moderator" && (
-                  <a
-                    href="/dashboard"
-                    style={{ color: "white", textDecoration: "none" }}
+              users?.position === "Moderator" ? (
+                <a
+                  href="/dashboard"
+                  style={{ color: "white", textDecoration: "none" }}
+                >
+                  <Button
+                    variant="contained"
+                    sx={{
+                      fontWeight: "600",
+                      borderRadius: "50px",
+                      px: "15px",
+                      py: "5px",
+                      mx: "10px",
+                      fontSize: "15px",
+                      backgroundColor: "#006EF2",
+                      "&:hover": {
+                        backgroundColor: "#0099FF",
+                        color: "#fff",
+                        transition: "500ms",
+                        transform: "scale(1.05)",
+                      },
+                    }}
                   >
-                    <Button
-                      variant="contained"
-                      sx={{
-                        fontWeight: "600",
-                        borderRadius: "50px",
-                        px: "15px",
-                        py: "5px",
-                        mx: "10px",
-                        fontSize: "15px",
-                        backgroundColor: "#006EF2",
-                        "&:hover": {
-                          backgroundColor: "#0099FF",
-                          color: "#fff",
-                          transition: "500ms",
-                          transform: "scale(1.05)",
-                        },
-                      }}
-                    >
-                      Dashboard
-                    </Button>
-                  </a>
-                ))}
+                    Dashboard
+                  </Button>
+                </a>
+              ) : (
+                <></>
+              )}
               {users?.position === "Admin" ||
                 (users?.position === "Moderator" ? (
                   <></>
