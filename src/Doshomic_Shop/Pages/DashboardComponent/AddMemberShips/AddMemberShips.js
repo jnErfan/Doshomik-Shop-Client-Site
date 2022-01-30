@@ -21,22 +21,24 @@ const AddMemberShips = () => {
   const [isLoading, setIsLoading] = useState(false);
   const onSubmit = (data) => {
     setIsLoading(true);
-    axios.post("http://localhost:5000/addMembership", data).then((result) => {
-      if (result.data.insertedId) {
-        setTimeout(() => {
+    axios
+      .post("https://doshomik-shop-server.herokuapp.com/addMembership", data)
+      .then((result) => {
+        if (result.data.insertedId) {
+          setTimeout(() => {
+            setIsLoading(false);
+            Swal.fire({
+              icon: "success",
+              title: "Membership Add Successful",
+              showConfirmButton: false,
+              timer: 3000,
+            });
+            reset();
+          }, 3000);
+        } else {
           setIsLoading(false);
-          Swal.fire({
-            icon: "success",
-            title: "Membership Add Successful",
-            showConfirmButton: false,
-            timer: 3000,
-          });
-          reset();
-        }, 3000);
-      } else {
-        setIsLoading(false);
-      }
-    });
+        }
+      });
   };
 
   return (

@@ -35,9 +35,12 @@ const ManageOrders = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .put(`http://localhost:5000/statusUpdate/${id}`, {
-            status: "Placed",
-          })
+          .put(
+            `https://doshomik-shop-server.herokuapp.com/statusUpdate/${id}`,
+            {
+              status: "Placed",
+            }
+          )
           .then((result) => {
             setIsLoading(true);
             setTimeout(() => {
@@ -65,7 +68,7 @@ const ManageOrders = () => {
 
     if (text) {
       axios
-        .put(`http://localhost:5000/statusUpdate/${id}`, {
+        .put(`https://doshomik-shop-server.herokuapp.com/statusUpdate/${id}`, {
           status: "Canceled",
           reason: text,
         })

@@ -47,7 +47,7 @@ const CustomerReview = () => {
       Swal.fire("Please Give Some Rating");
     } else {
       axios
-        .post("http://localhost:5000/customerReview", data)
+        .post("https://doshomik-shop-server.herokuapp.com/customerReview", data)
         .then((result) => {
           if (result.data.insertedId) {
             Swal.fire({

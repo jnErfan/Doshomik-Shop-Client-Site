@@ -14,7 +14,7 @@ const PeopleSays = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/customerReview")
+    fetch("https://doshomik-shop-server.herokuapp.com/customerReview")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   });
