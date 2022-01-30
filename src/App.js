@@ -25,151 +25,175 @@ import AdminRoute from "./Doshomic_Shop/AdminRoutes/AdminRoute";
 import MembershipDetails from "./Doshomic_Shop/Pages/MembershipDetails/MembershipDetails";
 import LoginRoute from "./Doshomic_Shop/Pages/LoginRoute/LoginRoute";
 import DashboardRoute from "./Doshomic_Shop/Pages/DashboardRoute/DashboardRoute";
+import { useEffect, useState } from "react";
+import Preloader from "./Doshomic_Shop/Preloader/Preloader";
 
 function App() {
   let location = window.location.pathname;
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 5000);
+  }, []);
 
   return (
-    <AuthContext>
-      <Box className="App" sx={{ overflowX: "hidden" }}>
-        <Router>
-          <Box
-            sx={
-              (location === "/dashboard" && { display: "none" }) ||
-              (location === "/dashboard/dashboardHome" && {
-                display: "none",
-              }) ||
-              (location === "/dashboard/manageOrders" && { display: "none" }) ||
-              (location === "/dashboard/manageMemberShips" && {
-                display: "none",
-              }) ||
-              (location === "/dashboard/manageUsers" && { display: "none" }) ||
-              (location === "/dashboard/addMemberShips" && {
-                display: "none",
-              }) ||
-              (location === "/dashboard/settings" && { display: "none" })
-            }
-          >
-            <Navbar />
+    <Box>
+      {loading ? (
+        <Preloader />
+      ) : (
+        <AuthContext>
+          <Box className="App" sx={{ overflowX: "hidden" }}>
+            <Router>
+              <Box
+                sx={
+                  (location === "/dashboard" && { display: "none" }) ||
+                  (location === "/dashboard/dashboardHome" && {
+                    display: "none",
+                  }) ||
+                  (location === "/dashboard/manageOrders" && {
+                    display: "none",
+                  }) ||
+                  (location === "/dashboard/manageMemberShips" && {
+                    display: "none",
+                  }) ||
+                  (location === "/dashboard/manageUsers" && {
+                    display: "none",
+                  }) ||
+                  (location === "/dashboard/addMemberShips" && {
+                    display: "none",
+                  }) ||
+                  (location === "/dashboard/settings" && { display: "none" })
+                }
+              >
+                <Navbar />
+              </Box>
+              <Routes>
+                <Route path="/" element={<HomeContainer />} />
+                <Route path="home" element={<HomeContainer />} />
+                <Route path="memberShip" element={<MemberShips />} />
+                <Route
+                  path="memberShips/:memberShipDetailsId"
+                  element={
+                    <PrivateRoute>
+                      <MembershipDetails />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="dashboard/*"
+                  element={
+                    <AdminRoute>
+                      <Dashboard />
+                    </AdminRoute>
+                  }
+                />
+                <Route path="about" element={<About />} />
+                <Route
+                  path="faq"
+                  element={
+                    <PrivateRoute>
+                      <Faq />
+                    </PrivateRoute>
+                  }
+                />
+                <Route path="blogs" element={<Blog />} />
+                <Route
+                  path="blogs/:blogId"
+                  element={
+                    <PrivateRoute>
+                      <BlogDetails />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="contract"
+                  element={
+                    <PrivateRoute>
+                      <Contract />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="myOrders"
+                  element={
+                    <PrivateRoute>
+                      <MyOrders />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="review"
+                  element={
+                    <PrivateRoute>
+                      <CustomerReview />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="profile"
+                  element={
+                    <PrivateRoute>
+                      <Profile />
+                    </PrivateRoute>
+                  }
+                />
+                <Route
+                  path="login"
+                  element={
+                    <LoginRoute>
+                      <Login />
+                    </LoginRoute>
+                  }
+                />
+                <Route
+                  path="signUp"
+                  element={
+                    <LoginRoute>
+                      <SignUp />
+                    </LoginRoute>
+                  }
+                />
+                <Route
+                  path="adminLogin"
+                  element={
+                    <DashboardRoute>
+                      <AdminLogin />
+                    </DashboardRoute>
+                  }
+                />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+              <Box
+                sx={
+                  (location === "/dashboard" && { display: "none" }) ||
+                  (location === "/dashboard/dashboardHome" && {
+                    display: "none",
+                  }) ||
+                  (location === "/dashboard/manageOrders" && {
+                    display: "none",
+                  }) ||
+                  (location === "/dashboard/manageMemberShips" && {
+                    display: "none",
+                  }) ||
+                  (location === "/dashboard/manageUsers" && {
+                    display: "none",
+                  }) ||
+                  (location === "/dashboard/addMemberShips" && {
+                    display: "none",
+                  }) ||
+                  (location === "/dashboard/settings" && { display: "none" })
+                }
+              >
+                <Footer />
+              </Box>
+            </Router>
           </Box>
-          <Routes>
-            <Route path="/" element={<HomeContainer />} />
-            <Route path="home" element={<HomeContainer />} />
-            <Route path="memberShip" element={<MemberShips />} />
-            <Route
-              path="memberShips/:memberShipDetailsId"
-              element={
-                <PrivateRoute>
-                  <MembershipDetails />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="dashboard/*"
-              element={
-                <AdminRoute>
-                  <Dashboard />
-                </AdminRoute>
-              }
-            />
-            <Route path="about" element={<About />} />
-            <Route
-              path="faq"
-              element={
-                <PrivateRoute>
-                  <Faq />
-                </PrivateRoute>
-              }
-            />
-            <Route path="blogs" element={<Blog />} />
-            <Route
-              path="blogs/:blogId"
-              element={
-                <PrivateRoute>
-                  <BlogDetails />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="contract"
-              element={
-                <PrivateRoute>
-                  <Contract />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="myOrders"
-              element={
-                <PrivateRoute>
-                  <MyOrders />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="review"
-              element={
-                <PrivateRoute>
-                  <CustomerReview />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="profile"
-              element={
-                <PrivateRoute>
-                  <Profile />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="login"
-              element={
-                <LoginRoute>
-                  <Login />
-                </LoginRoute>
-              }
-            />
-            <Route
-              path="signUp"
-              element={
-                <LoginRoute>
-                  <SignUp />
-                </LoginRoute>
-              }
-            />
-            <Route
-              path="adminLogin"
-              element={
-                <DashboardRoute>
-                  <AdminLogin />
-                </DashboardRoute>
-              }
-            />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <Box
-            sx={
-              (location === "/dashboard" && { display: "none" }) ||
-              (location === "/dashboard/dashboardHome" && {
-                display: "none",
-              }) ||
-              (location === "/dashboard/manageOrders" && { display: "none" }) ||
-              (location === "/dashboard/manageMemberShips" && {
-                display: "none",
-              }) ||
-              (location === "/dashboard/manageUsers" && { display: "none" }) ||
-              (location === "/dashboard/addMemberShips" && {
-                display: "none",
-              }) ||
-              (location === "/dashboard/settings" && { display: "none" })
-            }
-          >
-            <Footer />
-          </Box>
-        </Router>
-      </Box>
-    </AuthContext>
+        </AuthContext>
+      )}
+    </Box>
   );
 }
 
