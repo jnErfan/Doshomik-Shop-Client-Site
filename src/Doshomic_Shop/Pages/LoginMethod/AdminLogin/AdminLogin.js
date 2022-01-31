@@ -52,7 +52,6 @@ const AdminLogin = () => {
       inputLabel: "Enter Current Account Email Address",
       inputPlaceholder: "Enter Email Address",
     });
-    console.log(email);
     if (email) {
       resetPassword(email);
     }

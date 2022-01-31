@@ -14,7 +14,7 @@ const EarnMoney = () => {
         <Grid item xs={12} md={6} lg={6}>
           <img
             style={{
-              height: "100vh",
+              height: "100%",
               width: "100%",
             }}
             className="images"
@@ -31,6 +31,7 @@ const EarnMoney = () => {
             backgroundColor: "#003BFF",
             display: "flex",
             alignItems: "center",
+            mt: "16px",
           }}
         >
           <Box sx={{ pl: "70px" }}>

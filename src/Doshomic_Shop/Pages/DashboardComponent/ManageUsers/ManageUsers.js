@@ -41,7 +41,6 @@ const ManageUsers = () => {
   }, [change]);
 
   const makeAdmin = (email) => {
-    console.log(email);
     axios
       .put(`https://doshomik-shop-server.herokuapp.com/makeAdmin/${email}`)
       .then((res) => {

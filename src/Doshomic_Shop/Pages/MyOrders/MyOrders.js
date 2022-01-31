@@ -41,7 +41,6 @@ const MyOrders = () => {
       axios
         .delete(`https://doshomik-shop-server.herokuapp.com/deleteOrder/${id}`)
         .then((data) => {
-          console.log(data.result);
           Swal.fire({
             icon: "success",
             title: "Order Cancel Success",
