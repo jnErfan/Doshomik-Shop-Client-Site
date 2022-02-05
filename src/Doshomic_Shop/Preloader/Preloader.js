@@ -2,6 +2,7 @@ import { Grid } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 
+// Website Starting Screen Preloader
 const Preloader = () => {
   return (
     <Box

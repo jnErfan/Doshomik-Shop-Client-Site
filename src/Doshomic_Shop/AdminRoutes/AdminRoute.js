@@ -7,6 +7,7 @@ import useAuth from "../Hooks/useAuth";
 const AdminRoute = ({ children }) => {
   const location = useLocation();
   const { isLoading, users } = useAuth();
+  // Loading Default Time
   if (isLoading) {
     return (
       <Box
@@ -32,6 +33,7 @@ const AdminRoute = ({ children }) => {
       </Box>
     );
   }
+
   return users?.position === "Admin" || users?.position === "Moderator" ? (
     children
   ) : (

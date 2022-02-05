@@ -3,6 +3,7 @@ import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 
+// Private Route for those who are not logged in to the web site
 const PrivateRoute = ({ children, ...rest }) => {
   const location = useLocation();
   const { user, isLoading } = useAuth();

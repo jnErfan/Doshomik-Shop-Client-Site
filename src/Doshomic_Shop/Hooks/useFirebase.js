@@ -265,6 +265,7 @@ const useFirebase = () => {
     });
   };
 
+  // Saved User Information
   const savedUserInfo = (name, email, method) => {
     const date = new Date();
     const userDetails = { name, email, date };
@@ -287,6 +288,7 @@ const useFirebase = () => {
     });
   }, [auth]);
 
+  //  Get Logged User Information
   useEffect(() => {
     fetch(`https://doshomik-shop-server.herokuapp.com/users/${user.email}`)
       .then((res) => res.json())
