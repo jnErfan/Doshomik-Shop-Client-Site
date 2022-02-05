@@ -15,6 +15,8 @@ const ManageOrders = () => {
   const [memberShips, setMemberships] = useState([]);
   const [orderChange, setOrderChange] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  // Get Manage All Orders And Customer Information
   useEffect(() => {
     fetch("https://doshomik-shop-server.herokuapp.com/membershipOrder")
       .then((res) => res.json())
@@ -24,6 +26,7 @@ const ManageOrders = () => {
       });
   }, [orderChange]);
 
+  // Change Order Status Pending To Placed
   const placedOrder = (id) => {
     Swal.fire({
       title: "Placed This Order ?",
@@ -54,6 +57,7 @@ const ManageOrders = () => {
     });
   };
 
+  // Reject Order Button Handler
   async function cancelOrder(id) {
     const { value: text } = await Swal.fire({
       input: "textarea",
@@ -105,6 +109,7 @@ const ManageOrders = () => {
     }
   }
 
+  // All Order Displayed Table
   return (
     <Box>
       {isLoading && (

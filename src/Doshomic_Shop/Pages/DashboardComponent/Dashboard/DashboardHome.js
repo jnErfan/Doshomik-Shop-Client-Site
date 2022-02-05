@@ -54,7 +54,7 @@ const DashboardHome = () => {
       .then((data) => setMembership(data));
   }, []);
 
-  // Cards
+  // Dashboard Cards
   const dashboardShort = [
     {
       number: allUsers.length,
@@ -134,6 +134,8 @@ const DashboardHome = () => {
       viewLink: "/dashboard/manageOrders",
     },
   ];
+
+  // Dashboard All Information Card
   return (
     <Box sx={{ mb: "200px" }}>
       <Box sx={{ mt: "50px", ml: "50px" }}>

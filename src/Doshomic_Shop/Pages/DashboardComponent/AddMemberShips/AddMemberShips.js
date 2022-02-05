@@ -19,6 +19,8 @@ const AddMemberShips = () => {
 
   const { register, handleSubmit, reset } = useForm();
   const [isLoading, setIsLoading] = useState(false);
+
+  // Send Membership Information
   const onSubmit = (data) => {
     setIsLoading(true);
     axios
@@ -41,6 +43,7 @@ const AddMemberShips = () => {
       });
   };
 
+  // Membership Add Information Form
   return (
     <Box sx={{ my: "100px" }}>
       {isLoading && (

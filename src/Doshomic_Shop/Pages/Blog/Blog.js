@@ -3,6 +3,7 @@ import { Box, Typography } from "@mui/material";
 import OurBlog from "../Home/OurBlog/OurBlog";
 import Banner from "../SharedItem/Banner";
 
+// Our Blog component
 const Blog = () => {
   return (
     <Box>

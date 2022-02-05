@@ -12,6 +12,8 @@ const StyledInputElement = styled("textarea")`
     border: 2px solid #000;
   }
 `;
+
+//  Asked Questions And Questions Form
 const Faq = () => {
   return (
     <Box>

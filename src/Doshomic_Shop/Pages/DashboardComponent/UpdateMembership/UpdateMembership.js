@@ -50,7 +50,7 @@ const UpdateMembership = ({
 }) => {
   const [updateDetails, setUpdateDetails] = useState({});
 
-  // Update Desktop Configuration
+  // Update Membership Configuration
   useEffect(() => {
     fetch(`https://doshomik-shop-server.herokuapp.com/membership/${id}`)
       .then((res) => res.json())
@@ -60,6 +60,8 @@ const UpdateMembership = ({
     setOpen(false);
     reset();
   };
+
+  // Update Chained Information
   const onSubmit = (data) => {
     axios
       .put(
@@ -75,6 +77,8 @@ const UpdateMembership = ({
         }
       });
   };
+
+  //  Information Update Form
   return (
     <div>
       <Modal

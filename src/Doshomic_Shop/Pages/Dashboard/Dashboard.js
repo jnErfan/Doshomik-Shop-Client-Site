@@ -25,16 +25,21 @@ import { useState } from "react";
 import LogoutIcon from "@mui/icons-material/Logout";
 
 const Dashboard = () => {
+  //  Use Auth Context Api
   const { users, logOutAll, user } = useAuth();
+
   const [anchorElUser, setAnchorElUser] = useState(null);
   const navigate = useNavigate();
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
 
+  // User Toggle Button
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  // Dashboard Component Handler
   return (
     <Box className="dashboardContainer">
       <Box>

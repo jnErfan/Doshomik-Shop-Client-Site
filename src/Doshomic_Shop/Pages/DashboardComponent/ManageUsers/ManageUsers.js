@@ -31,6 +31,7 @@ const ManageUsers = () => {
   const [change, setChange] = useState("");
   const { users } = useAuth();
 
+  // Get All User Information
   useEffect(() => {
     fetch("https://doshomik-shop-server.herokuapp.com/allUsers")
       .then((result) => result.json())
@@ -40,6 +41,7 @@ const ManageUsers = () => {
       });
   }, [change]);
 
+  // Make User To Admin Button Handler
   const makeAdmin = (email) => {
     axios
       .put(`https://doshomik-shop-server.herokuapp.com/makeAdmin/${email}`)
@@ -53,6 +55,8 @@ const ManageUsers = () => {
         });
       });
   };
+
+   // Make User To Moderator Button Handler
   const makeModerator = (email) => {
     axios
       .put(`https://doshomik-shop-server.herokuapp.com/makeModerator/${email}`)
@@ -66,6 +70,8 @@ const ManageUsers = () => {
         });
       });
   };
+
+  // Demotion Admin/Moderator To User Button Handler
   const makeUser = (email) => {
     axios
       .put(`https://doshomik-shop-server.herokuapp.com/makeUser/${email}`)
@@ -79,6 +85,8 @@ const ManageUsers = () => {
         });
       });
   };
+
+  // User Information Display Card
   return (
     <Box sx={{ my: "100px" }}>
       <Box sx={{ textAlign: "center", mb: "50px" }}>

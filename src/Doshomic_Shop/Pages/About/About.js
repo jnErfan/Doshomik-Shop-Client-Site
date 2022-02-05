@@ -5,6 +5,7 @@ import PeopleSays from "../Home/PeopleSays/PeopleSays";
 import Facilities from "../Home/Facilities/Facilities";
 import Banner from "../SharedItem/Banner";
 
+//  About Us Component
 const About = () => {
   return (
     <Box>

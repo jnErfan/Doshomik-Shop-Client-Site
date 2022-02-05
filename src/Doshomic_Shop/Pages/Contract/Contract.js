@@ -15,6 +15,7 @@ import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { styled } from "@mui/system";
 import SendIcon from "@mui/icons-material/Send";
 
+// Inputs Design
 const StyledInputElement = styled("input")`
   width: 100%;
   font-size: 1.2rem;
@@ -29,7 +30,7 @@ const StyledInputElement = styled("input")`
     outline: none;
   }
 `;
-
+// Contact Info Data
 const contacts = [
   {
     Icon: MapIcon,
@@ -55,9 +56,11 @@ const Contract = () => {
   return (
     <Box>
       <Box>
+        {/* Contact Banner */}
         <Banner pageName={"Contract"} from={"Home"} />
       </Box>
       <Container sx={{ my: "150px" }}>
+        {/* Contact First Card Info Details  */}
         <Grid container spacing={3}>
           {contacts.map(({ Icon, title, info, link }) => (
             <Grid
@@ -123,7 +126,7 @@ const Contract = () => {
             </Grid>
           ))}
         </Grid>
-
+        {/* Direct Contract Form */}
         <Box sx={{ my: "100px" }}>
           <Typography
             variant="h4"

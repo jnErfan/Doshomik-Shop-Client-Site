@@ -36,6 +36,7 @@ const CustomerReview = () => {
   const { user } = useAuth();
   const { register, handleSubmit, reset } = useForm();
 
+  // Saved Public Review In Database
   const onSubmit = (data) => {
     data.image =
       user?.photoURL ||
@@ -62,6 +63,8 @@ const CustomerReview = () => {
         });
     }
   };
+
+  // Review Form
   return (
     <Box>
       <Box>

@@ -2,6 +2,9 @@ import { Box } from "@mui/system";
 import React from "react";
 
 const Settings = () => {
+
+  //  Coming Son ............................... \\
+
   return (
     <Box sx={{ textAlign: "center", mt: "50px" }}>
       <h1 style={{ fontWeight: "bold", color: "#101436", fontSize: "60px" }}>

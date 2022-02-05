@@ -3,6 +3,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import Banner from "../SharedItem/Banner";
 
+// Blogs Fake Data
 const blogsDes = [
   {
     id: 1111,
@@ -25,8 +26,10 @@ const blogsDes = [
 ];
 
 const BlogDetails = () => {
+  // Blog Param Id
   const { blogId } = useParams();
 
+  //  Filtering Selected Blog Details
   const blogDetails = blogsDes.filter((blog) => blog?.id === Number(blogId));
   const { img, title, des } = blogDetails[0];
 
@@ -36,6 +39,7 @@ const BlogDetails = () => {
       <Container sx={{ my: "100px" }}>
         <Box>
           <Grid container spacing={2}>
+            {/* Blog Full Details */}
             <Grid item xs={12} sm={12} md={6} lg={8}>
               <Box sx={{ mr: "50px" }}>
                 <img width="100%" src={img} alt="" />
@@ -103,6 +107,7 @@ const BlogDetails = () => {
               </Box>
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={4}>
+              {/* Recent Posts */}
               <Box>
                 <Box>
                   <Typography variant="h5" sx={{ fontWeight: "bold" }}>
@@ -160,6 +165,7 @@ const BlogDetails = () => {
                   ))}
                 </Box>
               </Box>
+              {/*  Most Viewed Blogs */}
               <Box>
                 <Box sx={{ mt: "50px" }}>
                   <Typography variant="h5" sx={{ fontWeight: "bold" }}>

@@ -14,15 +14,8 @@ const ManageMemberShips = () => {
   const [open, setOpen] = useState(false);
 
   const { register, handleSubmit, reset } = useForm();
-  const handleOpen = (id) => {
-    setOpen(true);
-    setIsLoading(true);
-    setId(id);
-    setTimeout(() => {
-      setIsLoading(false);
-      reset();
-    }, 300);
-  };
+
+// Get All Memberships Details
   useEffect(() => {
     fetch("https://doshomik-shop-server.herokuapp.com/allMemberShips")
       .then((result) => result.json())
@@ -32,6 +25,18 @@ const ManageMemberShips = () => {
       });
   }, [membershipDelete]);
 
+    // Update Membership
+    const handleOpen = (id) => {
+      setOpen(true);
+      setIsLoading(true);
+      setId(id);
+      setTimeout(() => {
+        setIsLoading(false);
+        reset();
+      }, 300);
+    };
+
+    // Delete Single Membership
   const deleteMembership = (id) => {
     Swal.fire({
       title: "Are You Sure ?",
@@ -66,8 +71,8 @@ const ManageMemberShips = () => {
     });
   };
 
-  // Update Membership
 
+  // Display All Membership Cards With Delete And Update Button
   return (
     <Box>
       {isLoading && (
