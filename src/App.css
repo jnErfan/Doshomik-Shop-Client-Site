@@ -1,3 +1,4 @@
+/* Scroll Bar  Color */
 ::-webkit-scrollbar {
   background: #006df262;
   width: 10px;
@@ -6,6 +7,7 @@
   background: linear-gradient(10deg, #042038, #031d55);
   border-radius: 3px;
 }
+/* All Number Input Default Button Hidden */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
