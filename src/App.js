@@ -32,6 +32,7 @@ function App() {
   let location = window.location.pathname;
   const [loading, setLoading] = useState(false);
 
+  // Set Preloader Timing
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
@@ -39,6 +40,7 @@ function App() {
     }, 5000);
   }, []);
 
+  // All Component Main Ceil
   return (
     <Box>
       {loading ? (
