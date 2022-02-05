@@ -8,6 +8,8 @@ import { Button, CardActionArea, Grid } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useNavigate } from "react-router-dom";
 
+
+//  Blog Fake Data
 const blogs = [
   {
     id: 1111,
@@ -32,6 +34,7 @@ const blogs = [
 const OurBlog = () => {
   const navigate = useNavigate();
 
+  //  Blog Information Card 
   return (
     <Container sx={{ mb: "100px" }}>
       <Box

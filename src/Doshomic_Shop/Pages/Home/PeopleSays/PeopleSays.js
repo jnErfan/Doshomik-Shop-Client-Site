@@ -13,6 +13,7 @@ const PeopleSays = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [reviews, setReviews] = useState([]);
 
+  //  Get All Customer Reviews
   useEffect(() => {
     fetch("https://doshomik-shop-server.herokuapp.com/customerReview")
       .then((res) => res.json())
@@ -24,6 +25,8 @@ const PeopleSays = () => {
   const handleStepChange = (step) => {
     setActiveStep(step);
   };
+
+  //  Customer Review And Customer Info
   return (
     <Container sx={{ mb: "100px" }}>
       <Box sx={{ textAlign: "center", my: "50px" }}>

@@ -15,6 +15,7 @@ const Banner = () => {
   const { user } = useAuth();
   const theme = useTheme();
 
+  // Banner Responsive Breakpoints
   const useStyle = makeStyles({
     navItemRes: {
       [theme.breakpoints.down("md")]: {
@@ -23,7 +24,10 @@ const Banner = () => {
     },
   });
 
+  // Destructuring 
   const { navItemRes } = useStyle();
+
+  // Components Banner Main Style Api
   return (
     <Carousel fade>
       <Carousel.Item>

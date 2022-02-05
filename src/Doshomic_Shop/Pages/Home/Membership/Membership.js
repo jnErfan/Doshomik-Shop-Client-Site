@@ -6,11 +6,14 @@ import { useNavigate } from "react-router-dom";
 const Membership = () => {
   const [membership, setMembership] = useState([]);
 
+  // Get Only 6 Memberships Information For Home Page
   useEffect(() => {
     fetch("https://doshomik-shop-server.herokuapp.com/memberShips")
       .then((result) => result.json())
       .then((data) => setMembership(data));
   }, []);
+
+
   const navigate = useNavigate();
   const SubscribeButton = styled(Button)(({ theme }) => ({
     background: "#003BFF",
@@ -25,6 +28,7 @@ const Membership = () => {
     },
   }));
 
+  //  Memberships Information Card
   return (
     <Container sx={{ mb: "100px" }}>
       <Box sx={{ textAlign: "center", mb: "50px" }}>

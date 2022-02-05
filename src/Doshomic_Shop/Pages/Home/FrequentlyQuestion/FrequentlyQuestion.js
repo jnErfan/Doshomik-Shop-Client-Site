@@ -7,6 +7,7 @@ import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 
+// Popup Accordion Styles
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
@@ -41,6 +42,8 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   padding: theme.spacing(2),
   borderTop: "1px solid rgba(0, 0, 0, .125)",
 }));
+
+// Questions Fake data
 const questions = [
   {
     id: "1",
@@ -80,6 +83,7 @@ const questions = [
   },
 ];
 
+// Customers Questions And Answers Design
 const FrequentlyQuestion = () => {
   const [expanded, setExpanded] = useState("panel10");
 

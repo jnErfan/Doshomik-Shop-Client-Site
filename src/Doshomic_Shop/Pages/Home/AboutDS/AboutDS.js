@@ -6,7 +6,7 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import "./AboutDS.css";
 import SlowMotionVideoIcon from "@mui/icons-material/SlowMotionVideo";
 
-// About Component 
+// About Us All Information Component 
 const AboutDS = () => {
   const [hide, setHide] = useState(false);
   return (

@@ -9,6 +9,7 @@ import PeopleSays from "../PeopleSays/PeopleSays";
 import OurBlog from "../OurBlog/OurBlog";
 import { Box, Typography } from "@mui/material";
 
+//  Manage Home Main Component
 const HomeContainer = () => {
   return (
     <div>

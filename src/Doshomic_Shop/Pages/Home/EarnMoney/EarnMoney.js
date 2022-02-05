@@ -7,6 +7,7 @@ import MoneyIcon from "@mui/icons-material/Money";
 import CountUp from "react-countup";
 import VisibilitySensor from "react-visibility-sensor";
 
+//  Earn Money Home Page Component
 const EarnMoney = () => {
   return (
     <Box sx={{ mb: "100px" }}>

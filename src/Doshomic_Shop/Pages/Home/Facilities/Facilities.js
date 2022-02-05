@@ -9,6 +9,7 @@ import { Box } from "@mui/system";
 import { Container, Grid, Paper, Typography } from "@mui/material";
 import "./Facilities.css";
 
+// Facilities Card Info Data
 const facilities = [
   {
     Icon: PublicIcon,
@@ -48,6 +49,7 @@ const facilities = [
   },
 ];
 
+// Facilities Card Design And Style
 const Facilities = () => {
   return (
     <Container sx={{ mb: "100px" }}>
