@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "./Footer.css";
 import { HashLink } from "react-router-hash-link";
 
+//  Footer Information 
 const Footer = () => {
   return (
     <Box sx={{ mt: "100px", backgroundColor: "#1976D2" }}>

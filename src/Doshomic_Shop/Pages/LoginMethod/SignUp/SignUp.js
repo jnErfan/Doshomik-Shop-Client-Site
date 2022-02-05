@@ -30,6 +30,8 @@ const SignUp = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  
+  //  Submit Email Password Register Information
   const onSubmit = (data) => {
     const fullName = data.firstName + " " + data.lastName;
 
@@ -54,6 +56,8 @@ const SignUp = () => {
     }
   };
 
+  
+  //  Sign Up Popular Social Account Login Button Handler
   const googleSignInHandler = () => {
     googleSignIn(navigate, location);
   };
@@ -64,6 +68,7 @@ const SignUp = () => {
     facebookSignIn(navigate, location);
   };
 
+  //  Sign Up Information Form
   return (
     <Box>
       <Box>

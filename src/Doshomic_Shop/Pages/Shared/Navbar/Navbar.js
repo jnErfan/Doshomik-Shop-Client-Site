@@ -28,15 +28,18 @@ import { makeStyles } from "@mui/styles";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 
 const Navbar = () => {
-  const [scrollChange, setSrollChainge] = useState(false);
+  const [scrollChange, setScrollChange] = useState(false);
   const navigate = useNavigate();
+
+  //  On Scroll Style Change Handler
   const onScrollHeader = () => {
-    window.scrollY >= 10 ? setSrollChainge(true) : setSrollChainge(false);
+    window.scrollY >= 10 ? setScrollChange(true) : setScrollChange(false);
   };
   window.addEventListener("scroll", onScrollHeader);
 
   const { user, logOutAll, users } = useAuth();
 
+  //  LogOut Button Handler
   const logOut = () => {
     logOutAll();
   };
@@ -53,6 +56,7 @@ const Navbar = () => {
 
   const theme = useTheme();
 
+  //  Set Display Breakpoints For Responsive
   const useStyle = makeStyles({
     navItemRes: {
       [theme.breakpoints.down("md")]: {
@@ -71,6 +75,7 @@ const Navbar = () => {
 
   return (
     <Box>
+      {/* Login Registration And User Handler App Bar */}
       <Box sx={{ flexGrow: 1 }}>
         <AppBar
           color="transparent"
@@ -395,6 +400,7 @@ const Navbar = () => {
           </Toolbar>
         </AppBar>
       </Box>
+      {/* Component Handler Navbar */}
       <Box sx={{ flexGrow: 1 }}>
         <AppBar
           sx={scrollChange ? { backgroundColor: "#006EF2" } : { boxShadow: 0 }}

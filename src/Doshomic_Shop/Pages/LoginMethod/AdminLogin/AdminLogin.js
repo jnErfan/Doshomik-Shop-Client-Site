@@ -24,6 +24,7 @@ import Swal from "sweetalert2";
 const AdminLogin = () => {
   const [values, setValues] = React.useState(false);
 
+// Security Codes Creator
   const code1 = Math.floor(Math.random() * 10);
   const code2 = Math.floor(Math.random() * 10);
   const code3 = Math.floor(Math.random() * 10);
@@ -41,10 +42,12 @@ const AdminLogin = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  //  Submit Email Password Admin Login Information
   const onSubmit = (data) => {
     emailPasswordLogin(data.email, data.password, navigate, location);
   };
 
+  //  Password Reset Button Handler
   async function resetPasswordInput() {
     const { value: email } = await Swal.fire({
       title: "Email address",
@@ -57,6 +60,7 @@ const AdminLogin = () => {
     }
   }
 
+  //  Admin Login Popular Social Account Login Button Handler
   const googleSignInHandler = () => {
     googleSignIn(navigate, location);
   };
@@ -67,6 +71,7 @@ const AdminLogin = () => {
     facebookSignIn(navigate, location);
   };
 
+  //  Login Information Form
   return (
     <Box>
       <Box>

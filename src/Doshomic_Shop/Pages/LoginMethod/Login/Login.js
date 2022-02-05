@@ -25,6 +25,8 @@ import "./Login.css";
 const Login = () => {
   const [values, setValues] = useState(false);
 
+  
+// Security Codes Creator
   const code1 = Math.floor(Math.random() * 10);
   const code2 = Math.floor(Math.random() * 10);
   const code3 = Math.floor(Math.random() * 10);
@@ -42,10 +44,13 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  
+  //  Submit Email Password Admin Login Information
   const onSubmit = (data) => {
     emailPasswordLogin(data.email, data.password, navigate, location);
   };
 
+  //  Reset Password Button Handler
   async function resetPasswordInput() {
     const { value: email } = await Swal.fire({
       title: "Email address",
@@ -58,6 +63,8 @@ const Login = () => {
     }
   }
 
+  
+  //  Login Popular Social Account Login Button Handler
   const googleSignInHandler = () => {
     googleSignIn(navigate, location);
   };
@@ -68,6 +75,7 @@ const Login = () => {
     facebookSignIn(navigate, location);
   };
 
+  //  Login Information Form
   return (
     <Box>
       <Box>

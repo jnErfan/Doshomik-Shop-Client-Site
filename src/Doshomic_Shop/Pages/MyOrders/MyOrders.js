@@ -7,12 +7,15 @@ import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 import Banner from "../SharedItem/Banner";
 
+//  Customer Order Displayed Information
 const MyOrders = () => {
   const { user } = useAuth();
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [changeOrders, setChangeOrders] = useState([]);
   const navigate = useNavigate();
+
+  //  Get User Information
   useEffect(() => {
     fetch(`https://doshomik-shop-server.herokuapp.com/myOrder/${user.email}`)
       .then((res) => res.json())
@@ -21,9 +24,11 @@ const MyOrders = () => {
         setOrders(data);
       });
   }, [changeOrders, user.email]);
-  //
+  
+  // Customer Email Matched Orders Filter
   const allOrder = orders.filter((order) => order.email === user.email);
 
+  // Ordered Item Cancel
   async function orderCancel(id) {
     const { value: password } = await Swal.fire({
       icon: "question",
@@ -58,6 +63,7 @@ const MyOrders = () => {
     }
   }
 
+  // Rejected Order Retry Order
   async function orderRetry(id, orderID) {
     Swal.fire({
       title: "You Want To Order Again ?",
@@ -117,6 +123,7 @@ const MyOrders = () => {
     });
   }
 
+  //  Orders Card
   return (
     <Box>
       {isLoading && (

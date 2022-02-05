@@ -6,6 +6,7 @@ import { styled } from "@mui/system";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+//  All Memberships Showing Component
 const MemberShips = () => {
   const [membership, setMembership] = useState([]);
 
@@ -15,6 +16,8 @@ const MemberShips = () => {
       .then((data) => setMembership(data));
   }, []);
   const navigate = useNavigate();
+
+  // Buy Membership Button Handler
   const SubscribeButton = styled(Button)(({ theme }) => ({
     background: "#003BFF",
     color: "#fff",
@@ -28,6 +31,7 @@ const MemberShips = () => {
     },
   }));
 
+  //  Membership Cards
   return (
     <Box>
       <Box>

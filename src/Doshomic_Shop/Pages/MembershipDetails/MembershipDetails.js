@@ -14,6 +14,7 @@ import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth";
 import Banner from "../SharedItem/Banner";
 
+// Selected Membership Full Details 
 const MembershipDetails = () => {
   const navigate = useNavigate();
   const { memberShipDetailsId } = useParams();
@@ -27,6 +28,8 @@ const MembershipDetails = () => {
       .then((result) => result.json())
       .then((data) => setMembership(data));
   }, [memberShipDetailsId]);
+
+  // Placed Ordered And Customer Information
   async function orderInformation() {
     const { value: name } = await Swal.fire({
       title: "Your Name",
@@ -98,6 +101,7 @@ const MembershipDetails = () => {
     }
   }
 
+  // Details And Ordered Customer Information Form
   return (
     <Box>
       {isLoading && (
